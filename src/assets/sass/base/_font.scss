@@ -1,0 +1,54 @@
+// input text 
+.input-text {
+    font-size: 14px;
+}
+
+h1 {
+    font-size: 65px;
+}
+
+h2 {
+    font-size: 60px;
+}
+
+h3 {
+    font-size: 32px;
+}
+
+h4 {
+    font-size: 24px; 
+}
+
+h5 {
+    font-size: 20px;
+}
+
+p {
+    font-size: 16px;
+}
+
+@media screen and (max-width:375px) {
+    h1 {
+        font-size: 40px;
+    }
+    
+    h2 {
+        font-size: 36px;
+    }
+    
+    h3 {
+        font-size: 26px;
+    }
+    
+    h4 {
+        font-size: 20px; 
+    }
+    
+    h5 {
+        font-size: 18px;
+    }
+    
+    p {
+        font-size: 16px;
+    }
+}
