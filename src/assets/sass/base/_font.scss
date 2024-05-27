@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&family=Noto+Serif+HK:wght@200..900&family=Zhi+Mang+Xing&display=swap');
+
+* {
+    font-family: "Noto Serif HK", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
 // input text 
 .input-text {
     font-size: 14px;
@@ -9,6 +16,8 @@ h1 {
 
 h2 {
     font-size: 60px;
+    font-weight: bold;
+
 }
 
 h3 {
