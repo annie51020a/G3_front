@@ -6,8 +6,6 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
     <div class="wrapper">
       <HelloWorld msg="hello" />
 
@@ -19,44 +17,34 @@ import HelloWorld from './components/HelloWorld.vue'
         <RouterLink to="/product">周邊商品</RouterLink>
         <RouterLink to="/quiz">知識小學堂</RouterLink>
       </nav>
-      <sectionA />
-      <sectionB />
-      <sectionC />
+      <SectionA />
     </div>
   </header>
 
+  <MainFooter />
   <RouterView />
+  <MainHeader />
 </template>
 
 <script>
 // import { defineComponent } from 'vue';
 import { RouterLink, RouterView } from 'vue-router';
-import HelloWorld from './components/HelloWorld.vue';
 import SectionA from './components/home/SectionA.vue';
-import SectionB from './components/home/SectionB.vue';
-import SectionC from './components/home/SectionC.vue';
+import MainFooter from './components/home/MainFooter.vue';
+import MainHeader from './components/home/MainHeader.vue';
 
 export default {
   components: {
     RouterLink,
     RouterView,
-    HelloWorld,
     SectionA,
-    SectionB,
-    SectionC
+    MainFooter,
+    MainHeader
   }
 }
 </script>
 
 
-<style scoped>
-section {
-  background-color: red;
-  height: 90vh;
-  margin: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 10rem;
-}
+<style lang="scss">
+  
 </style>
