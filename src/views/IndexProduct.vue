@@ -71,7 +71,7 @@ export default {
         padding: 50px 0;
         width: 80%;
         margin: 0 auto;
-        .row {
+        .row {           
             .product-title {
                 h2 {
                     color: white;
