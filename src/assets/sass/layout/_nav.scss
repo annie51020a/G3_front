@@ -1,0 +1,29 @@
+header {
+    height: 80px;
+    width: 100%;
+
+    .header-nav {
+        width: 90%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 10px auto;
+
+        .logo {
+            display: flex;
+            align-items: center;
+
+            img {
+                height: 70px;
+                width: 100%;
+
+            }
+        }
+
+        .icons {
+            img {
+                margin: 0 5px;
+            }
+        }
+    }
+}
