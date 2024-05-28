@@ -28,7 +28,7 @@ import IndexBanner from '../components/IndexBanner.vue'
       </section>
     </div>
     <div class="index-more">
-      <a href="#" class="index-more-txt">更多消息</a>
+      <a href="#" class="more-txt">更多消息</a>
     </div>
   </section>
 </template>
