@@ -11,8 +11,8 @@
                     <div class="card" v-for="item in list" :key="item.id">
                         <div class="card-pic">
                             <img :src="item.pic">
-                            <div class="card-fav">
-                                <img src="../../pic/heart1.png" alt="heart">
+                            <div class="card-fav"  >
+                                <img @click="isFav(item.id)" :src="item.fav? solidHeart : hollowHeart" alt="heart">
                             </div>
                         </div>
                         <div class="card-text">
@@ -40,26 +40,40 @@ export default {
   name: 'box',
   data() {
     return {
-      list: [
+    hollowHeart: '../../pic/heart-regular.svg',
+    solidHeart: '../../pic/heart-solid.svg',
+    list: [
         {
           id: 1,
-          pic: '../../pic/um1.jpg'
+          pic: '../../pic/um1.jpg',
+          fav: false
         },
         {
           id: 2,
-          pic: '../../pic/um2.jpg'
+          pic: '../../pic/um2.jpg',
+          fav: false
         },
         {
           id: 3,
-          pic: '../../pic/um3.jpg'
+          pic: '../../pic/um3.jpg',
+          fav: false
         },
         {
           id: 4,
-          pic: '../../pic/um4.jpg'
+          pic: '../../pic/um4.jpg',
+          fav: false
         }
       ]
     }
-  }
+  },
+  methods: {
+    isFav(id) {
+        const item = this.list.find(item => item.id === id);
+        if (item) {
+        item.fav = !item.fav;
+        }
+    }
+  },
 
 }
 </script>
