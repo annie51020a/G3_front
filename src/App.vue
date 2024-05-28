@@ -10,12 +10,11 @@ import HelloWorld from './components/HelloWorld.vue'
       <HelloWorld msg="hello" />
 
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/product">Product</RouterLink>
-        <RouterLink to="/news">News</RouterLink>
+        <!-- <RouterLink to="/">Home</RouterLink> -->
+        <RouterLink to="/about">關於我們</RouterLink>
+        <RouterLink to="/news">最新消息</RouterLink>
+        <RouterLink to="/product">周邊商品</RouterLink>
       </nav>
-      <SectionA />
     </div>
   </header>
 
@@ -27,17 +26,17 @@ import HelloWorld from './components/HelloWorld.vue'
 <script>
 // import { defineComponent } from 'vue';
 import { RouterLink, RouterView } from 'vue-router';
-import SectionA from './components/home/SectionA.vue';
 import MainFooter from './components/home/MainFooter.vue';
 import MainHeader from './components/home/MainHeader.vue';
+// import ActivityView from './views/ActivityView.vuex';
 
 export default {
   components: {
     RouterLink,
     RouterView,
-    SectionA,
     MainFooter,
-    MainHeader
+    MainHeader,
+    // ActivityView,
   }
 }
 </script>
