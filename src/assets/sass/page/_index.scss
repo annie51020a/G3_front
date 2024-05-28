@@ -171,3 +171,96 @@
         }
     }
 }
+// index - news
+.section {
+    max-width: 800px;
+    margin: auto;
+    .title {
+        text-align: center;
+        line-height: 2.5;
+    }
+    .index-card-list {
+        width: 800px;
+        margin: auto;
+        .index-card {
+            box-sizing: border-box;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: center;
+            height: 133px;
+            border-radius: 20px;
+            padding: 18px 15px;
+            margin-bottom: 35px;
+            background-color: #FAF8F4;
+            .index-card-pic {
+                width: 170px;
+                display: block;
+                overflow: hidden;
+                border-radius: 15px;
+                img {
+                    width: 100%;
+                    vertical-align: top;
+                }
+            }
+            .index-card-txt {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                justify-content: center;
+                padding: 0 15px;
+                .index-card-date-status {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    width: 160px;
+                    height: 30px;
+                    .index-card-status {
+                        background-color: #BE1A0E;
+                        color: #F9F1E5;
+                        padding: 5px 8px;
+                        border-radius: 1px;
+                        font-size: 12px;
+                    }
+                }
+                .index-card-content {
+                    display: flex;
+                    justify-content: space-between;
+                    .index-card-content-txt {
+                        width: 510px;
+                    }
+                    .index-card-arrow-right {
+                        transform: translate(25%, -10%);
+                        background-color: #BE1A0E;
+                        color: #F9F1E5;
+                        width: 50px;
+                        height: 50px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 50%;
+                        text-decoration: none;
+                    }
+                }
+                
+            }
+            
+        }
+    }
+    .index-more {
+        display: flex;
+        justify-content: flex-end;
+        .index-more-txt {
+            font-size: 24px;
+            color: #F9F1E5;
+            background-color: #D8625D;
+            // border: 1px solid #BE1A0E;
+            text-decoration: none;
+            border-radius: 20px;
+            padding: 5px 15px;
+            align-self: center;
+            
+        }
+    }
+}
