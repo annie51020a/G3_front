@@ -1,5 +1,4 @@
 //js入口執行檔案
-import './assets/main.css'
 import './assets/sass/_style.scss'
 
 import { createApp } from 'vue'

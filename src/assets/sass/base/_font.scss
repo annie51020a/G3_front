@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&family=Noto+Serif+HK:wght@200..900&family=Zhi+Mang+Xing&display=swap');
+
+body {
+    font-family: "Noto Serif HK", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    letter-spacing: 1.2px;
+}
+
 // input text 
 .input-text {
     font-size: 14px;
@@ -9,6 +18,8 @@ h1 {
 
 h2 {
     font-size: 60px;
+    font-weight: bold;
+
 }
 
 h3 {
@@ -16,7 +27,7 @@ h3 {
 }
 
 h4 {
-    font-size: 24px; 
+    font-size: 24px;
 }
 
 h5 {
@@ -25,30 +36,39 @@ h5 {
 
 p {
     font-size: 16px;
+    color: #6B380D;
 }
 
 @media screen and (max-width:375px) {
     h1 {
         font-size: 40px;
     }
-    
+
     h2 {
         font-size: 36px;
     }
-    
+
     h3 {
         font-size: 26px;
     }
-    
+
     h4 {
-        font-size: 20px; 
+        font-size: 20px;
     }
-    
+
     h5 {
         font-size: 18px;
     }
-    
+
     p {
         font-size: 16px;
     }
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
 }

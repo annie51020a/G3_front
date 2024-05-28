@@ -1,0 +1,86 @@
+.news {
+    max-width: 800px;
+    margin: auto;
+    .title {
+        text-align: center;
+        line-height: 2.5;
+    }
+    .card-list {
+        width: 800px;
+        margin: auto;
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: space-between;
+        .card {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            height: 133px;
+            border-radius: 20px;
+            padding: 18px 15px;
+            border: 1px solid #4E4E4E;
+            margin-bottom: 35px;
+            background-color: #FAF8F4;
+            .card-pic {
+                width: 170px;
+                display: block;
+                overflow: hidden;
+                img {
+                    width: 100%;
+                    vertical-align: top;
+                }
+            }
+            .card-txt {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                height: 95px;
+                justify-content: center;
+                .card-date-status {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    width: 160px;
+                    .card-status {
+                        background-color: #BE1A0E;
+                        color: #F9F1E5;
+                        padding: 5px 8px;
+                        border-radius: 1px;
+                        font-size: 12px;
+                    }
+                }
+                .card-content {
+                    width: 500px;
+                }
+                .card-arrow-right {
+                    background-color: #BE1A0E;
+                    color: #F9F1E5;
+                    width: 50px;
+                    height: 50px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 50%;
+                    text-decoration: none;
+                }
+            }
+            
+        }
+    }
+    .more {
+        display: flex;
+        justify-content: flex-end;
+        .more-txt {
+            font-size: 24px;
+            color: #3F3F3F;
+            background-color: #E7BD86;
+            border: 1px solid #AF8B5C;
+            text-decoration: none;
+            border-radius: 20px;
+            padding: 5px 15px;
+            
+        }
+    }
+}
