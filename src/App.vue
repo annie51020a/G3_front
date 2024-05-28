@@ -5,8 +5,6 @@ import HelloWorld from './components/HelloWorld.vue'
 
 
 <template>
-<<<<<<< HEAD
-=======
   <header>
     <div class="wrapper">
       <HelloWorld msg="hello" />
@@ -24,7 +22,6 @@ import HelloWorld from './components/HelloWorld.vue'
 
   <MainFooter />
   <RouterView />
->>>>>>> Ven
   <MainHeader />
   <RouterView />
   <MainFooter />
