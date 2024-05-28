@@ -80,6 +80,7 @@ export default {
             }
             .cardlist {
                 display: flex;
+                justify-content: flex-end;
                 gap: 24px;
                 .card {
                     .card-pic {
