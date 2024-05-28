@@ -1,5 +1,11 @@
+<script setup>
+import TheWelcome from '../components/TheWelcome.vue'
+import IndexBanner from '../components/IndexBanner.vue'
+</script>
+
 <template>
   <main>
-    hello
+    <IndexBanner />
+    <TheWelcome />
   </main>
 </template>
