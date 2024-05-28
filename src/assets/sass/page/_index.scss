@@ -8,6 +8,9 @@
     margin: auto;
     background-size: cover;
     background-position: 50% 30%;
+    letter-spacing: 3px;
+    line-height: 150%;
+    text-shadow:1px 1px black;
 
     > p {
         font-size: 16px;
@@ -21,6 +24,7 @@
         font-size: 65px;
         padding-left: 5%;
         padding-top: 5%;
+        line-height: 150%;
     }
 
     .about-us-btn {
@@ -28,6 +32,8 @@
         align-items: center;
         justify-content: flex-end;
         padding-right: 2%;
+        padding-top: 5%;
+        padding-bottom: 2%;
 
         p {
             color: white;
@@ -98,6 +104,7 @@
         align-items: center;
         width: 80%;
         justify-content: center;
+        margin: 4% 0;
 
         h2 {
             font-size: 60px;

@@ -4,6 +4,8 @@ import IndexProductPopular from './IndexProductPopular.vue'
 </script>
 
 <template>
+  <IndexBanner />
+  <IndexProductPopular />
   <section class="section index-news">
     <h2 class="title">最新消息</h2>
     <div class="index-card-list">
