@@ -4,18 +4,19 @@ header {
 
     .header-nav {
         width: 90%;
-        height: 80px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin: auto;
+        margin: 10px auto;
 
         .logo {
-            height: 80px;
+            display: flex;
+            align-items: center;
 
             img {
-                height: 80px;
+                height: 70px;
                 width: 100%;
+
             }
         }
 
