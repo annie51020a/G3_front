@@ -2,7 +2,6 @@
     <header>
         <div class="wrapper">
             <HelloWorld msg="hello" />
-            <img class="logo" alt="">
             <nav>
                 <RouterLink to="/">Home</RouterLink>
                 <RouterLink to="/about">關於我們</RouterLink>
