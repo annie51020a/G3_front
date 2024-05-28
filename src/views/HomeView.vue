@@ -1,6 +1,7 @@
-<!-- <script setup>
-import IndexBanner from '../components/IndexBanner.vue'
-</script> -->
+<script setup>
+import IndexBanner from './IndexBanner.vue'
+import IndexProductPopular from './IndexProductPopular.vue'
+</script>
 
 <template>
   <section class="section index-news">
@@ -63,5 +64,6 @@ export default {
 <!-- <template>
   <main>
     <IndexBanner />
+    <IndexProductPopular />
   </main>
 </template> -->
