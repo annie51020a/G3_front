@@ -1,0 +1,28 @@
+header {
+    height: 80px;
+    width: 100%;
+
+    .header-nav {
+        width: 90%;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: auto;
+
+        .logo {
+            height: 80px;
+
+            img {
+                height: 80px;
+                width: 100%;
+            }
+        }
+
+        .icons {
+            img {
+                margin: 0 5px;
+            }
+        }
+    }
+}
