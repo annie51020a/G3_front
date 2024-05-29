@@ -5,6 +5,14 @@
             <div class="row">
                 <div class="product-title">
                     <h2>商品列表</h2>
+                    <div class="product-arrow">
+                        <div class="product-arrow-btn">
+                            <img src="../../pic/product-left.png" alt="">
+                        </div>
+                        <div class="product-arrow-btn">
+                            <img src="../../pic/product-right.png" alt="">
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="cardlist">
@@ -15,7 +23,7 @@
                                 <img @click="isFav(item.id)" :src="item.fav? solidHeart : hollowHeart" alt="heart">
                             </div>
                         </div>
-                        <div class="card-text">
+                        <div class="card-txt">
                             <div class="card-tag">
                                 <span>龍年限定</span>
                             </div>
@@ -87,6 +95,12 @@ export default {
         margin: 0 auto;
         .row {           
             .product-title {
+                display: flex;
+                justify-content: space-between;
+                .product-arrow {
+                    display: flex;
+                    gap: 30px;
+                }
                 h2 {
                     color: white;
                     margin-bottom: 50px;
@@ -95,6 +109,7 @@ export default {
             .cardlist {
                 display: flex;
                 justify-content: flex-end;
+                flex-wrap: wrap;
                 gap: 24px;
                 .card {
                     .card-pic {
@@ -115,7 +130,7 @@ export default {
                             
                         }
                     }
-                    .card-text {
+                    .card-txt {
                         padding: 5px;
                         .card-tag {
                             margin-bottom: 20px;
