@@ -7,10 +7,10 @@
                     <h2>商品列表</h2>
                     <div class="product-arrow">
                         <div class="product-arrow-btn">
-                            <img src="../../pic/product-left.png" alt="">
+                            <img src="../assets/pic/product-left.png" alt="">
                         </div>
                         <div class="product-arrow-btn">
-                            <img src="../../pic/product-right.png" alt="">
+                            <img src="../assets/pic/product-right.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -20,7 +20,7 @@
                         <div class="card-pic">
                             <img :src="item.pic">
                             <div class="card-fav"  >
-                                <img @click="isFav(item.id)" :src="item.fav? solidHeart : hollowHeart" alt="heart">
+                                <img class="card-fav-icon" @click="isFav(item.id)" :src="item.fav? solidHeart : hollowHeart" alt="heart">
                             </div>
                         </div>
                         <div class="card-txt">
@@ -44,31 +44,37 @@
 </template>
 
 <script>
+import hollowHeart from '@/assets/pic/heart-regular.svg';
+import solidHeart from '@/assets/pic/heart-solid.svg';
+import pic1 from '@/assets/pic/um1.jpg';
+import pic2 from '@/assets/pic/um2.jpg';
+import pic3 from '@/assets/pic/um3.jpg';
+import pic4 from '@/assets/pic/um4.jpg';
 export default {
   name: 'box',
   data() {
     return {
-    hollowHeart: '../../pic/heart-regular.svg',
-    solidHeart: '../../pic/heart-solid.svg',
+    hollowHeart,
+    solidHeart,
     list: [
         {
           id: 1,
-          pic: '../../pic/um1.jpg',
+          pic: pic1,
           fav: false
         },
         {
           id: 2,
-          pic: '../../pic/um2.jpg',
+          pic: pic2,
           fav: false
         },
         {
           id: 3,
-          pic: '../../pic/um3.jpg',
+          pic: pic3,
           fav: false
         },
         {
           id: 4,
-          pic: '../../pic/um4.jpg',
+          pic: pic4,
           fav: false
         }
       ]
@@ -124,7 +130,7 @@ export default {
                             position: absolute;
                             right: 10px;
                             bottom: 10px;
-                            img {
+                            .card-fav-icon {
                                 width: 30px;
                             }
                             
