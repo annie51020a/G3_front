@@ -6,20 +6,20 @@
         </div>
         <div class="product-popular-img-box">
             <div class="popular-product1">
-                <img src="/pic/popular-product1.png" alt="">
+                <img src="../assets/pic/popular-product1.png" alt="">
             </div>
             <div class="popular-product2">
-                <img src="/pic/popular-product2.png" alt="">
+                <img src="../assets/pic/popular-product2.png" alt="">
             </div>
             <div class="popular-product3">
-                <img src="/pic/popular-product3.png" alt="">
+                <img src="../assets/pic/popular-product3.png" alt="">
             </div>
             <div class="content-img-box">
                 <div class="popular-product4">
-                    <img src="/pic/popular-product4.png" alt="">
+                    <img src="../assets/pic/popular-product4.png" alt="">
                 </div>
                 <div class="popular-product5">
-                    <img src="/pic/popular-product5.png" alt="">
+                    <img src="../assets/pic/popular-product5.png" alt="">
                 </div>
             </div>
         </div>

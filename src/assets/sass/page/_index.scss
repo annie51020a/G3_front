@@ -36,12 +36,12 @@
         padding-top: 5%;
         padding-bottom: 2%;
 
-        p {
+        > p {
             color: white;
             padding-right: 10px;
         }
 
-        button {
+        > button {
             width: 40px;
             height: 40px;
             border-radius: 50%;
