@@ -183,7 +183,7 @@
 
 // index - news
 .section {
-    max-width: 800px;
+    max-width: 63.5%;
     margin: 100px auto;
     .index-wrap {
         display: flex;
@@ -193,70 +193,85 @@
             text-align: center;
         }
         .index-card-list {
-            width: 800px;
+            width: 100%;
             margin: auto;
             .index-card {
                 box-sizing: border-box;
                 width: 100%;
                 display: flex;
-                flex-direction: column;
-                flex-wrap: wrap;
                 justify-content: center;
+                justify-content: space-evenly;
                 height: 133px;
                 border-radius: 20px;
                 padding: 18px 15px;
                 margin-bottom: 35px;
                 background-color: #FAF8F4;
+                align-items: center;
                 .index-card-pic {
                     width: 170px;
+                    height: 100%;
                     display: block;
                     overflow: hidden;
                     border-radius: 15px;
+                    object-fit: cover;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                     img {
                         width: 100%;
                         vertical-align: top;
+                        border-radius: 15px;
+                        object-fit: cover;
                     }
                 }
                 .index-card-txt {
+                    width: 70%;
                     display: flex;
+                    height: 90px;
+                    flex-wrap: wrap;
                     flex-direction: column;
                     justify-content: space-between;
                     justify-content: center;
+                    gap: 10px 20px;
                     padding: 0 15px;
-                    .index-card-date-status {
-                        display: flex;
-                        align-items: center;
-                        justify-content: space-between;
-                        width: 160px;
-                        height: 30px;
-                        .index-card-status {
-                            background-color: #BE1A0E;
-                            color: #F9F1E5;
-                            padding: 5px 8px;
-                            border-radius: 1px;
-                            font-size: 12px;
+                    .media-center {
+                        width: 85%;
+                        .index-card-date-status {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            width: 160px;
+                            height: 30px;
+                            .index-card-status {
+                                background-color: #BE1A0E;
+                                color: #F9F1E5;
+                                padding: 5px 8px;
+                                border-radius: 1px;
+                                font-size: 12px;
+                            }
+                        }
+                        .index-card-content {
+                            .index-card-content-txt {
+                                width: 100%;
+                                height: auto;
+                                overflow:hidden;
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
+                            }
                         }
                     }
-                    .index-card-content {
-                        display: flex;
-                        justify-content: space-between;
-                        .index-card-content-txt {
-                            width: 510px;
-                        }
-                        .index-card-arrow-right {
-                            transform: translate(25%, -10%);
-                            background-color: #BE1A0E;
-                            color: #F9F1E5;
-                            width: 50px;
-                            height: 50px;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            border-radius: 50%;
-                            text-decoration: none;
-                        }
+                    .material-symbols-outlined {
+                        background-color: #BE1A0E;
+                        color: #F9F1E5;
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 50%;
+                        text-align: center;
+                        line-height: 50px;
+                        text-decoration: none;
                     }
                 }
+                
             }
         }
     }
@@ -267,12 +282,56 @@
             font-size: 24px;
             color: #F9F1E5;
             background-color: #D8625D;
-            // border: 1px solid #BE1A0E;
             text-decoration: none;
             border-radius: 20px;
-            padding: 5px 15px;
+            padding: 8px 15px;
             align-self: center;
             
+        }
+    }
+}
+@media screen and (max-width:576px) {
+    .section {
+        max-width: 90%;
+        .index-wrap {
+            .index-card-list {
+                .index-card {
+                    flex-direction: column;
+                    height: 400px;
+                    padding: 10px 40px;
+                    // justify-content: start;
+                    .index-card-pic {
+                        width: 258px;
+                        height: 135px;
+                    }
+                    .index-card-txt {
+                        // flex-direction: row;
+                        width: 100%;
+                        height: auto;
+                        padding: 0 0;
+                        .media-center {
+                            align-self: center;
+                            .index-card-date-status {
+                                align-self: flex-start;
+                            }
+                            .index-card-content {
+                                // align-self: center;
+                                .index-card-content-txt {
+                                    overflow: visible;
+                                    white-space: wrap;
+                                }
+                        }
+                        }
+                        .material-symbols-outlined {
+                            align-self: self-end;
+                            width: 30px;
+                            height: 30px;
+                            line-height: 30px;
+                        }
+                    }
+                    
+                }
+            }
         }
     }
 }
