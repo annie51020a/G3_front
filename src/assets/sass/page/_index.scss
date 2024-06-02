@@ -183,10 +183,17 @@
 
 // index - news
 .section {
-    max-width: 63.5%;
-    margin: 100px auto;
-    .index-wrap {
+    background-image: url('/src/assets/pic/background-texture-cut.png'), url('/src/assets/pic/background-texture.png');
+    background-repeat: no-repeat, no-repeat;
+    background-position: -15% 0, 140% 7%;
+    background-size: 50%;
+    // margin: 100px auto;
+    padding: 100px 0;
+    .index-container {
+        width: 63.5%;
+        max-width: 1200px;
         display: flex;
+        margin: auto;
         flex-direction: column;
         gap: 30px;
         .title {
@@ -205,7 +212,7 @@
                 border-radius: 20px;
                 padding: 18px 15px;
                 margin-bottom: 35px;
-                background-color: #FAF8F4;
+                background-color: #BE1A0E;
                 align-items: center;
                 .index-card-pic {
                     width: 170px;
@@ -230,10 +237,12 @@
                     height: 90px;
                     flex-wrap: wrap;
                     flex-direction: column;
-                    justify-content: space-between;
+                    // justify-content: space-between;
                     justify-content: center;
+                    align-content: space-between;
                     gap: 10px 20px;
                     padding: 0 15px;
+                    position: relative;
                     .media-center {
                         width: 85%;
                         .index-card-date-status {
@@ -242,12 +251,15 @@
                             justify-content: space-between;
                             width: 160px;
                             height: 30px;
+                            margin-bottom: 15px;
+                            .index-card-data {
+                                color: #FFFFFF;
+                            }
                             .index-card-status {
-                                background-color: #BE1A0E;
-                                color: #F9F1E5;
+                                color: #FFFFFF;
                                 padding: 5px 8px;
-                                border-radius: 1px;
-                                font-size: 12px;
+                                border-radius: 10px;
+                                border: 1px solid #FFFFFF;
                             }
                         }
                         .index-card-content {
@@ -257,18 +269,21 @@
                                 overflow:hidden;
                                 white-space: nowrap;
                                 text-overflow: ellipsis;
+                                color: #FFFFFF;
+                                font-size: clamp(16px, 1.562vw, 20px);
                             }
                         }
                     }
-                    .material-symbols-outlined {
-                        background-color: #BE1A0E;
-                        color: #F9F1E5;
-                        width: 50px;
-                        height: 50px;
-                        border-radius: 50%;
-                        text-align: center;
-                        line-height: 50px;
+                    .arrow-right {
+                        display: block;
                         text-decoration: none;
+                        position: absolute;
+                        top: 23%;
+                        right: 0;
+                        > img {
+                            width: 50px;
+                            height: 50px;
+                        }
                     }
                 }
                 
@@ -280,8 +295,8 @@
         justify-content: flex-end;
         .index-more-txt {
             font-size: 24px;
-            color: #F9F1E5;
-            background-color: #D8625D;
+            color: #FFFFFF;
+            background-color: #BE1A0E;
             text-decoration: none;
             border-radius: 20px;
             padding: 8px 15px;
@@ -292,46 +307,54 @@
 }
 @media screen and (max-width:576px) {
     .section {
-        max-width: 90%;
-        .index-wrap {
+        padding: 50px 0;
+        background-position: -15% 0, 140% 3%;
+        margin: auto;
+        .index-container {
             .index-card-list {
                 .index-card {
                     flex-direction: column;
                     height: 400px;
                     padding: 10px 40px;
+                    justify-content: space-around;
                     // justify-content: start;
                     .index-card-pic {
                         width: 258px;
                         height: 135px;
                     }
                     .index-card-txt {
-                        // flex-direction: row;
+                        flex-direction: row;
                         width: 100%;
                         height: auto;
                         padding: 0 0;
                         .media-center {
                             align-self: center;
-                            .index-card-date-status {
-                                align-self: flex-start;
-                            }
                             .index-card-content {
-                                // align-self: center;
+                                align-self: center;
                                 .index-card-content-txt {
                                     overflow: visible;
                                     white-space: wrap;
                                 }
                         }
                         }
-                        .material-symbols-outlined {
-                            align-self: self-end;
-                            width: 30px;
-                            height: 30px;
+                        .arrow-right {
                             line-height: 30px;
+                            margin-left: calc(100% - 30px);
+                            position: static;
+                            > img {
+                                width: 30px;
+                                height: 30px;
+                            }
                         }
                     }
                     
                 }
             }
         }
+    }
+}
+@media screen and (max-width:375px) {
+    .section {
+        background-position: -15% 0, 160% 3%;
     }
 }
