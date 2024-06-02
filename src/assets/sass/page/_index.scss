@@ -183,7 +183,7 @@
 
 // index - news
 .section {
-    background-image: url('/src/assets/pic/background-texture-cut.png'), url('/src/assets/pic/background-texture.png');
+    background-image: url(/src/assets/pic/background-texture-cut.png), url(/src/assets/pic/background-texture.png);
     background-repeat: no-repeat, no-repeat;
     background-position: -15% 0, 140% 7%;
     background-size: 50%;
