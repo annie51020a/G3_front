@@ -56,10 +56,10 @@
 <script>
 export default {
     mounted() {
-        const umbrellaAni = document.querySelector('.umbrella-ani')
-        const quizRule = document.querySelector('.quiz-rule')
-        const umbrellaAniImg = document.querySelector('.umbrella-ani-img')
-        const ruleText = document.querySelector('.rule-text')
+        const umbrellaAni = document.querySelector('.umbrella-ani');
+        const quizRule = document.querySelector('.quiz-rule');
+        const umbrellaAniImg = document.querySelector('.umbrella-ani-img');
+        const ruleText = document.querySelector('.rule-text');
 
         setTimeout(() => {
             umbrellaAni.style.animation = 'none'
@@ -85,6 +85,7 @@ export default {
     width: 100%;
     height: 40vw;
     overflow: hidden;
+    margin: 2% 0;
 
     .umbrella-ani img {
         width: 100%;
@@ -135,7 +136,8 @@ export default {
             height: 90%;
             margin: auto;
             text-align: center;
-            align-items: space-between;
+            display: flex;
+            align-items: center;
 
             .rule-text {
                 display: none;
@@ -144,7 +146,6 @@ export default {
                 height: 90%;
                 margin: auto;
                 text-align: center;
-                align-items: space-between;
                 animation: fadeInFromTop 1s ease forwards;
 
                 >h3 {
