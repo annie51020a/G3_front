@@ -2,18 +2,27 @@
     <header>
         <div class="header-nav">
             <div class="logo">
-                <RouterLink to="/"><img src="../../../pic/logo.png" alt="logo"></RouterLink>
+                <RouterLink to="/"><img src="../../assets/pic/logo.png" alt="logo"></RouterLink>
             </div>
             <nav>
-                <RouterLink to="/about">關於我們</RouterLink>
-                <RouterLink to="/news">最新消息</RouterLink>
-                <RouterLink to="/activity">活動資訊</RouterLink>
-                <RouterLink to="/product">周邊商品</RouterLink>
-                <RouterLink to="/quiz">知識小學堂</RouterLink>
+                <RouterLink 
+                    v-for="link in links" 
+                    :key="link.path" 
+                    :to="link.path">
+                    {{ link.name }}
+                </RouterLink>
             </nav>
             <div class="icons">
-                <img src="../../../pic/icon_cart.svg" alt="購物車">
-                <img src="../../../pic/icon_user.svg" alt="會員登入/註冊">
+                <button>
+                    <a href="#">
+                        <img src="../../assets/pic/icon_cart.svg" alt="購物車">
+                    </a>
+                </button>
+                <button>
+                    <a href="#">
+                    <img src="../../assets/pic/icon_user.svg" alt="會員登入/註冊">
+                    </a>
+                </button>             
             </div>
         </div>
     </header>
@@ -25,6 +34,17 @@ import { RouterLink } from 'vue-router';
 export default {
     components: {
         RouterLink,
+    },
+    data() {
+        return {
+            links: [
+                { name: '關於我們', path: '/about' },
+                { name: '最新消息', path: '/news' },
+                { name: '活動資訊', path: '/activity' },
+                { name: '周邊商品', path: '/product' },
+                { name: '知識小學堂', path: '/quiz' }
+            ]
+        };
     }
 }
 </script>
