@@ -17,33 +17,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- 背景 -->
-        <div class="quiz-bac" style="display: none;">
-            <div class="cloud1">
-                <img src="@/assets/pic/quiz/cloud1.png" alt="cloud" />
-            </div>
-            <div class="cloud2">
-                <img src="@/assets/pic/quiz/cloud2.png" alt="cloud" />
-            </div>
-            <div class="cloud3">
-                <img src="@/assets/pic/quiz/cloud3.png" alt="cloud" />
-            </div>
-            <div class="cloud4">
-                <img src="@/assets/pic/quiz/cloud4.png" alt="cloud" />
-            </div>
-            <div class="cloud5">
-                <img src="@/assets/pic/quiz/cloud5.png" alt="cloud" />
-            </div>
-            <div class="flower1">
-                <img src="@/assets/pic/quiz/flower1.png" alt="flower" />
-            </div>
-            <div class="flower2">
-                <img src="@/assets/pic/quiz/flower2.png" alt="flower" />
-            </div>
-            <div class="kid">
-                <img src="@/assets/pic/quiz/kid.png" alt="kid" />
             <!-- 背景 -->
             <div class="quiz-bac">
                 <!-- 雲 -->
@@ -106,7 +79,6 @@
                 </div>
             </div>
         </div>
-        </div>
 
         <!-- 題目內容 -->
     </section>
@@ -133,11 +105,6 @@ export default {
         }, 3600)
     },
     methods: {
-        startQuiz(){
-            const quizBac = document.querySelector('.quiz-bac');
-            quizBac.style.display = 'block'
-        }
-    },
         startQuiz() {
             //開始遊戲:把前面的框關掉 顯示背景
             const quizBac = document.querySelector('.quiz-bac')
