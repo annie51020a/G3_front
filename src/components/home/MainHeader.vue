@@ -2,7 +2,7 @@
     <header>
         <div class="header-nav">
             <div class="logo">
-                <RouterLink to="/"><img src="../../../pic/logo.png" alt="logo"></RouterLink>
+                <RouterLink to="/"><img src="../../assets/pic/logo.png" alt="logo"></RouterLink>
             </div>
             <nav>
                 <RouterLink 
@@ -15,12 +15,12 @@
             <div class="icons">
                 <button>
                     <a href="#">
-                        <img src="../../../pic/icon_cart.svg" alt="購物車">
+                        <img src="../../assets/pic/icon_cart.svg" alt="購物車">
                     </a>
                 </button>
                 <button>
                     <a href="#">
-                    <img src="../../../pic/icon_user.svg" alt="會員登入/註冊">
+                    <img src="../../assets/pic/icon_user.svg" alt="會員登入/註冊">
                     </a>
                 </button>             
             </div>
