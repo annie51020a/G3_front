@@ -21,8 +21,13 @@ header {
         }
 
         .icons {
-            img {
-                margin: 0 5px;
+            button {
+                background-color: transparent;
+                border: none;
+
+                img {
+                    margin: 0 5px;
+                }
             }
         }
     }
