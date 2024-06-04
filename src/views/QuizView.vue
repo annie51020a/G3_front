@@ -22,7 +22,7 @@
         </div>
 
         <!-- 背景 -->
-        <!-- <div class="quiz-bac">
+        <div class="quiz-bac" style="display: none;">
             <div class="cloud1">
                 <img src="@/assets/pic/quiz/cloud1.png" alt="cloud" />
             </div>
@@ -47,7 +47,7 @@
             <div class="kid">
                 <img src="@/assets/pic/quiz/kid.png" alt="kid" />
             </div>
-        </div> -->
+        </div>
 
         <!-- 題目內容 -->
     </section>
@@ -75,7 +75,10 @@ export default {
 
     },
     methods: {
-
+        startQuiz(){
+            const quizBac = document.querySelector('.quiz-bac');
+            quizBac.style.display = 'block'
+        }
     },
 }
 </script>
