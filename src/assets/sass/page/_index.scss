@@ -185,8 +185,8 @@
 .section {
     background-image: url(/src/assets/pic/background-texture-cut.png), url(/src/assets/pic/background-texture.png);
     background-repeat: no-repeat, no-repeat;
-    background-position: -15% 0, 140% 7%;
-    background-size: 50%;
+    background-position: -10% 0, 120% 7%;
+    background-size: 40%;
     // margin: 100px auto;
     padding: 100px 0;
     .index-container {
@@ -215,7 +215,7 @@
                 background-color: #BE1A0E;
                 align-items: center;
                 .index-card-pic {
-                    width: 170px;
+                    width: 30%;
                     height: 100%;
                     display: block;
                     overflow: hidden;
@@ -232,6 +232,7 @@
                     }
                 }
                 .index-card-txt {
+                    // width: 70%;
                     width: 70%;
                     display: flex;
                     height: 90px;
@@ -249,7 +250,7 @@
                             display: flex;
                             align-items: center;
                             justify-content: space-between;
-                            width: 160px;
+                            width: 170px;
                             height: 30px;
                             margin-bottom: 15px;
                             .index-card-data {
