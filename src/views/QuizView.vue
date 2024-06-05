@@ -1,10 +1,10 @@
 <template>
     <section class="quiz">
         <!-- 起始動畫 -->
-
         <div class="quiz-ani-start">
             <div class="umbrella-ani">
-                <img class="umbrella-ani-img" src="@/assets/pic/quiz/umbrella-ani.png" alt="" />
+                <!-- 移除img標籤 -->
+                <div class="umbrella-ani-img"></div>
 
                 <!-- 遊戲規則 -->
                 <div class="quiz-rule">
@@ -22,61 +22,35 @@
                 <!-- 雲 -->
                 <div class="cloud">
                     <div class="cloud-left">
-                        <div class="cloud1">
-                            <img src="@/assets/pic/quiz/cloud1.png" alt="">
-                        </div>
-                        <div class="cloud2">
-                            <img src="@/assets/pic/quiz/cloud2.png" alt="">
-                        </div>
-                        <div class="cloud3">
-                            <img src="@/assets/pic/quiz/cloud3.png" alt="">
-                        </div>
+                        <div class="cloud1"></div>
+                        <div class="cloud2"></div>
+                        <div class="cloud3"></div>
                     </div>
                     <div class="cloud-right">
-                        <div class="cloud4">
-                            <img src="@/assets/pic/quiz/cloud4.png" alt="">
-                        </div>
-                        <div class="cloud5">
-                            <img src="@/assets/pic/quiz/cloud5.png" alt="">
-                        </div>
+                        <div class="cloud4"></div>
+                        <div class="cloud5"></div>
                     </div>
                 </div>
                 <!-- 花瓣 -->
                 <div class="flower">
                     <div class="flower-left">
-                        <div class="flower1">
-                            <img src="@/assets/pic/quiz/flower1.png" alt="">
-                        </div>
-                        <div class="flower2">
-                            <img src="@/assets/pic/quiz/flower2.png" alt="">
-                        </div>
-                        <div class="flower3">
-                            <img src="@/assets/pic/quiz/flower3.png" alt="">
-                        </div>
-                        <div class="flower4">
-                            <img src="@/assets/pic/quiz/flower4.png" alt="">
-                        </div>
+                        <div class="flower1"></div>
+                        <div class="flower2"></div>
+                        <div class="flower3"></div>
+                        <div class="flower4"></div>
+                        <div class="flower2"></div>
                     </div>
 
                     <div class="flower-right">
-                        <div class="flower1">
-                            <img src="@/assets/pic/quiz/flower1.png" alt="">
-                        </div>
-                        <div class="flower2">
-                            <img src="@/assets/pic/quiz/flower2.png" alt="">
-                        </div>
-                        <div class="flower3">
-                            <img src="@/assets/pic/quiz/flower3.png" alt="">
-                        </div>
-                        <div class="flower4">
-                            <img src="@/assets/pic/quiz/flower4.png" alt="">
-                        </div>
+                        <div class="flower1"></div>
+                        <div class="flower2"></div>
+                        <div class="flower3"></div>
+                        <div class="flower4"></div>
+                        <div class="flower2"></div>
                     </div>
                 </div>
                 <!-- 小孩 -->
-                <div class="kid">
-                    <img src="@/assets/pic/quiz/kid.png" alt="">
-                </div>
+                <div class="kid"></div>
             </div>
         </div>
 
@@ -84,7 +58,9 @@
     </section>
 </template>
 
+
 <script>
+import gsap from "gsap";
 export default {
     mounted() {
         const umbrellaAni = document.querySelector('.umbrella-ani')
@@ -103,6 +79,51 @@ export default {
             ruleText.style.flexDirection = 'column'
             ruleText.style.justifyContent = 'center'
         }, 3600)
+
+
+        gsap.to(".cloud1", {
+            duration: 3,
+            y: "+=7",
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut",
+        });
+        gsap.to(".cloud2", {
+            duration: 3,
+            y: "-=7",
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut"
+        });
+        gsap.to(".cloud3", {
+            duration: 3,
+            y: "+=7",
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut"
+        });
+        gsap.to(".cloud4", {
+            duration: 3,
+            y: "+=7",
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut"
+        });
+        gsap.to(".cloud5", {
+            duration: 3,
+            y: "-=7",
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut"
+        });
+        gsap.to(".kid", {
+            duration: 3,
+            y: "-=5",
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut"
+        });
+
     },
     methods: {
         startQuiz() {
@@ -138,9 +159,12 @@ export default {
         overflow: hidden;
         margin: 2% 0;
 
-        .umbrella-ani img {
+        .umbrella-ani-img {
             width: 100%;
             height: 100%;
+            background-image: url('@/assets/pic/quiz/umbrella-ani.png');
+            background-size: cover;
+            background-repeat: no-repeat;
         }
 
         .umbrella-ani {
@@ -250,9 +274,6 @@ export default {
         width: 100%;
         height: 100%;
         flex-direction: column;
-        img {
-            width: 100%;
-        }
 
         .cloud {
             width: 100%;
@@ -267,20 +288,28 @@ export default {
                     width: 40%;
                     height: 100%;
                     margin: -2% 0 0 0;
+                    background-image: url('@/assets/pic/quiz/cloud1.png');
+                    background-size: cover;
+                    background-repeat: no-repeat;
                 }
 
                 .cloud2 {
                     width: 30%;
                     height: 100%;
-                    margin: 10% 0 0 -10%;
+                    margin: 10% 0 0 -15%;
+                    background-image: url('@/assets/pic/quiz/cloud2.png');
+                    background-size: cover;
+                    background-repeat: no-repeat;
                 }
 
                 .cloud3 {
-                    width: 20%;
+                    width: 30%;
                     height: 100%;
                     margin: 0 -15% 0 -15%;
+                    background-image: url('@/assets/pic/quiz/cloud3.png');
+                    background-size: cover;
+                    background-repeat: no-repeat;
                 }
-
             }
 
             .cloud-right {
@@ -291,13 +320,19 @@ export default {
                 .cloud4 {
                     width: 40%;
                     height: 100%;
-                    margin: 0 -10% 0 0;
+                    margin: 0 -10%;
+                    background-image: url('@/assets/pic/quiz/cloud4.png');
+                    background-size: cover;
+                    background-repeat: no-repeat;
                 }
 
                 .cloud5 {
-                    width: 20%;
+                    width: 30%;
                     height: 100%;
                     margin: 0 10% 0 0;
+                    background-image: url('@/assets/pic/quiz/cloud5.png');
+                    background-size: cover;
+                    background-repeat: no-repeat;
                 }
             }
         }
@@ -309,58 +344,127 @@ export default {
             justify-content: space-between;
             margin-bottom: 2%;
 
+            @keyframes flowerAni {
+                0% {
+                    transform: translateY(0%);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(100%);
+                    opacity: 0;
+                }
+            }
+
             .flower-left {
                 width: 30%;
+                height: 100%;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                gap:20%;
-                > .flower1{
-                    width: 20%;
-                    height: 25%;
-                }
-                > .flower2{
-                    width: 20%;
-                    height: 25%;
-                }
-                > .flower3{
+                margin-top: 20px;
+                background-repeat: repeat-y;
+
+                > .flower1 {
                     width: 30%;
-                    height: 25%;
+                    height: 40%;
+                    animation: flowerAni 5s linear infinite;
+                    background-image: url('@/assets/pic/quiz/flower1.png');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-position: center;
                 }
-                > .flower4{
+
+                > .flower2 {
+                    width: 30%;
+                    height: 40%;
+                    animation: flowerAni 5s linear infinite;
+                    background-image: url('@/assets/pic/quiz/flower2.png');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                }
+
+                > .flower3 {
+                    width: 30%;
+                    height: 40%;
+                    animation: flowerAni 5s linear infinite;
+                    background-image: url('@/assets/pic/quiz/flower3.png');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                }
+
+                > .flower4 {
                     width: 5%;
-                    height: 25%;
+                    height: 40%;
+                    animation: flowerAni 5s linear infinite;
+                    background-image: url('@/assets/pic/quiz/flower4.png');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-position: center;
                 }
             }
 
             .flower-right {
                 width: 30%;
+                height: 100%;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                gap:20%;
-                > .flower1{
-                    width: 20%;
-                    height: 25%;
-                }
-                > .flower2{
-                    width: 20%;
-                    height: 25%;
-                }
-                > .flower3{
+                margin-top: 20px;
+                background-repeat: repeat-y;
+
+
+                > .flower1 {
                     width: 30%;
-                    height: 25%;
+                    height: 40%;
+                    animation: flowerAni 5s linear infinite;
+                    background-image: url('@/assets/pic/quiz/flower1.png');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-position: center;
                 }
-                > .flower4{
+
+                > .flower2 {
+                    width: 30%;
+                    height: 40%;
+                    animation: flowerAni 5s linear infinite;
+                    background-image: url('@/assets/pic/quiz/flower2.png');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                }
+
+                > .flower3 {
+                    width: 30%;
+                    height: 40%;
+                    animation: flowerAni 5s linear infinite;
+                    background-image: url('@/assets/pic/quiz/flower3.png');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                }
+
+                > .flower4 {
                     width: 5%;
-                    height: 25%;
+                    height: 40%;
+                    animation: flowerAni 5s linear infinite;
+                    background-image: url('@/assets/pic/quiz/flower4.png');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-position: center;
                 }
             }
         }
-        .kid{
+
+        .kid {
             width: 10%;
             height: 20%;
-            margin: 0 0 5% 25%;
+            margin: 0 0 0 25%;
+            background-image: url('@/assets/pic/quiz/kid.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
         }
     }
 }
