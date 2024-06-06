@@ -1,0 +1,180 @@
+.login-box {
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 1s;
+    // display: none;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    background-color: rgba(71, 69, 69, 0.5);
+    .login-container {
+        width: 36%;
+        min-width: 384px;
+        margin: auto;
+        .login-wrap {
+            margin-top: 9%;
+            position: relative;
+            border-radius: 30px;
+            background-color: #BE1A0E;
+                border: 15px solid rgba(190, 26, 14, 0.9);  
+            .link {
+                display: flex;
+                justify-content: space-evenly;
+                width: 100%;
+                .login {
+                    border: 1px solid #CCC5B8;
+                    padding: 10px 0;
+                    width: 50%;
+                    text-align: center;
+                    background-color: #FAF8F4;
+                    border-top-left-radius: 20px;
+                    border-top-right-radius: 20px;
+                    font-size: 18px;
+                    color: #564A41;
+                    font-family: 'Noto Serif HK', serif;
+                    cursor: pointer;
+                }
+                .register {
+                    padding: 10px 0;
+                    width: 50%;
+                    text-align: center;
+                    border: 1px solid #CCC5B8;
+                    border-left: none;
+                    color: #C5B09E;
+                    background-color: #F9F1E5;
+                    border-top-left-radius: 20px;
+                    border-top-right-radius: 20px;
+                    font-size: 18px;
+                    font-family: 'Noto Serif HK', serif;
+                    cursor: pointer;
+                } 
+            }
+            .login-frame {
+                background-color: #FAF8F4;
+                padding: 53px 0;
+                border-bottom-left-radius: 30px;
+                border-bottom-right-radius: 30px;
+                .input-field {
+                    .content-container {
+                        width: 80%;
+                        margin: auto;
+                        .login-input {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 45px;
+                            .email {
+                                height: 40px;
+                                padding-left: 15px;
+                                background-color: #F9F1E5;
+                                border: 1px solid #AE8461;
+                                border-radius: 5px;
+                            }
+                            .email:focus {
+                                outline: none;
+                            }
+                            .email::placeholder {
+                                color: #AAAAAA;
+                            }
+                            .password {
+                                height: 40px;
+                                padding-left: 15px;
+                                background-color: #F9F1E5;
+                                border: 1px solid #AE8461;
+                                border-radius: 5px;
+                            }
+                            .password:focus {
+                                outline: none;
+                            }
+                            .password::placeholder {
+                                color: #AAAAAA;
+                            }
+                        }
+                        .forget {
+                            font-size: 14px;
+                            color: #828282;
+                            text-align: end;
+                            line-height: 3;
+                            cursor: pointer;
+                        }
+                        .btn {
+                            margin-left: 40%;
+                            font-family: 'Noto Serif HK', serif;
+                        }
+                        .quick {
+                            text-align: center;
+                            font-size: 14px;
+                            line-height: 7;
+                            position: relative;
+                        }
+                        .quick::after {
+                            content: "";
+                            position: absolute;
+                            border-top: 1px solid #564A41;
+                            width: 20%;
+                            bottom: 50%;
+                            right: 5%;
+                        }
+                        .quick::before {
+                            content: "";
+                            position: absolute;
+                            border-top: 1px solid #564A41;
+                            width: 20%;
+                            bottom: 50%;
+                            left: 5%;
+                        }
+                        .login-icon {
+                            display: flex;
+                            gap: 10px;
+                            justify-content: center;
+                            .login-goole {
+                                width: 30px;
+                                display: block;
+                                > img {
+                                    width: 100%;
+                                }
+                            }
+                            .login-facebook {
+                                width: 30px;
+                                display: block;
+                                > img {
+                                    width: 100%;
+                                }
+                            }
+                        }
+                    }
+                }
+                .x {
+                    position: absolute;
+                    top: -30px;
+                    right: -35px;
+                    display: block;
+                    width: 45px;
+                    cursor: pointer;
+                    > img {
+                        width: 100%;
+                    }
+                }
+            }
+        
+        }
+    }
+    .show {
+    display: block ;
+    }
+    .animate {
+        opacity: 1;
+    }
+    .hide {
+        display: none;
+    }
+    .animate-0 {
+        opacity: 0;
+    }
+}
+
+

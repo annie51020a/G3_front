@@ -182,7 +182,7 @@
 }
 
 // index - news
-.section {
+.index-news {
     background-image: url(/src/assets/pic/background-texture-cut.png), url(/src/assets/pic/background-texture.png);
     background-repeat: no-repeat, no-repeat;
     background-position: -10% 0, 120% 7%;
@@ -307,7 +307,7 @@
     }
 }
 @media screen and (max-width:576px) {
-    .section {
+    .index-news {
         padding: 50px 0;
         background-position: -15% 0, 140% 3%;
         margin: auto;

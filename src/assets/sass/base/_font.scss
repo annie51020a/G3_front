@@ -7,6 +7,11 @@ body {
     letter-spacing: 1.2px;
 }
 
+a {
+    text-decoration: none;
+    color: #564A41;
+}
+
 nav a {
     text-decoration: none;
 }
@@ -20,7 +25,6 @@ nav a {
     text-decoration: none;
     display: inline-block;
     padding: 0 14px;
-    color: #6b380d;
 }
 
 h1 {

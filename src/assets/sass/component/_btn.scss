@@ -1,8 +1,11 @@
 //按鈕
 .btn {
     background-color: $btnBGC;
+    color: #FFFF;
     border-radius: $btnBR;
-    padding: 5px 8px;
+    padding: 8px 25px;
+    border: none;
+    cursor: pointer;
 }
 
 // input

@@ -19,7 +19,7 @@
                     </a>
                 </button>
                 <button>
-                    <a href="#">
+                    <a href="#" @click="loginIn">
                     <img src="../../assets/pic/icon_user.svg" alt="會員登入/註冊">
                     </a>
                 </button>             
@@ -45,6 +45,19 @@ export default {
                 { name: '知識小學堂', path: '/quiz' }
             ]
         };
+    },
+    methods: {
+        loginIn() {
+            const loginBox = document.querySelector(".login-box");
+            loginBox.style.opacity = "1";
+            loginBox.style.pointerEvents = "auto";
+
+            // loginBox.classList.add("show");
+            setTimeout(() => {
+                loginBox.classList.add("animate");
+            },200);
+        }
+        
     }
 }
 </script>
