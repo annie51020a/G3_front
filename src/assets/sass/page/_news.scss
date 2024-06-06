@@ -1,0 +1,21 @@
+.news-banner {
+    margin-top: 40px;
+    .container {
+        max-width: 95%;
+        width: 95%;
+        height: 365px;
+        background-image: url(/src/assets/pic/4.jpg);
+        background-size: cover;
+        background-position: center;
+        margin: auto;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .title {
+            background-color: rgba(217, 217, 217, .38);
+            color: #FFFF;
+            padding: 15px 110px;
+        }
+    }
+}

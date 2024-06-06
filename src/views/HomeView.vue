@@ -3,9 +3,11 @@ import IndexBanner from './IndexBanner.vue'
 import IndexProductPopular from './IndexProductPopular.vue'
 import IndexProduct from './IndexProduct.vue'
 import IndexNews from './IndexNews.vue'
+import IndexLogin from './IndexLoginView.vue'
 </script>
 
 <template>
+  <IndexLogin />
   <IndexBanner />
   <IndexProductPopular />
   <IndexProduct />
