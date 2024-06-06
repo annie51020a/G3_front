@@ -1,14 +1,14 @@
-<!-- 上次寫到37跟217行
-    1.如何接到下一題
+<!-- 
+    1.如何接到下一題==>放五個quiz-box
     2.要把result放到components
-    3.修正動畫關掉遊戲規則的中間空白
-    4.新增跳回答正確的動畫 文字淡入 框框要怎麼呈現?
+    3.新增跳回答正確的動畫 文字淡入 框框要怎麼呈現?
 -->
 <template>
     <section class="quiz">
         <!-- 起始動畫 -->
         <div class="quiz-ani-start">
             <div class="umbrella-ani">
+                <!-- 旋轉傘動畫 -->
                 <div class="umbrella-ani-img"></div>
 
                 <!-- 遊戲規則 -->
@@ -98,7 +98,6 @@
     </section>
 </template>
 
-
 <script>
 import gsap from "gsap";
 export default {
@@ -111,7 +110,7 @@ export default {
                 { text: "明  朝", className: "answer-d", boolean: "0", explain: "油紙傘的歷史可追溯到中國的漢朝，已有超過兩千年的悠久歷史。最早，它被用作宮廷貴族的雨具和禮儀器具，象徵著身份和地位。" }
             ],
             selectedExplain: '',//儲存答案解釋
-            inCorrect: false
+            inCorrect: false//儲存判斷答案是否正確
         }
     },
     mounted() {
@@ -185,7 +184,7 @@ export default {
             const ruleText = document.querySelector('.rule-text')
             const umbrellaAni = document.querySelector('.umbrella-ani')
             const quizBox = document.querySelector('.quiz-box')
-
+            const frameStart = document.querySelector('.frame-start')
 
             setTimeout(() => {
                 quizRule.style.width = '.5vw'
@@ -193,11 +192,15 @@ export default {
             }, 100)
 
             setTimeout(() => {
+                frameStart.style.display = 'none'
+            },1900)
+
+            setTimeout(() => {
                 quizRule.style.display = 'none'
                 quizBac.style.display = 'flex'
                 umbrellaAni.style.display = 'none'
                 quizBox.style.display = 'block'
-            }, 1800)
+            }, 2000)
         },
         selectAns(answer) {
             const quizBox = document.querySelector('.quiz-box')
