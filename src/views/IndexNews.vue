@@ -1,7 +1,12 @@
 <template>
     <section class="section index-news">
         <div class="index-container">
-            <h2 class="title">最新消息</h2>
+            <div class="index-news-main-title">
+                <picture class="title-pic">
+                    <img src="/src/assets/pic/red-semicircle.png" alt="">
+                </picture>
+                <h2 class="title">最新消息</h2>
+            </div>
             <div class="index-card-list">
                 <section class="index-card" 
                 v-for="data in card" 

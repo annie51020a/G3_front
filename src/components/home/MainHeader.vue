@@ -51,11 +51,6 @@ export default {
             const loginBox = document.querySelector(".login-box");
             loginBox.style.opacity = "1";
             loginBox.style.pointerEvents = "auto";
-
-            // loginBox.classList.add("show");
-            setTimeout(() => {
-                loginBox.classList.add("animate");
-            },200);
         }
         
     }

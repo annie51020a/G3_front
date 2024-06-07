@@ -183,10 +183,6 @@
 
 // index - news
 .index-news {
-    background-image: url(/src/assets/pic/background-texture-cut.png), url(/src/assets/pic/background-texture.png);
-    background-repeat: no-repeat, no-repeat;
-    background-position: -10% 0, 120% 7%;
-    background-size: 40%;
     // margin: 100px auto;
     padding: 100px 0;
     .index-container {
@@ -196,8 +192,17 @@
         margin: auto;
         flex-direction: column;
         gap: 30px;
-        .title {
-            text-align: center;
+        .index-news-main-title {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            .title-pic {
+                width: clamp(70px, 11vw, 140px);
+                > img {
+                    width: 100%;
+                }
+            }
         }
         .index-card-list {
             width: 100%;
