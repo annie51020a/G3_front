@@ -1,0 +1,34 @@
+[
+    {
+        "id": 1,
+        "image": "um1.jpg",
+        "tag": "圖案",
+        "name": "數字精緻手工油紙傘",
+        "price": 699,
+        "rating": 4.9
+    },
+    {
+        "id": 2,
+        "image": "um2.jpg",
+        "tag": "圖案",
+        "name": "花卉精緻手工油紙傘",
+        "price": 699,
+        "rating": 3.8
+    },
+    {
+        "id": 3,
+        "image": "um3.jpg",
+        "tag": "圖案",
+        "name": "幾何精緻手工油紙傘",
+        "price": 699,
+        "rating": 4.5
+    },
+    {
+        "id": 4,
+        "image": "um4.jpg",
+        "tag": "素色",
+        "name": "杏色精緻手工油紙傘",
+        "price": 699,
+        "rating": 3.6
+    }
+]
