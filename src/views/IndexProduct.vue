@@ -1,11 +1,12 @@
 
 <template>
     <section class="section-product">
-        <div class="container">
-            <div class="row">
+        <div class="container-product">
+            <div class="product-row">
                 <div class="product-title">
                     <h2>商品列表</h2>
-                    <div class="product-arrow">
+                </div>
+                <div class="product-arrow">
                         <div class="product-arrow-btn">
                             <img src="../assets/pic/product-left.png" alt="">
                         </div>
@@ -13,9 +14,9 @@
                             <img src="../assets/pic/product-right.png" alt="">
                         </div>
                     </div>
-                </div>
-                
-                <div class="cardlist">
+            </div>
+        </div>
+        <div class="cardlist">
                     <div class="card" v-for="item in list" :key="item.id">
                         <div class="card-pic">
                             <img :src="item.pic">
@@ -37,8 +38,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
         
     </section>
 </template>
@@ -95,24 +94,28 @@ export default {
 <style lang="scss">
    .section-product {
     background-color: #CB2E27;
-    .container {
+    padding-bottom: 50px;
+    .container-product {
         padding: 50px 0;
         width: 80%;
         margin: 0 auto;
-        .row {           
+        .product-row {   
+            display: flex;
+            justify-content: space-between;
             .product-title {
-                display: flex;
-                justify-content: space-between;
-                .product-arrow {
-                    display: flex;
-                    gap: 30px;
-                }
                 h2 {
                     color: white;
                     margin-bottom: 50px;
                 }
             }
-            .cardlist {
+            .product-arrow {
+                    display: flex;
+                    gap: 30px;
+                }
+           
+        }
+    }
+    .cardlist {
                 display: flex;
                 justify-content: flex-end;
                 flex-wrap: wrap;
@@ -121,7 +124,7 @@ export default {
                     .card-pic {
                         position: relative;
                         margin-bottom: 20px;
-                        img {
+                        > img {
                             width: 280px;
                             border-radius: 20px;
                             object-fit: cover;
@@ -140,7 +143,7 @@ export default {
                         padding: 5px;
                         .card-tag {
                             margin-bottom: 20px;
-                            span {
+                            > span {
                                 background-color: #fff;
                                 border-radius: 15px;
                                 padding: 2px 10px;
@@ -164,8 +167,6 @@ export default {
                 }
                     
             }
-        }
-    }
    }
 </style>
 
