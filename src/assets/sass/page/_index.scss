@@ -181,6 +181,70 @@
     }
 }
 
+// index - activity
+.section-activity{
+    width: 100%;
+    margin: 100px 0;
+    .container{
+        width: 70%;
+        margin-left: auto;
+        .info{
+            position: relative;
+            .pic{
+                border-top-left-radius: 20px;
+                border-bottom-left-radius: 20px;
+                overflow: hidden;
+                img{
+                    width: 100%;
+                    vertical-align: middle;
+                    object-fit: cover;
+                }
+            }
+            h2{
+                position:absolute;
+                top:5%;
+                left:-14%;
+            }
+            .txt{
+                color:white;
+                position:absolute;
+                left: 5%;
+                bottom: 12%;
+                h3{
+                    line-height: 3.5rem;
+                    margin-bottom: 1rem;
+                }
+                p{
+                    line-height: 2rem;
+                    color:white;
+                }
+            }
+            .arrow{
+                width: 8%;
+                height: 12%;
+                background-color: white;
+                border-radius: 50%;
+                align-content: center;
+                position: absolute;
+                right: 5%;
+                bottom: 12%;
+                svg{
+                    width: 100%;
+                    vertical-align: middle;
+                    object-fit: cover;
+                }
+            }
+            .arrow:hover{
+                background-color: #B1241A;
+                transition: all 0.3s ease;
+            }
+            .arrow:hover path{
+                stroke: white;
+            }
+        }
+    }
+}
+
 // index - news
 .index-news {
     // margin: 100px auto;
