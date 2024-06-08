@@ -12,16 +12,16 @@
         <!-- 傘韻由來 -->
         <div class="brand-origin">
             <h3 data-aos="fade-right">傘韻由來</h3>
-            <p data-aos="flip-down" data-aos-delay="200">
+            <p data-aos="flip-down" data-aos-delay="500">
                 “傘韻”品牌的名稱源自於對傳統油紙傘文化的深刻理解和熱愛。中國油紙傘歷史悠久，不僅是實用的日常用品，更是藝術與文化的結晶。名稱中的“傘”直接表達了產品的核心，而“韻”則體現出這種傳統工藝所蘊含的優雅和美感。這個名稱意在傳遞出油紙傘的獨特魅力和文化韻味，讓現代人也能感受到這一古老工藝的靈魂。
                 “傘韻”的誕生是為了復興這一傳統工藝，讓其在現代社會中重新煥發光彩。我們的目標是將這種古老的工藝帶入現代生活，讓更多人了解並欣賞油紙傘的美麗和實用性。通過精湛的手工技藝和現代設計的融合，我們希望每一把“傘韻”油紙傘都能成為一件既實用又具有藝術價值的作品，讓用戶在享受防曬避雨功能的同時，也能感受到傳統文化的魅力。
             </p>
-            <div class="brand-origin-img" data-aos="fade-left" data-aos-delay="200"></div>
+            <div class="brand-origin-img" data-aos="fade-left" data-aos-delay="700"></div>
         </div>
         <!-- 我們的故事 -->
         <div class="our-story">
-            <div class="our-story-img" data-aos="fade-right" data-aos-delay="200"></div>
-            <p data-aos="flip-down" data-aos-delay="200">
+            <div class="our-story-img" data-aos="fade-right" data-aos-delay="700"></div>
+            <p data-aos="flip-down" data-aos-delay="500">
                 “傘韻”品牌的創立源於一次偶然的文化探索之旅。創始人在拜訪一個古老的油紙傘製作村時，被那裡工匠們精湛的技藝和傳統文化深深打動。這些工匠們用心製作每一把油紙傘，堅持使用天然材料和古法工藝，他們的熱情和對傳統的堅守激發了創始人的靈感。回到城市後，創始人決心將這種古老的工藝帶到現代市場，讓更多人能夠感受到油紙傘的獨特魅力。
                 “傘韻”的每一把傘都凝聚了工匠們的心血和智慧。從選材到製作，每一個環節都經過嚴格把控，確保每把傘都具有優秀的品質和獨特的藝術價值。品牌成立以來，我們一直致力於傳播和保護這一傳統工藝，並不斷創新設計，讓油紙傘不僅僅是一種實用工具，更成為一種文化符號和藝術品。
             </p>
@@ -30,12 +30,12 @@
         <!-- 品牌宗旨 -->
         <div class="brand-purpose">
             <h3 data-aos="fade-right">品牌宗旨</h3>
-            <p data-aos="flip-down" data-aos-delay="200">
+            <p data-aos="flip-down" data-aos-delay="500">
                 “傘韻”的品牌宗旨是傳承與創新，融合傳統工藝與現代設計，為用戶提供既實用又富有文化價值的油紙傘。我們堅信，每一把油紙傘都是一件藝術品，承載著深厚的歷史文化和工匠精神。通過我們的努力，我們希望能夠保護這一珍貴的傳統工藝，使其在現代社會中繼續傳承並發展。
                 我們致力於使用最優質的材料和最精湛的工藝，確保每一把“傘韻”油紙傘都能經受住時間的考驗，成為用戶長久陪伴的良伴。同時，我們也不斷探索和創新，將現代設計理念融入傳統工藝中，創造出具有現代美感的油紙傘產品。我們希望每一位使用“傘韻”油紙傘的用戶，都能感受到我們對品質和文化的堅持，並從中獲得美的享受和文化的熏陶。
                 “傘韻”不僅僅是一個品牌，更是一種文化的傳承與發揚。我們希望通過我們的產品，讓更多人了解並喜愛這一古老的工藝，並共同守護和傳承這一文化遺產。
             </p>
-            <div class="brand-purpose-img" data-aos="fade-left" data-aos-delay="200"></div>
+            <div class="brand-purpose-img" data-aos="fade-left" data-aos-delay="700"></div>
         </div>
     </section>
 </template>
