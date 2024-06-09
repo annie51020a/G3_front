@@ -6,6 +6,7 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <MainHeader />
+  <IndexLoginView />
   <RouterView />
   <MainFooter />
 </template>
@@ -15,12 +16,15 @@ import HelloWorld from './components/HelloWorld.vue'
 import { RouterView } from 'vue-router';
 import MainFooter from './components/home/MainFooter.vue';
 import MainHeader from './components/home/MainHeader.vue';
+import IndexLoginView from './views/IndexLoginView.vue';
+
 
 export default {
   components: {
     RouterView,
     MainFooter,
     MainHeader,
+    IndexLoginView
   }
 }
 </script>

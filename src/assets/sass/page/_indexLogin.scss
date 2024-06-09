@@ -69,6 +69,7 @@
                             gap: 45px;
                             .email {
                                 height: 40px;
+                                width: calc(100% - 18px);
                                 padding-left: 15px;
                                 background-color: #F9F1E5;
                                 border: 1px solid #AE8461;
@@ -80,30 +81,62 @@
                             .email::placeholder {
                                 color: #AAAAAA;
                             }
-                            .password {
+                            .input-icon {
+                                position: relative;
+                                .password {
                                 height: 40px;
+                                width: calc(100% - 18px);
                                 padding-left: 15px;
                                 background-color: #F9F1E5;
                                 border: 1px solid #AE8461;
                                 border-radius: 5px;
+                                }
+                                .password:focus {
+                                    outline: none;
+                                }
+                                .password::placeholder {
+                                    color: #AAAAAA;
+                                }
+                                .eyes {
+                                    position: absolute;
+                                    right: 8px;
+                                    top: 10px;
+                                    width: 25px;
+                                    > img {
+                                        width: 100%;
+                                    }
+                                }
                             }
-                            .password:focus {
-                                outline: none;
+                        }
+                        .forget-login-btn {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 10px;
+                            .forget {
+                                font-size: 14px;
+                                color: #828282;
+                                margin-left: auto;
+                                line-height: 3;
+                                cursor: pointer;
+                                background-color: #FAF8F4;
+                                border: none;
+                                font-family: 'Noto Serif HK', serif;
                             }
-                            .password::placeholder {
+                            .forget:hover {
                                 color: #AAAAAA;
                             }
-                        }
-                        .forget {
-                            font-size: 14px;
-                            color: #828282;
-                            text-align: end;
-                            line-height: 3;
-                            cursor: pointer;
-                        }
-                        .btn {
-                            margin-left: 40%;
-                            font-family: 'Noto Serif HK', serif;
+                            .btn {
+                                width: 80px;
+                                margin-left: 40%;
+                                font-family: 'Noto Serif HK', serif;
+                                border: 1px solid #BE1A0E;
+                                transition: .4s;
+                            }
+                            .btn:hover {
+                                border: 1px solid #BE1A0E;
+                                background-color: #fff;
+                                color: #BE1A0E;
+                            }
                         }
                         .quick {
                             text-align: center;
@@ -117,7 +150,7 @@
                             border-top: 1px solid #564A41;
                             width: 20%;
                             bottom: 50%;
-                            right: 5%;
+                            right: 3%;
                         }
                         .quick::before {
                             content: "";
@@ -125,7 +158,7 @@
                             border-top: 1px solid #564A41;
                             width: 20%;
                             bottom: 50%;
-                            left: 5%;
+                            left: 2%;
                         }
                         .login-icon {
                             display: flex;
@@ -163,17 +196,74 @@
         
         }
     }
-    .show {
-    display: block ;
-    }
-    .animate {
-        opacity: 1;
-    }
-    .hide {
-        display: none;
-    }
-    .animate-0 {
-        opacity: 0;
+}
+.forget-box {
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 1s;
+    // display: none;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    background-color: rgba(71, 69, 69, 0.5);
+    .login-container {
+        .login-wrap {
+            .login-frame {
+                .input-field {
+                    .content-container {
+                        .login-input {
+                            .txt {
+                                font-size: 20px;
+                            }
+                            .forget-input {
+                                height: 40px;
+                                width: calc(100% - 20px);
+                                padding-left: 15px;
+                                background-color: #F9F1E5;
+                                border: 1px solid #AE8461;
+                                border-radius: 5px;
+                            }
+                            .forget-input::placeholder {
+                                color: #AAAAAA;
+                            }
+                        }
+                        .previous-page-verify {
+                            display: flex;
+                            justify-content: center;
+                            gap: 40px;
+                            margin: 50px 0 0;
+                            .previous-page-btn {
+                                background-color: #E7BD86;
+                                border: 1px solid #AF8B5C;
+                                color: #3F3F3F;
+                                font-family: 'Noto Serif HK', serif;
+                                padding: 8px 20px;
+                                border-radius: 20px;
+                            }
+                            .previous-page-btn:hover {
+                                background-color: #b49771;
+                                color: #FFFF;
+                                border: 1px solid #AF8B5C;
+                            }
+                            .btn {
+                                font-family: 'Noto Serif HK', serif;
+                                border: 1px solid #BE1A0E;
+                            }
+                            .btn:hover {
+                                border: 1px solid #BE1A0E;
+                                background-color: #fff;
+                                color: #BE1A0E;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
