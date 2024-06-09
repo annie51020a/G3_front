@@ -27,33 +27,74 @@
             <div class="quiz-box">
                 <div class="quiz-content">
                     <div class="quiz-question">
-                        <h4>1.油紙傘起源於哪個朝代</h4>
+                        <h4>{{ selectQuestionArray[currentQuestionIndex].question_text }}</h4>
                     </div>
                     <div class="quiz-answer">
-                        <div v-for="(answer, index) in answers" :key="index" @click="selectAns(answer)"
-                            :class="[answer.className]">
-                            <p>{{ answer.text }}</p>
+                        <!-- 把陣列中的答案渲染進answerKey中，@click選到的answer是question_option_a/b/c/d其中一個 -->
+                        <div v-for="answerKey in ['question_option_a', 'question_option_b', 'question_option_c', 'question_option_d']"
+                            :key="answerKey" @click="selectAnswer(answerKey)" class="question-option">
+                            <p>{{ selectQuestionArray[currentQuestionIndex][answerKey] }}</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- 回答結果視窗 -->
-            <div class="result-frame" v-if="selectedExplain">
+            <div class="result-frame" v-if="answerExplanation">
                 <div class="result-box">
                     <div class="result-text">
-                        <img v-if="inCorrect === true" src="@/assets/pic/quiz/correct.png" alt="">
+                        <img v-if="isCorrect" src="@/assets/pic/quiz/correct.png" alt="">
                         <img v-else src="@/assets/pic/quiz/wrong.png" alt="">
-                        <h3>{{ inCorrect ? "回答正確" : "回答錯誤" }}</h3>
+                        <h3>{{ isCorrect ? "回答正確" : "回答錯誤" }}</h3>
                     </div>
+                    <!-- 顯示解釋 -->
                     <div class="result-explain">
-                        {{ selectedExplain }}
+                        {{ answerExplanation }}
                     </div>
-                    <button @click="nextQuestion()" class="next-question"><p>下一題</p></button>
+                    <button @click="nextQuestion()" class="next-question">
+                        <p>下一題</p>
+                    </button>
                 </div>
             </div>
 
-            <!-- 總分未達/優惠券視窗 -->
+            <!-- 優惠券視窗 -->
+            <div class="discount-frame">
+                <div class="discount-box">
+                    <div class="discount-text">
+                        <h3>恭喜獲得優惠券</h3>
+                    </div>
+
+                    <div class="discount-img">
+                        <img src="@/assets/pic/quiz/discount.png" alt="">
+                    </div>
+
+                    <div class="button-box">
+                        <button @click="resetSettings()" class="play-again">
+                            <p>再玩一次</p>
+                        </button>
+
+                        <router-link to="/product" class="link-to-product">
+                            <p>去逛逛</p>
+                        </router-link>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- 總分未達視窗 -->
+            <div class="failed-frame">
+                <div class="failed-box">
+                    <div class="failed-text">
+                        <h3>菜就多練，玩不起就別玩</h3>
+                        <p>再給你一次機會</p>
+                    </div>
+
+                    <button @click="resetSettings()" class="play-again">
+                        <p>再玩一次</p>
+                    </button>
+
+                </div>
+            </div>
 
 
             <!-- 背景 -->
@@ -70,26 +111,13 @@
                         <div class="cloud5"></div>
                     </div>
                 </div>
-                <!-- 花瓣 -->
-                <div class="flower">
-                    <div class="flower-left">
-                        <div class="flower1"></div>
-                        <div class="flower2"></div>
-                        <div class="flower3"></div>
-                        <div class="flower4"></div>
-                        <div class="flower2"></div>
-                    </div>
-
-                    <div class="flower-right">
-                        <div class="flower1"></div>
-                        <div class="flower2"></div>
-                        <div class="flower3"></div>
-                        <div class="flower4"></div>
-                        <div class="flower2"></div>
-                    </div>
-                </div>
+                <!-- 樹 -->
+                <div class="tree-left"></div>
+                <div class="tree-right"></div>
                 <!-- 小孩 -->
-                <div class="kid"></div>
+                <div class="kid" :style="{ left: currentKidPosition - 7 + 'vw' }">
+                    <img src="@/assets/pic/quiz/kid.png" alt="">
+                </div>
             </div>
         </div>
 
@@ -100,18 +128,142 @@
 
 <script>
 import gsap from "gsap";
+
 export default {
     data() {
         return {
-            answers: [
-                { text: "宋  朝", className: "answer-a", boolean: "0", explain: "油紙傘的歷史可追溯到中國的漢朝，已有超過兩千年的悠久歷史。最早，它被用作宮廷貴族的雨具和禮儀器具，象徵著身份和地位。" },
-                { text: "漢  朝", className: "answer-b", boolean: "1", explain: "油紙傘的歷史可追溯到中國的漢朝，已有超過兩千年的悠久歷史。最早，它被用作宮廷貴族的雨具和禮儀器具，象徵著身份和地位。" },
-                { text: "元  朝", className: "answer-c", boolean: "0", explain: "油紙傘的歷史可追溯到中國的漢朝，已有超過兩千年的悠久歷史。最早，它被用作宮廷貴族的雨具和禮儀器具，象徵著身份和地位。" },
-                { text: "明  朝", className: "answer-d", boolean: "0", explain: "油紙傘的歷史可追溯到中國的漢朝，已有超過兩千年的悠久歷史。最早，它被用作宮廷貴族的雨具和禮儀器具，象徵著身份和地位。" }
+            //問題列表
+            questions: [{
+                //第一題
+                question_id: 1,
+                question_text: '油紙傘起源於哪個朝代',
+                question_option_a: '宋  朝',
+                question_option_b: '漢  朝',
+                question_option_c: '元  朝',
+                question_option_d: '明  朝',
+                question_correctanswer: '漢  朝',
+                question_answer_illustrate: '油紙傘的歷史可追溯到中國的漢朝，已有超過兩千年的悠久歷史。最早，它被用作宮廷貴族的雨具和禮儀器具，象徵著身份和地位。',
+            },
+            {
+                //第二題
+                question_id: 2,
+                question_text: '明清時期，油紙傘不是以下哪種',
+                question_option_a: '實  用  工  具',
+                question_option_b: '文  化  象  徵',
+                question_option_c: '娛  樂  工  具',
+                question_option_d: '藝  術  象  徵',
+                question_correctanswer: '娛  樂  工  具',
+                question_answer_illustrate: '明清時期，油紙傘不僅是實用工具，更是文化和藝術的象徵，文人雅士常以詩詞歌賦歌頌其美。',
+            },
+            {
+                //第三題
+                question_id: 3,
+                question_text: '油紙傘的傘骨通常是何種材質',
+                question_option_a: '竹  子',
+                question_option_b: '木  頭',
+                question_option_c: '金  屬',
+                question_option_d: '油  紙',
+                question_correctanswer: '竹  子',
+                question_answer_illustrate: '油紙傘以其獨特的材料和製作工藝著稱。傘骨通常由韌性強的竹子製成，輕巧而堅固。',
+            },
+            {
+                //第四題
+                question_id: 4,
+                question_text: '油紙傘的傘面通常是何種材質',
+                question_option_a: '宣  紙',
+                question_option_b: '文  紙',
+                question_option_c: '白  紙',
+                question_option_d: '油  紙',
+                question_correctanswer: '宣  紙',
+                question_answer_illustrate: '傘面選用高質量的宣紙或綢緞，紙上塗抹防水性能優異的桐油，使其具有良好的防水功能。',
+            },
+            {
+                //第五題
+                question_id: 5,
+                question_text: '現代油紙傘不應用於何處',
+                question_option_a: '時  尚  設  計',
+                question_option_b: '家  居  裝  飾',
+                question_option_c: '舞  台  藝  術',
+                question_option_d: '聚  眾  鬥  毆',
+                question_correctanswer: '聚  眾  鬥  毆',
+                question_answer_illustrate: '許多設計師將油紙傘元素融入時尚設計、家居裝飾和舞台藝術中，賦予其新的生命力。油紙傘被廣泛應用在各旅遊景點，成為展示當地文化特色的重要媒介。',
+            },
+            {
+                //第六題
+                question_id: 6,
+                question_text: '我們的品牌名稱是',
+                question_option_a: '傘  韻',
+                question_option_b: '雨  傘  蜥  蜴',
+                question_option_c: '傘  傘',
+                question_option_d: '傘  漫',
+                question_correctanswer: '傘  韻',
+                question_answer_illustrate: '“傘韻”品牌的名稱源自於對傳統油紙傘文化的深刻理解和熱愛。"傘"直接表達了產品的核心，而"韻"則體現出這種傳統工藝所蘊含的優雅和美感。',
+            },
+            {
+                //第七題
+                question_id: 7,
+                question_text: '我們品牌的目的是什麼',
+                question_option_a: '賺  錢',
+                question_option_b: '拿  到  補  助',
+                question_option_c: '無  聊',
+                question_option_d: '振  興  傳  統',
+                question_correctanswer: '振  興  傳  統',
+                question_answer_illustrate: '"傘韻"的誕生是為了復興這一傳統工藝，讓其在現代社會中重新煥發光彩。我們的目標是將這種古老的工藝帶入現代生活，讓更多人了解並欣賞油紙傘的美麗和實用性。',
+            },
+            {
+                //第八題
+                question_id: 8,
+                question_text: '我們創立品牌的靈感來源於',
+                question_option_a: '油  紙  傘  村',
+                question_option_b: '美  術  展  覽',
+                question_option_c: '創  作  影  片',
+                question_option_d: '政  府  消  息',
+                question_correctanswer: '油  紙  傘  村',
+                question_answer_illustrate: '"傘韻"品牌的創立源於一次偶然的文化探索之旅。創始人在拜訪一個古老的油紙傘製作村時，被那裡工匠們精湛的技藝和傳統文化深深打動。',
+            },
+            {
+                //第九題
+                question_id: 9,
+                question_text: '我們創立品牌的宗旨是',
+                question_option_a: '賺  錢',
+                question_option_b: '傳  承',
+                question_option_c: '拿  到  補  助',
+                question_option_d: '船  沉',
+                question_correctanswer: '傳  承',
+                question_answer_illustrate: '"傘韻"的品牌宗旨是傳承與創新，融合傳統工藝與現代設計，為用戶提供既實用又富有文化價值的油紙傘。',
+            },
+            {
+                //第十題
+                question_id: 10,
+                question_text: '我們品牌有自信的部分不是以下何種',
+                question_option_a: '材  料',
+                question_option_b: '工  藝',
+                question_option_c: '花  俏',
+                question_option_d: '耐  用',
+                question_correctanswer: '花  俏',
+                question_answer_illustrate: '我們致力於使用最優質的材料和最精湛的工藝，確保每一把“傘韻”油紙傘都能經受住時間的考驗，成為用戶長久陪伴的良伴。',
+            },
+
             ],
-            selectedExplain: '',//儲存答案解釋
-            inCorrect: false//儲存判斷答案是否正確
+            //選擇題目的存放陣列
+            selectQuestionArray: [],
+            //現在在第幾題
+            currentQuestionIndex: 0,
+            // 選擇的答案一開始為null
+            selectedAnswer: null,
+            // 答對的題數
+            correctAnswers: 0,
+            //顯示解釋 
+            answerExplanation: null,
+            //是否回答正確
+            isCorrect: false,
+            // 現在小孩移動的距離
+            currentKidPosition: 0,
         }
+    },
+    created() {
+        //在頁面loding時隨機選五題的函數
+        this.selectRandomQuestions();
     },
     mounted() {
         const umbrellaAni = document.querySelector('.umbrella-ani')
@@ -177,6 +329,44 @@ export default {
 
     },
     methods: {
+        //隨機抓五題的函式
+        selectRandomQuestions() {
+            for (let i = 0; i < 5; i++) {
+                // 在1~10題中選出一題
+                const randomIndex = Math.floor(Math.random() * this.questions.length);
+                //用index去抓資料存到變數中
+                const randomQuestion = this.questions[randomIndex];
+                // 把變數randomQuestion推進data中的空陣列selectQuestionArray
+                this.selectQuestionArray.push(randomQuestion);
+                // 用splice()移除已經被選過的問題
+                this.questions.splice(randomIndex, 1);
+            }
+        },
+        // 選擇答案的函式
+        selectAnswer(answerKey) {
+            // 存入選擇答案
+            this.selectedAnswer = answerKey;
+            // 抓正確答案
+            const correctAnswer = this.selectQuestionArray[this.currentQuestionIndex].question_correctanswer;
+            // 把option中的字串抓出來
+            const selectOption = this.selectQuestionArray[this.currentQuestionIndex][answerKey];
+
+            // 判斷答案是否一致
+            this.isCorrect = (selectOption === correctAnswer);
+
+            if (selectOption === correctAnswer) {
+                // 答對題數+1
+                this.correctAnswers++;
+            }
+            // 抓解釋資料
+            this.answerExplanation = this.selectQuestionArray[this.currentQuestionIndex].question_answer_illustrate;
+
+            // show結果
+            this.showResultFrame();
+            // 如果所選的答案為現在題目的正確答案
+
+
+        },
         startQuiz() {
             //開始遊戲:把前面的框關掉 顯示背景
             const quizBac = document.querySelector('.quiz-bac')
@@ -193,7 +383,7 @@ export default {
 
             setTimeout(() => {
                 frameStart.style.display = 'none'
-            },1900)
+            }, 1900)
 
             setTimeout(() => {
                 quizRule.style.display = 'none'
@@ -202,27 +392,60 @@ export default {
                 quizBox.style.display = 'block'
             }, 2000)
         },
-        selectAns(answer) {
-            const quizBox = document.querySelector('.quiz-box')
-            quizBox.style.display = 'none'
+        nextQuestion() {
+            // 重置解釋
+            this.answerExplanation = null;
+            // 重置已選答案
+            this.selectedAnswer = null;
+            // 下一題
+            this.currentQuestionIndex++;
 
-            if (answer.boolean === "0") {
-                this.inCorrect = false
-            }
-            else if (answer.boolean === "1") {
-                this.inCorrect = true
-            }
-            this.selectedExplain = answer.explain;//更新解答
-        },
-        nextQuestion(){
-            const quizBox = document.querySelector('.quiz-box')
+            const quizBox = document.querySelector('.quiz-box');
             const resultFrame = document.querySelector('.result-frame')
             const kid = document.querySelector('.kid')
 
-            quizBox.style.display = 'block'
-            resultFrame.style.display = 'none'
-            kid.style.animation = 'kidMove 2s forwards'
-        }
+            quizBox.style.display = 'block';
+            resultFrame.style.display = 'none';
+
+            gsap.to(kid, {
+                duration: 2,
+                x: this.currentKidPosition += 10,
+            });
+
+            // 如果答完五題
+            if (this.currentQuestionIndex === this.selectQuestionArray.length && this.correctAnswers >= 3) {
+                // 顯示優惠券
+                this.showDiscountFrame();
+
+            }
+            else if (this.currentQuestionIndex === this.selectQuestionArray.length && this.correctAnswers < 3) {
+                // 顯示不及格跟再玩一次
+                this.showFailedFrame();
+            }
+        },
+        // show答題結果視窗
+        showResultFrame() {
+            const resultFrame = document.querySelector('.result-frame');
+
+            resultFrame.style.display = 'block';
+        },
+        // show優惠券視窗
+        showDiscountFrame() {
+            const discountFrame = document.querySelector('.discount-frame');
+
+            discountFrame.style.display = 'flex';
+        },
+        //show不及格視窗
+        showFailedFrame() {
+            const failedFrame = document.querySelector('.failed-frame');
+
+            failedFrame.style.display = 'flex';
+        },
+
+        // 重設所有設定
+        resetSettings() {
+            window.location.reload();
+        },
     }
 }
 </script>
@@ -374,10 +597,7 @@ export default {
                     justify-content: center;
                     margin: auto;
 
-                    .answer-a,
-                    .answer-b,
-                    .answer-c,
-                    .answer-d {
+                    .question-option {
                         width: 100px;
                         height: 70px;
                         background-image: url('@/assets/pic/quiz/answer-pic.png');
@@ -422,11 +642,11 @@ export default {
             background-color: #e4c7a0;
             border-radius: 20px;
             position: absolute;
-            top:10%;
+            top: 10%;
             left: 18%;
             z-index: 6;
 
-            .result-box{
+            .result-box {
                 width: 90%;
                 height: 90%;
                 border-radius: 20px;
@@ -435,7 +655,7 @@ export default {
                 margin: auto;
                 background-color: white;
 
-                .next-question{
+                .next-question {
                     background-color: #be1a0e;
                     width: 140px;
                     height: 50px;
@@ -443,16 +663,18 @@ export default {
                     border: none;
                     border-radius: 20px;
 
-                    > p{
+                    >p {
                         font-size: 20px;
                         color: white;
                     }
+
                     &:hover {
                         background-color: white;
                         color: #be1a0e;
                         border: 1px solid #be1a0e;
                         transition: 0.3s;
-                        > p {
+
+                        >p {
                             color: #be1a0e;
                         }
                     }
@@ -462,16 +684,19 @@ export default {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    margin: 1% 0;
+                    margin: 2% 0;
                     gap: 3%;
-                    > h3 {
+
+                    >h3 {
                         color: #515A6E;
                     }
-                    > img {
+
+                    >img {
                         width: 15%;
                     }
                 }
-                .result-explain{
+
+                .result-explain {
                     width: 60%;
                     color: #FF4D00;
                     margin: 1% auto;
@@ -479,13 +704,180 @@ export default {
             }
         }
 
+        .discount-frame {
+            display: none;
+            flex-direction: column;
+            width: 65vw;
+            height: 70%;
+            overflow: hidden;
+            margin: auto;
+            background-color: #e4c7a0;
+            border-radius: 20px;
+            position: absolute;
+            top: 10%;
+            left: 18%;
+            z-index: 8;
 
+            .discount-box {
+                display: none;
+                width: 90%;
+                height: 90%;
+                border-radius: 20px;
+                display: flex;
+                flex-direction: column;
+                margin: auto;
+                background-color: white;
+
+                .discount-img {
+                    margin: auto;
+                    display: flex;
+                    justify-content: center;
+
+                    >img {
+                        width: 60%;
+                    }
+                }
+
+                .discount-text {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 2% 0;
+                    gap: 3%;
+
+                    >h3 {
+                        color: #515A6E;
+                    }
+                }
+
+                .button-box {
+                    display: flex;
+                    .link-to-product {
+                        background-color: #be1a0e;
+                        width: 140px;
+                        height: 50px;
+                        margin: 5% auto;
+                        border: none;
+                        border-radius: 20px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        >p {
+                            font-size: 20px;
+                            color: white;
+                            text-align: center;
+                        }
+
+                        &:hover {
+                            background-color: white;
+                            color: #be1a0e;
+                            border: 1px solid #be1a0e;
+                            transition: 0.3s;
+
+                            >p {
+                                color: #be1a0e;
+                            }
+                        }
+                    }
+
+                    .play-again {
+                        background-color: #E7BD86;
+                        width: 140px;
+                        height: 50px;
+                        margin: 5% auto;
+                        border: none;
+                        border-radius: 20px;
+
+                        >p {
+                            font-size: 20px;
+                            color: white;
+                        }
+
+                        &:hover {
+                            background-color: white;
+                            color: #E7BD86;
+                            border: 1px solid #E7BD86;
+                            transition: 0.3s;
+
+                            >p {
+                                color: #E7BD86;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+        .failed-frame {
+            display: none;
+            flex-direction: column;
+            width: 65vw;
+            height: 70%;
+            overflow: hidden;
+            margin: auto;
+            background-color: #e4c7a0;
+            border-radius: 20px;
+            position: absolute;
+            top: 10%;
+            left: 18%;
+            z-index: 6;
+
+            .failed-box {
+                width: 90%;
+                height: 90%;
+                border-radius: 20px;
+                display: flex;
+                flex-direction: column;
+                margin: auto;
+                background-color: white;
+
+                .failed-text {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    margin: auto;
+
+                    >h3 {
+                        color: #515A6E;
+                        margin-bottom: 50px;
+                    }
+                }
+
+                .play-again {
+                    background-color: #E7BD86;
+                    width: 140px;
+                    height: 50px;
+                    margin: 5% auto;
+                    border: none;
+                    border-radius: 20px;
+
+                    >p {
+                        font-size: 20px;
+                        color: white;
+                    }
+
+                    &:hover {
+                        background-color: white;
+                        color: #E7BD86;
+                        border: 1px solid #E7BD86;
+                        transition: 0.3s;
+
+                        >p {
+                            color: #E7BD86;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     .quiz-bac {
         width: 100%;
         height: 100%;
         flex-direction: column;
+        position: relative;
 
         .cloud {
             width: 100%;
@@ -497,9 +889,9 @@ export default {
                 display: flex;
 
                 .cloud1 {
-                    width: 40%;
+                    width: 30%;
                     height: 100%;
-                    margin: -2% 0 0 0;
+                    margin: -3% 0 0 0;
                     background-image: url('@/assets/pic/quiz/cloud1.png');
                     background-size: cover;
                     background-repeat: no-repeat;
@@ -530,12 +922,13 @@ export default {
                 justify-content: end;
 
                 .cloud4 {
-                    width: 40%;
+                    width: 30%;
                     height: 100%;
-                    margin: 0 -10%;
+                    margin: 2% -10%;
                     background-image: url('@/assets/pic/quiz/cloud4.png');
                     background-size: cover;
                     background-repeat: no-repeat;
+                    transform: rotateY(180deg);
                 }
 
                 .cloud5 {
@@ -545,143 +938,50 @@ export default {
                     background-image: url('@/assets/pic/quiz/cloud5.png');
                     background-size: cover;
                     background-repeat: no-repeat;
+                    transform: rotateY(180deg);
                 }
             }
         }
 
-        .flower {
-            width: 100%;
-            height: 30%;
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 2%;
+        .tree-left {
+            width: 20%;
+            height: 70%;
+            background-image: url('@/assets/pic/quiz/tree.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: contain;
+            position: absolute;
+            bottom: 5%;
+            left: 0;
+            transform: rotateY(180deg);
+            z-index: -10;
+        }
 
-            @keyframes flowerAni {
-                0% {
-                    transform: translateY(0%);
-                    opacity: 1;
-                }
-
-                100% {
-                    transform: translateY(100%);
-                    opacity: 0;
-                }
-            }
-
-            .flower-left {
-                width: 30%;
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                margin-top: 20px;
-                background-repeat: repeat-y;
-
-                >.flower1 {
-                    width: 30%;
-                    height: 40%;
-                    animation: flowerAni 5s linear infinite;
-                    background-image: url('@/assets/pic/quiz/flower1.png');
-                    background-size: contain;
-                    background-repeat: no-repeat;
-                    background-position: center;
-                }
-
-                >.flower2 {
-                    width: 30%;
-                    height: 40%;
-                    animation: flowerAni 5s linear infinite;
-                    background-image: url('@/assets/pic/quiz/flower2.png');
-                    background-size: contain;
-                    background-repeat: no-repeat;
-                    background-position: center;
-                }
-
-                >.flower3 {
-                    width: 30%;
-                    height: 40%;
-                    animation: flowerAni 5s linear infinite;
-                    background-image: url('@/assets/pic/quiz/flower3.png');
-                    background-size: contain;
-                    background-repeat: no-repeat;
-                    background-position: center;
-                }
-
-                >.flower4 {
-                    width: 5%;
-                    height: 40%;
-                    animation: flowerAni 5s linear infinite;
-                    background-image: url('@/assets/pic/quiz/flower4.png');
-                    background-size: contain;
-                    background-repeat: no-repeat;
-                    background-position: center;
-                }
-            }
-
-            .flower-right {
-                width: 30%;
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                margin-top: 20px;
-                background-repeat: repeat-y;
-
-
-                >.flower1 {
-                    width: 30%;
-                    height: 40%;
-                    animation: flowerAni 5s linear infinite;
-                    background-image: url('@/assets/pic/quiz/flower1.png');
-                    background-size: contain;
-                    background-repeat: no-repeat;
-                    background-position: center;
-                }
-
-                >.flower2 {
-                    width: 30%;
-                    height: 40%;
-                    animation: flowerAni 5s linear infinite;
-                    background-image: url('@/assets/pic/quiz/flower2.png');
-                    background-size: contain;
-                    background-repeat: no-repeat;
-                    background-position: center;
-                }
-
-                >.flower3 {
-                    width: 30%;
-                    height: 40%;
-                    animation: flowerAni 5s linear infinite;
-                    background-image: url('@/assets/pic/quiz/flower3.png');
-                    background-size: contain;
-                    background-repeat: no-repeat;
-                    background-position: center;
-                }
-
-                >.flower4 {
-                    width: 5%;
-                    height: 40%;
-                    animation: flowerAni 5s linear infinite;
-                    background-image: url('@/assets/pic/quiz/flower4.png');
-                    background-size: contain;
-                    background-repeat: no-repeat;
-                    background-position: center;
-                }
-            }
+        .tree-right {
+            width: 20%;
+            height: 70%;
+            background-image: url('@/assets/pic/quiz/tree.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: contain;
+            position: absolute;
+            bottom: 5%;
+            right: 0;
+            z-index: -10;
         }
 
         .kid {
             width: 10%;
             height: 25%;
             margin: 0 0 0 25%;
-            background-image: url('@/assets/pic/quiz/kid.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            @keyframes kidMove {//小孩右移動畫
-                100%{
-                    transform: translateX(60%);
-                }
+            position: relative;
+            transition: 2s;
+
+            >img {
+                position: absolute;
+                right: -5vw;
+                top: 150%;
+                width: 7vw;
             }
         }
     }
