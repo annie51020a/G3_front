@@ -1,5 +1,8 @@
 <template>
     <section class="section-activity">
+        <div class="bcg">
+            <img src="/src/assets/pic/activity_bcg.png" alt="">
+        </div>
         <div class="container">
             <div class="info">
                 <div class="pic">

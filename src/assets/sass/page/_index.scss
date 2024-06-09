@@ -185,19 +185,37 @@
 .section-activity{
     width: 100%;
     margin: 100px 0;
+    position: relative;
+    .bcg{
+        width: 5%;
+        position: absolute;
+        top: -100px;
+        left: 0;
+        img{
+            width: 100%;
+            vertical-align: middle;
+            object-fit: cover;
+        }
+    }
     .container{
         width: 70%;
         margin-left: auto;
         .info{
             position: relative;
+            &:hover img{
+                transform: scale(1.1);
+                transition: all 0.3s ease;
+            }
             .pic{
                 border-top-left-radius: 20px;
                 border-bottom-left-radius: 20px;
                 overflow: hidden;
                 img{
                     width: 100%;
+                    height: 100%;
                     vertical-align: middle;
                     object-fit: cover;
+                    transition: all 0.3s ease;
                 }
             }
             h2{
@@ -211,6 +229,7 @@
                 left: 5%;
                 bottom: 12%;
                 h3{
+                    letter-spacing: 1.5px;
                     line-height: 3.5rem;
                     margin-bottom: 1rem;
                 }
@@ -224,22 +243,65 @@
                 height: 12%;
                 background-color: white;
                 border-radius: 50%;
+                text-align: center;
                 align-content: center;
                 position: absolute;
                 right: 5%;
                 bottom: 12%;
+                transition: all 0.3s ease;
+                &:hover{
+                    background-color: #B1241A;
+                    transition: all 0.3s ease;
+                }
+                &:hover path{
+                    stroke: white;
+                    transition: all 0.3s ease;
+                }
                 svg{
                     width: 100%;
                     vertical-align: middle;
                     object-fit: cover;
                 }
             }
-            .arrow:hover{
-                background-color: #B1241A;
-                transition: all 0.3s ease;
-            }
-            .arrow:hover path{
-                stroke: white;
+        }
+    }
+}
+@media screen and (max-width:576px) {
+    .section-activity{
+        margin: 40px 0;
+        .bcg{
+            display: none;
+        }
+        .container{
+            width: 80%;
+            .info{
+                .pic{
+                    height: 400px;
+                }
+                h2{
+                    top:5%;
+                    left:-22%;
+                }
+                .txt{
+                    left: 5%;
+                    bottom: 8%;
+                    h3{
+                        line-height: 2.5rem;
+                        margin-bottom: .5rem;
+                    }
+                    p{
+                        line-height: 1.5rem;
+                    }
+                }
+                .arrow{
+                    width: 11%;
+                    height: 9%;
+                    right: 5%;
+                    bottom: 5%;
+                    svg{
+                        width: 30%;
+                    }
+                }
             }
         }
     }
