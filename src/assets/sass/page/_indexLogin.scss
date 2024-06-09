@@ -192,28 +192,10 @@
                         width: 100%;
                     }
                 }
-            }
-        
-        }
-    }
-}
-.forget-box {
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 1s;
-    // display: none;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    margin: auto;
-    background-color: rgba(71, 69, 69, 0.5);
-    .login-container {
-        .login-wrap {
-            .login-frame {
+
+
+
+
                 .input-field {
                     .content-container {
                         .login-input {
@@ -227,6 +209,9 @@
                                 background-color: #F9F1E5;
                                 border: 1px solid #AE8461;
                                 border-radius: 5px;
+                            }
+                            .forget-input:focus {
+                                outline: none;
                             }
                             .forget-input::placeholder {
                                 color: #AAAAAA;
@@ -244,6 +229,7 @@
                                 font-family: 'Noto Serif HK', serif;
                                 padding: 8px 20px;
                                 border-radius: 20px;
+                                cursor: pointer;
                             }
                             .previous-page-btn:hover {
                                 background-color: #b49771;
@@ -253,6 +239,7 @@
                             .btn {
                                 font-family: 'Noto Serif HK', serif;
                                 border: 1px solid #BE1A0E;
+                                cursor: pointer;
                             }
                             .btn:hover {
                                 border: 1px solid #BE1A0E;
@@ -263,8 +250,10 @@
                     }
                 }
             }
+        
         }
     }
 }
+
 
 
