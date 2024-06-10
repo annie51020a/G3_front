@@ -14,9 +14,9 @@
             </nav>
             <div class="icons">
                 <button>
-                    <a href="#">
+                    <RouterLink to="/cart">
                         <img src="../../assets/pic/icon_cart.svg" alt="購物車">
-                    </a>
+                    </RouterLink>
                 </button>
                 <button>
                     <a href="#" @click="loginIn">

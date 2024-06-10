@@ -8,6 +8,24 @@
     cursor: pointer;
 }
 
+//商品數量加減按鈕
+.amount button {
+    border-radius: 50%;
+    background-color: transparent;
+    cursor: pointer;
+    border: rgba(177, 36, 26, 1) 1px solid;
+    font-size: 20px;
+    color: rgba(177, 36, 26, 1);
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+    text-align: center;
+}
+
+//商品數量加減的按鈕代碼如下
+// <button><i class="fa-solid fa-minus"></i></button>
+//<button><i class="fa-solid fa-plus"></i></button>
+
 // input
 .input {
     border-radius: $inputBR;
