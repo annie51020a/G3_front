@@ -3,7 +3,7 @@
     .container {
         max-width: 95%;
         width: 95%;
-        height: 365px;
+        padding: 10% 0;
         background-image: url(/src/assets/pic/4.jpg);
         background-size: cover;
         background-position: center;
@@ -13,9 +13,86 @@
         align-items: center;
         justify-content: center;
         .title {
-            background-color: rgba(217, 217, 217, .38);
+            // background-color: rgba(217, 217, 217, .38);
             color: #FFFF;
             padding: 15px 110px;
+            text-shadow: 0 4px 4px rgba(0, 0, 0, 0.9);
         }
     }
+}
+.conduct {
+    margin: 67px auto;
+    max-width: 1200px;
+    width: 60%;
+    .conduct-title {
+        background-color: #BE1A0E;
+        color: #FFFF;
+        padding: 20px 20px;
+        border-radius: 20px;
+        font-size: 24px;
+    }
+    .news-wrap {
+        margin: 35px 0;
+        .news-border {
+            border-radius: 20px;
+            padding: 40px 20px;
+            border-width: 1px; /* 邊框寬度 */
+            border-style: solid; /* 固定邊框樣式 */
+            border-color: black; /* 邊框顏色 */
+            
+            /* 设置虚线边框 */
+            border-image: 
+                repeating-linear-gradient(
+                38deg,
+                black 0px,
+                black 10px,
+                transparent 5px,
+                transparent 15px
+            ) 1;
+            
+            /* 将两个 border-image 叠加显示 */
+            // border-image-slice: 1;
+            
+            /* 设置圆角 */
+    
+        //     border: solid 0.5px transparent;
+        //     border-radius: 30px;
+        //     background-image: linear-gradient(white, white), 
+        //                       linear-gradient(to right, black, white);
+        //     background-origin: border-box;
+        //     background-clip: content-box, border-box;
+            .news-card {    
+                padding: 15px 0;
+                    margin-bottom: 10px; /* 添加底部外边距，与下一个元素保持距离 */
+                    border-bottom: 1px solid; /* 定义边框的宽度和类型 */
+                    border-image: repeating-linear-gradient(
+                        to right,
+                        black 0,
+                        black 10px,
+                        transparent 5px,
+                        transparent 15px
+                    ) 1; /* 使用 border-image 定义虚线样式 */
+                .news-title {
+                    
+
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    .news-date-name {
+                        font-size: 20px;
+                        width: 90%;
+                        cursor: pointer;
+                        .down-arrow {
+                        display: block;
+                        cursor: pointer;
+                        }   
+                    }
+                }                
+            }
+        }
+    }
+    
+    
+
+    
 }
