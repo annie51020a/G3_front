@@ -47,6 +47,11 @@ const router = createRouter({
       name: 'memberdiscount',
       component: () => import('@/views/MemberDiscount.vue')
     },
+    { // 會員_個人資料
+      path: '/memberinfo',
+      name: 'memberinfo',
+      component: () => import('@/views/MemberInfo.vue')
+    },
     {
       path: '/cart',
       name: 'cart',
