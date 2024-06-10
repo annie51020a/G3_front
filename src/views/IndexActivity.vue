@@ -3,7 +3,7 @@
         <div class="bcg">
             <img src="/src/assets/pic/activity_bcg.png" alt="">
         </div>
-        <div class="container">
+        <div class="activity-container">
             <div class="info">
                 <div class="pic">
                     <img src="../assets/pic/activity_pic.jpg" alt="">
