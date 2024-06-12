@@ -54,15 +54,23 @@ import MemberManageList from '../components/layout/MemberManageList.vue'
 </script>
 
 <style lang="scss">
+
     .section-memberinfo{
         width: 100%;
         margin: 100px 0;
         .memberinfo-container{
             width: 1200px;
             margin: 0 auto;
+            @media screen and (max-width:576px) {
+                width: 80%;
+                position: relative;
+            }
             .info-title{
                 color: #564A41;
                 text-align: center;
+                @media screen and (max-width:576px) {
+                    padding-top: 80px;
+                }
                 &::after{
                     content: "";
                     background-color: #564A41;
@@ -71,16 +79,23 @@ import MemberManageList from '../components/layout/MemberManageList.vue'
                     width: 80%;
                     height: 2px;
                     border-radius: 50px;
+                    @media screen and (max-width:576px) {
+                        width: 100%;
+                    }
                 }
             }
             .meminfo{
                 display: flex;
                 justify-content: center;
-                
                 .meminfo-list{
                     width: 15%;
                     height: 250px;
                     justify-content: center;
+                    @media screen and (max-width:576px) {
+                        position: absolute;
+                        top: -6%;
+                        height: 120px;
+                    }
                 }
                 .info{
                     display: inline-block;
@@ -88,13 +103,20 @@ import MemberManageList from '../components/layout/MemberManageList.vue'
                     padding: 50px 100px;
                     background-color: #FFF6EA;
                     border-radius: 20px;
-                    margin-left: 5%;
+                    margin:  0 5%;
                     text-align: center;
+                    @media screen and (max-width:576px) {
+                        margin: 0;
+                        padding: 20px 0;
+                    }
                     .mempic{
                         margin-bottom: 20px;
                         display: flex;
                         justify-content: space-between;
                         text-align: left;
+                        @media screen and (max-width:576px) {
+                            padding-left: 15px;
+                        }
                         .pic{
                             width: 100px;
                             height: 100px;
@@ -120,10 +142,19 @@ import MemberManageList from '../components/layout/MemberManageList.vue'
                             }
                             p{
                                 margin-top: 20px;
+                                @media screen and (max-width:576px) {
+                                    font-size: 14px;
+                                }
                             }
                         }
                     }
                     .content{
+                        @media screen and (max-width:576px) {
+                        padding-left: 15px;
+                        h5{
+                            font-size: 16px;
+                        }
+                        }
                         text-align: left;
                         input[type="text"],
                         input[type="date"]{
@@ -149,6 +180,9 @@ import MemberManageList from '../components/layout/MemberManageList.vue'
                                 height: 8px;
                                 border-radius: 50%;
                                 background-color: #B1241A;
+                                @media screen and (max-width:576px) {
+                                    left: 12.5%;
+                                }
                             }
                         }   
                         label {
@@ -189,6 +223,9 @@ import MemberManageList from '../components/layout/MemberManageList.vue'
                         font-size: 20px;
                         cursor: pointer;
                         transition: all 0.3s;
+                        @media screen and (max-width:576px) {
+                                    font-size: 16px;
+                                }
                         &:hover{
                             background-color: #B1241A;
                             color: white; 
@@ -198,4 +235,8 @@ import MemberManageList from '../components/layout/MemberManageList.vue'
             }
         }
     }
+
+
+
+
 </style>
