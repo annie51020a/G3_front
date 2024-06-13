@@ -18,12 +18,19 @@
     <div class="container">
         <div class="row">
             <div class="product-menu">
-                <div class="product-tag" @click="clear">全部</div>
+                <div class="product-title" @click="clear">
+                    <img src="@/assets/pic/product/shoppingbag.png" alt="精緻手工油紙傘">
+                    精緻手工油紙傘
+                </div>
                 <div class="product-tag" @click="filterTag('圖案')">
                     圖案
                 </div>
                 <div class="product-tag" @click="filterTag('素色')">
                     素色
+                </div>
+                <div class="product-custom">
+                    <img src="@/assets/pic/product/umbrella.png" alt="客製化油紙傘">
+                    客製化油紙傘
                 </div>
             </div>
             <div class="product-window">
@@ -128,10 +135,6 @@ export default {
         background-size: 28px;
         font-family: noto serif hk;
 
-        &:focus {
-            outline: none;
-            border-color: #CB2E27;
-        }
     }
 
     select {
@@ -140,14 +143,14 @@ export default {
         background-color: white;
         color: #564A41;
         padding: 10px;
-        width: auto;
+        width: 25%;
         font-size: 14px;
         outline: none;
         font-family: noto serif hk;
         &:focus {
-            outline: none;
-            border-color: #CB2E27;
+            outline: 1px solid #564A41;
         }
+       
     }
 }
 
@@ -164,11 +167,33 @@ export default {
 
         .product-menu {
             width: 25%;
-
+            .product-title {
+                color:#564A41;
+                cursor: pointer;
+                font-size: 20px;
+                margin-bottom: 10px;
+                > img {
+                    vertical-align: text-bottom ;
+                }
+            }
             .product-tag {
                 margin-bottom: 10px;
                 cursor: pointer;
                 color: #564A41;
+                padding-left: 30px;
+            }
+            .product-custom {
+                color: #fff;;
+                cursor: pointer;
+                font-size: 20px;
+                margin-bottom: 10px;
+                width: 160px;
+                background-color: #B1241A;
+                padding: 10px;
+                border-radius: 20px;
+                > img {
+                    vertical-align: middle ;
+                }
             }
 
         }
