@@ -34,5 +34,14 @@
         "price": 599,
         "rating": 3.6,
         "fav": false
+    },
+    {
+        "id": 5,
+        "image": "um5.jpg",
+        "tag": "素色",
+        "name": "紅色精緻手工油紙傘",
+        "price": 599,
+        "rating": 4.2,
+        "fav": false
     }
 ]
