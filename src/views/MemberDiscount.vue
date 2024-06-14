@@ -59,6 +59,10 @@ import MemberManageList from '../components/layout/MemberManageList.vue'
         }
         @media screen and (min-width:577px) and (max-width:996px){
             justify-content: space-around;
+            .mem-discount-list{
+                margin: 0 auto;
+            }
+
         }
 
         .discount-img {
@@ -98,14 +102,14 @@ import MemberManageList from '../components/layout/MemberManageList.vue'
         @media screen and (max-width:576px) {
             position: absolute;
             top: 0%;
-            left: -5%;
+            left: 0%;
             height: 50%;
         }
 
         @media screen and (min-width:577px) and (max-width:996px) {
             position: absolute;
             top: 0%;
-            left: -5%;
+            left: 0%;
         }
     }
 }
