@@ -3,9 +3,12 @@
         <div class="card-pic">
             <img v-if="item.image" :src="parseIcon(item.image)" :alt="item.name">
             <img v-else src="" alt="">
-            <!-- <div class="card-fav">
-                <img class="card-fav-icon" alt="heart">
-            </div> -->
+            <div class="card-fav">
+                <div class="card-fav-icon" @click="toogleFav(item.id)" >
+                    <i v-if="item.fav" class="fa-solid fa-heart"></i>
+                    <i v-else class="fa-regular fa-heart"></i>
+                </div>
+            </div>
         </div>
         <div class="card-txt">
             <div class="card-tag">
@@ -34,6 +37,9 @@ export default {
         parseIcon(file) {
             // 指到src || ..的意思是“回到上一層”
             return new URL(`../../assets/pic/${file}`, import.meta.url).href
+        },
+        toogleFav(id) {
+            this.item.fav = !this.item.fav;
         }
     }
 }
@@ -57,7 +63,10 @@ export default {
             bottom: 10px;
 
             .card-fav-icon {
-                width: 30px;
+                .fa-heart {
+                    color: #CB2E27;
+                    font-size: 30px;
+                }
             }
 
         }

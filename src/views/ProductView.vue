@@ -1,14 +1,36 @@
 <template>
-    <h1>周邊商品</h1>
+    <!-- banner -->
+    <section class="product-banner-section">
+        <div class="product-banner">
+            <h1>周邊商品</h1>
+        </div>
+    </section>
+    <!-- 搜尋框和排序 -->
+    <section class="search-section">
+        <input type="text" class="search-input" placeholder="搜尋商品名稱">
+        <select>
+            <option value="default">請選擇排序方式</option>
+            <option value="highToLow">價格由高至低</option>
+            <option value="lowToHigh">價格由低至高</option>
+        </select>
+    </section>
+    <!-- 周邊商品 -->
     <div class="container">
         <div class="row">
             <div class="product-menu">
-                <div class="product-tag" @click="clear">全部</div>
+                <div class="product-title" @click="clear">
+                    <img src="@/assets/pic/product/shoppingbag.png" alt="精緻手工油紙傘">
+                    精緻手工油紙傘
+                </div>
                 <div class="product-tag" @click="filterTag('圖案')">
                     圖案
                 </div>
                 <div class="product-tag" @click="filterTag('素色')">
                     素色
+                </div>
+                <div class="product-custom">
+                    <img src="@/assets/pic/product/umbrella.png" alt="客製化油紙傘">
+                    客製化油紙傘
                 </div>
             </div>
             <div class="product-window">
@@ -63,35 +85,129 @@ export default {
 </script>
 
 <style lang="scss">
-h1 {
-    text-align: center;
-    color: #564A41;
+// banner
+.product-banner-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border: 30px;
     margin-bottom: 50px;
+
+    .product-banner {
+        width: 90%;
+        background-image: url('@/assets/pic/product/product-banner.jpg');
+        background-position: center;
+        background-size: cover;
+        border-radius: 30px;
+        padding: 10% 0;
+
+        >h1 {
+            text-align: center;
+            margin: auto;
+            color: white;
+            text-shadow: 0 4px 4px rgba(0, 0, 0, 0.9);
+        }
+    }
 }
+
+// 搜尋框和排序
+.search-section {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+    gap: 25px;
+    margin-bottom: 50px;
+
+    .search-input {
+        width: 25%;
+        box-sizing: border-box;
+        padding: 10px 20px 10px 50px;
+        /* 左邊的 padding 留更多空間放置放大鏡圖示 */
+        border: 1px solid #564A41;
+        border-radius: 20px;
+        background-color: white;
+        font-size: 14px;
+        background-image: url('@/assets/pic/product/search-icon.png');
+        background-repeat: no-repeat;
+        background-position: left 10px center;
+        background-size: 28px;
+        font-family: noto serif hk;
+
+    }
+
+    select {
+        border-radius: 20px;
+        border: 1px solid #564A41;
+        background-color: white;
+        color: #564A41;
+        padding: 10px;
+        width: 25%;
+        font-size: 14px;
+        outline: none;
+        font-family: noto serif hk;
+        &:focus {
+            outline: 1px solid #564A41;
+        }
+       
+    }
+}
+
+
+// 周邊商品
 .container {
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
+    margin-bottom: 50px;
+
     .row {
         display: flex;
+
         .product-menu {
             width: 25%;
+            .product-title {
+                color:#564A41;
+                cursor: pointer;
+                font-size: 20px;
+                margin-bottom: 10px;
+                > img {
+                    vertical-align: text-bottom ;
+                }
+            }
             .product-tag {
                 margin-bottom: 10px;
                 cursor: pointer;
                 color: #564A41;
+                padding-left: 30px;
+            }
+            .product-custom {
+                color: #fff;;
+                cursor: pointer;
+                font-size: 20px;
+                margin-bottom: 10px;
+                width: 160px;
+                background-color: #B1241A;
+                padding: 10px;
+                border-radius: 20px;
+                > img {
+                    vertical-align: middle ;
+                }
             }
 
-    }
-    .product-window {
-        width: 75%;
-        .display-window {
-            display: flex;
-            gap: 25px;
-            flex-wrap: wrap;
+        }
+
+        .product-window {
+            width: 75%;
+
+            .display-window {
+                display: flex;
+                gap: 25px;
+                flex-wrap: wrap;
+            }
         }
     }
-    }
- 
+
 }
 </style>
