@@ -188,13 +188,13 @@ export default {
                 /* 将 prev 按钮放在左边 */
                 position: absolute;
                 left: 0%;
-                bottom: 0%;
+                top: 0%;
             }
 
             .swiper-button-next {
                 position: absolute;
                 left: 90px;
-                bottom: 0%;
+                top: 0%;
             }
 
             .swiper-slide {
