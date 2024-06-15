@@ -6,7 +6,7 @@
                 <div class="product-title">
                     <h2><img src="../assets/pic/index-cloud.png" alt="cloud">商品列表</h2>
                 </div>
-                <div class="product-arrow">
+                <!-- <div class="product-arrow">
                     <div class="product-arrow-btn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
                             <circle cx="25" cy="25" r="25" transform="matrix(-1 0 0 1 50 0)" fill="white" />
@@ -23,7 +23,7 @@
                                 stroke-linecap="round" />
                         </svg>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
 
@@ -161,6 +161,7 @@ export default {
                 left: 0;
                 right: 0;
                 color: #B1241A;
+                border: #B1241A 1px solid;
                 /* 设置箭头颜色 */
                 border-radius: 50%;
                 /* 设置圆角 */
@@ -170,25 +171,29 @@ export default {
                 /* 设置高度 */
                 background-color: white;
                 /* 示例背景色，方便查看 */
-                display: flex;
-                align-items: center;
-                justify-content: center;
                 z-index: 10;
                 /* 确保箭头在最上层 */
+                transition: 0.5s;
+                &:after {
+                            font-size: 10px;
+                        }
+                &:hover {
+                    color: #fff;
+                    background-color: #B1241A;
+                    
+                }
             }
 
             .swiper-button-prev {
                 /* 将 prev 按钮放在左边 */
-                margin-right: 10px;
                 position: absolute;
-                left: 40%;
+                left: 0%;
                 top: 0%;
             }
 
             .swiper-button-next {
-                margin-right: 10px;
                 position: absolute;
-                left: 47%;
+                left: 90px;
                 top: 0%;
             }
 
