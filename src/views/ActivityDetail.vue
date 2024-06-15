@@ -1,42 +1,43 @@
 <template>
-    <div class="activity-detail">
-        <h1>{{ activity.title }}</h1>
-        <img :src="activity.pic" alt="活動圖片">
-        <p>日期: {{ activity.date }}</p>
-        <p>時間: {{ activity.time }}</p>
-        <p>地點: {{ activity.loc }}</p>
-        <p>價格: {{ activity.price }}</p>
-    </div>
-</template>
-
-<script>
-import activities from '../../public/activities.json';
-
-export default {
-    name: 'ActivityDetail',
-    data() {
+    <section class="section-activity-swiper">
+      <swiper
+      :cssMode="true"
+      :navigation="true"
+      :pagination="true"
+      :mousewheel="true"
+      :keyboard="true"
+      :modules="modules"
+      class="mySwiper"
+    >
+      <swiper-slide>Slide 1</swiper-slide>
+      <swiper-slide>Slide 2</swiper-slide>
+      <swiper-slide>Slide 3</swiper-slide>
+    </swiper>
+  </section>
+    
+  </template>
+  <script>
+    // Import Swiper Vue.js components
+    import { Swiper, SwiperSlide } from 'swiper/vue';
+  
+    // Import Swiper styles
+    import 'swiper/css';
+    import 'swiper/css/navigation';
+    import 'swiper/css/pagination';
+  
+    // import required modules
+    import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
+  
+    export default {
+      components: {
+        Swiper,
+        SwiperSlide,
+      },
+      setup() {
         return {
-            activity: null
+          modules: [Navigation, Pagination, Mousewheel, Keyboard],
         };
-    },
-    created() {
-        const activityId = this.$route.params.id;
-        this.activity = activities.find(activity => activity.id === parseInt(activityId));
-    }
-};
-</script>
-
-<style lang="scss">
-.activity-detail {
-    padding: 20px;
-
-    img {
-        max-width: 100%;
-        height: auto;
-    }
-
-    p {
-        margin: 10px 0;
-    }
-}
-</style>
+      },
+    };
+  </script> 
+    
