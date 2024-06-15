@@ -32,6 +32,7 @@
       class="activity-card"
       v-for="(activity, index) in activities"
       :key="index"
+      @click="goToActivityDetail(activity.id)"
     >
       <div class="card-pic">
         <img :src="activity.pic" alt="活動圖片">
@@ -56,5 +57,10 @@ export default {
       activities
     };
   },
+  methods: {
+    goToActivityDetail(id) {
+      this.$router.push({ name: 'activitydetail', params: { id } });
+    }
+  }
 };
 </script>
