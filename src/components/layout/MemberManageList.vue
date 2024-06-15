@@ -72,7 +72,6 @@
             background-color: #be1a0e;
             margin: auto;
             border-radius: 20px;
-
         }
 
         @media screen and (min-width:577px) and (max-width:996px) {
@@ -83,7 +82,6 @@
             background-color: #be1a0e;
             margin: auto;
             border-radius: 20px;
-
         }
     }
     .favorite-list{
