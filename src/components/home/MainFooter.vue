@@ -1,7 +1,7 @@
 <template>
     <footer>
         <div class="footer-top">
-                    <RouterLink to="/"><img src="../../assets/pic/footer-top.png" alt="logo"></RouterLink>
+                    <img src="../../assets/pic/footer-top.png" alt="logo">
                 </div>
         <div class="container">
             <div class="brand-info">
