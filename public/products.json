@@ -1,16 +1,19 @@
 [
     {
         "id": 1,
-        "image": "um1.jpg",
+        "pic1": "um1pic1.jpg",
+        "pic2": "um1pic2.jpg",
+        "pic3": "um1pic3.jpg",
         "tag": "圖案",
         "name": "數字精緻手工油紙傘",
         "price": 699,
         "rating": 4.9,
-        "fav": false
+        "fav": false,
+        "desc":"數字精緻手工油紙傘將傳統工藝與現代設計完美結合。每把傘由經驗豐富的工匠手工製作，傘面上的數字圖案獨特且充滿藝術感。使用高品質油紙和竹子製作，具備優良的防水性能和耐用性。這款油紙傘不僅實用，還可作為藝術品展示，適合作為禮品贈送。"
     },
     {
         "id": 2,
-        "image": "um2.jpg",
+        "pic1": "um2.jpg",
         "tag": "圖案",
         "name": "花卉精緻手工油紙傘",
         "price": 649,
@@ -19,7 +22,7 @@
     },
     {
         "id": 3,
-        "image": "um3.jpg",
+        "pic1": "um3.jpg",
         "tag": "圖案",
         "name": "幾何精緻手工油紙傘",
         "price": 649,
@@ -28,20 +31,11 @@
     },
     {
         "id": 4,
-        "image": "um4.jpg",
+        "pic1": "um4.jpg",
         "tag": "素色",
         "name": "杏色精緻手工油紙傘",
         "price": 599,
         "rating": 3.6,
-        "fav": false
-    },
-    {
-        "id": 5,
-        "image": "um5.jpg",
-        "tag": "素色",
-        "name": "紅色精緻手工油紙傘",
-        "price": 599,
-        "rating": 4.2,
         "fav": false
     }
 ]
