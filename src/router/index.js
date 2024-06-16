@@ -27,6 +27,11 @@ const router = createRouter({
       name: 'activity',
       component: () => import('@/views/ActivityView.vue')
     },
+    {//活動詳細頁面
+      path: '/activity/:id',
+      name: 'activitydetail',
+      component: () => import('@/views/ActivityDetail.vue')
+    },
     {
       path: '/news',
       name: 'news',
@@ -52,6 +57,16 @@ const router = createRouter({
       name: 'memberinfo',
       component: () => import('@/views/MemberInfo.vue')
     },
+    { // 會員_收藏清單
+      path: '/memberfav',
+      name: 'memberfav',
+      component: () => import('@/views/MemberFav.vue')
+    },
+    { // 會員_商品購買紀錄
+      path: '/memberbuy',
+      name: 'memberbuy',
+      component: () => import('@/views/MemberBuy.vue')
+    },
     {
       path: '/cart',
       name: 'cart',
@@ -61,6 +76,11 @@ const router = createRouter({
       path: '/checkout_act',
       name: 'checkout_act',
       component: () => import('@/views/CheckOut-Activity.vue')
+    },
+    {
+      path: '/product/:id',
+      name: 'singleproduct',
+      component: () => import('@/views/SingleProductView.vue')
     },
   ]
 })

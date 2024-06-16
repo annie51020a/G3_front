@@ -3,12 +3,13 @@
         <!-- 補上router -->
         <li class="mem-account">
             <img src="@/assets/pic/mem-account.png" alt="">
-            <h5>會員資料</h5>
+            <router-link to="/memberinfo">  <h5>會員資料</h5> </router-link>
         </li>
 
         <li class="favorite-list">
             <img src="@/assets/pic/favorite-list.png" alt="">
-            <h5>收藏清單</h5>
+            <router-link to="/memberfav">  <h5>收藏清單</h5> </router-link>
+            
         </li>
 
         <li class="registration-record">
@@ -18,17 +19,17 @@
         
         <li class="discount">
             <img src="@/assets/pic/discount.png" alt="">
-            <h5>優惠券</h5>
+            <router-link to="/memberdiscount">  <h5>優惠券</h5> </router-link>
         </li>
 
         <li class="purchase-history">
             <img src="@/assets/pic/purchase-history.png" alt="">
-            <h5>購買紀錄</h5>
+            <router-link to="/memberbuy">  <h5>購買紀錄</h5> </router-link>
         </li>
     </ul>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .member-manage-list{
     width: 20%;
     background-color: #be1a0e;
@@ -61,6 +62,9 @@
         align-items: center;
         margin: 3% 0 1% 5%;
         color: white;
+        > a {
+            color: #FFF;
+        }
         > h4 {
             padding-left: 1%;
         }
@@ -72,7 +76,6 @@
             background-color: #be1a0e;
             margin: auto;
             border-radius: 20px;
-
         }
 
         @media screen and (min-width:577px) and (max-width:996px) {
@@ -83,7 +86,6 @@
             background-color: #be1a0e;
             margin: auto;
             border-radius: 20px;
-
         }
     }
     .favorite-list{
@@ -91,6 +93,9 @@
         align-items: center;
         margin: 1% 0 1% 5%;
         color: white;
+        > a {
+            color: #FFF;
+        }
         > h4 {
             padding-left: 1%;
         }
@@ -119,6 +124,9 @@
         align-items: center;
         margin: 1% 0 1% 5%;
         color: white;
+        > a {
+            color: #FFF;
+        }
         > h4 {
             padding-left: 1%;
         }
@@ -147,6 +155,9 @@
         align-items: center;
         margin: 1% 0 1% 5%;
         color: white;
+        > a {
+            color: #FFF;
+        }
         > h4 {
             padding-left: 1%;
         }
@@ -175,6 +186,9 @@
         align-items: center;
         margin: 1% 0 3% 5%;
         color: white;
+        > a {
+            color: #FFF;
+        }
         > h4 {
             padding-left: 1%;
         }

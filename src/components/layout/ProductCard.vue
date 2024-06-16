@@ -1,11 +1,15 @@
 <template>
     <div v-if="item" class="card">
-        <div class="card-pic">
-            <img v-if="item.image" :src="parseIcon(item.image)" :alt="item.name">
+        <router-link :to="`product/${item.id}`">
+            <div class="card-pic">
+            <img v-if="item.pic1" :src="parseIcon(item.pic1)" :alt="item.name">
             <img v-else src="" alt="">
-            <!-- <div class="card-fav">
-                <img class="card-fav-icon" alt="heart">
-            </div> -->
+            <div class="card-fav">
+                <div class="card-fav-icon" @click="toogleFav(item.id)" >
+                    <i v-if="item.fav" class="fa-solid fa-heart"></i>
+                    <i v-else class="fa-regular fa-heart"></i>
+                </div>
+            </div>
         </div>
         <div class="card-txt">
             <div class="card-tag">
@@ -24,6 +28,7 @@
             </div>
 
         </div>
+        </router-link>  
     </div>
 </template>
 
@@ -33,13 +38,16 @@ export default {
     methods: {
         parseIcon(file) {
             // 指到src || ..的意思是“回到上一層”
-            return new URL(`../../assets/pic/${file}`, import.meta.url).href
+            return new URL(`../../assets/pic/product/${file}`, import.meta.url).href
+        },
+        toogleFav(id) {
+            this.item.fav = !this.item.fav;
         }
     }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped >
 .card {
     .card-pic {
         position: relative;
@@ -57,7 +65,10 @@ export default {
             bottom: 10px;
 
             .card-fav-icon {
-                width: 30px;
+                .fa-heart {
+                    color: #CB2E27;
+                    font-size: 30px;
+                }
             }
 
         }

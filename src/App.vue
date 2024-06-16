@@ -24,7 +24,7 @@ export default {
     RouterView,
     MainFooter,
     MainHeader,
-    IndexLoginView
+    IndexLoginView,
   }
 }
 </script>
