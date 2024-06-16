@@ -1,7 +1,8 @@
 <template>
     <div v-if="item" class="card">
-        <div class="card-pic">
-            <img v-if="item.image" :src="parseIcon(item.image)" :alt="item.name">
+        <router-link :to="`product/${item.id}`">
+            <div class="card-pic">
+            <img v-if="item.pic1" :src="parseIcon(item.pic1)" :alt="item.name">
             <img v-else src="" alt="">
             <div class="card-fav">
                 <div class="card-fav-icon" @click="toogleFav(item.id)" >
@@ -27,6 +28,7 @@
             </div>
 
         </div>
+        </router-link>
     </div>
 </template>
 
@@ -36,7 +38,7 @@ export default {
     methods: {
         parseIcon(file) {
             // 指到src || ..的意思是“回到上一層”
-            return new URL(`../../assets/pic/${file}`, import.meta.url).href
+            return new URL(`../../assets/pic/product/${file}`, import.meta.url).href
         },
         toogleFav(id) {
             this.item.fav = !this.item.fav;
@@ -45,7 +47,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped >
 .card {
     width: 280px;
     .card-pic {
