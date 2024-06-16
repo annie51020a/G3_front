@@ -22,7 +22,7 @@ const router = createRouter({
       name: 'product',
       component: () => import('@/views/ProductView.vue')
     },
-    {
+    { // 首頁_手做活動
       path: '/activity',
       name: 'activity',
       component: () => import('@/views/ActivityView.vue')
@@ -61,6 +61,16 @@ const router = createRouter({
       path: '/checkout_activity',
       name: 'checkout_activity',
       component: () => import('@/views/CheckOut-Activity.vue')
+    },
+    { // 客製化油紙傘
+      path: '/customized',
+      name: 'customized',
+      component: () => import('@/views/Customized.vue')
+    },
+    { // 404
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: () => import('@/views/NotFoundView.vue')
     },
   ]
 })
