@@ -13,7 +13,6 @@
         align-items: center;
         justify-content: center;
         .title {
-            // background-color: rgba(217, 217, 217, .38);
             color: #FFFF;
             padding: 15px 110px;
             text-shadow: 0 4px 4px rgba(0, 0, 0, 0.9);
@@ -27,29 +26,33 @@
     .conduct-title {
         background-color: #BE1A0E;
         color: #FFFF;
-        padding: 20px 20px;
+        padding: 20px 30px;
         border-radius: 20px;
-        font-size: 24px;
+        font-size: clamp(22px, 1.562vw, 18px);
     }
     .news-wrap {
         margin: 35px 0;
+        background-color: #fff;
         .news-border {
             border-radius: 20px;
-            padding: 40px 20px;
-            border-width: 1px; /* 邊框寬度 */
-            border-style: solid; /* 固定邊框樣式 */
-            border-color: black; /* 邊框顏色 */
+            padding: 15px 20px;
+            // border-width: 1px; /* 邊框寬度 */
+            // border-style: solid; /* 固定邊框樣式 */
+            // border-color: #6B380D; /* 邊框顏色 */
             
-            /* 设置虚线边框 */
-            border-image: 
-                repeating-linear-gradient(
-                38deg,
-                black 0px,
-                black 10px,
-                transparent 5px,
-                transparent 15px
-            ) 1;
+            // /* 设置虚线边框 */
+            // border-image: 
+            //     repeating-linear-gradient(
+            //     38deg,
+            //     #6B380D 0px,
+            //     #6B380D 10px,
+            //     transparent 5px,
+            //     transparent 15px
+            // ) 1;
             
+            border: 1px dashed black;
+
+
             /* 将两个 border-image 叠加显示 */
             // border-image-slice: 1;
             
@@ -67,25 +70,36 @@
         
             .news-card {    
                 padding: 15px 30px;
-                    margin-bottom: 10px; /* 添加底部外边距，与下一个元素保持距离 */
-                    border-bottom: 1px solid; /* 定义边框的宽度和类型 */
-                    border-image: repeating-linear-gradient(
-                        to right,
-                        black 0,
-                        black 10px,
-                        transparent 5px,
-                        transparent 15px
-                    ) 1; /* 使用 border-image 定义虚线样式 */
+                border-radius: 20px;
+                background-color: #FFFF;
+                margin-bottom: 10px;
+                border-image: repeating-linear-gradient(
+                    to right,
+                    #6B380D 0,
+                    #6B380D 10px,
+                    transparent 5px,
+                    transparent 15px
+                ) 1;
                 .news-title {
+                    cursor: pointer;
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
                     padding: 0 0 8px;
+                    // border-bottom: 1px solid;
+                //     border-image: repeating-linear-gradient(
+                //     to right,
+                //     #6B380D 0,
+                //     #6B380D 10px,
+                //     transparent 5px,
+                //     transparent 15px
+                // ) 1;
+
+                border-bottom: 1px dashed black;
                     .news-date-name {
                         font-size: 20px;
                         width: 90%;
                         cursor: pointer;
-
                     }
                     .down-arrow {                   
                             display: block;
@@ -95,19 +109,20 @@
                 .news-content {
                     display: flex;
                     gap: 45px;
+                    // display: none;
                     .news-pic {
                         margin: auto 0;
                         width: 30%;
                         height: 210px;
-                        border-radius: 5px;
+                        border-radius: 10px;
                         display: block;
                         overflow: hidden;
                         > img {
                             width: 100%;
                             height: 100%;
+                            border-radius: 10px;
                             object-fit: cover;
                         }
-
                     }
                     .news-txt {
                         width: 70%;
@@ -130,10 +145,44 @@
                         }
                     }
                 }
-                
             }
         }
     }
-    
-    
+}
+@media screen and (max-width:996px){
+    .conduct {
+        min-width: 75%;
+        .news-wrap {
+            .news-border {
+                .news-card {
+                    .news-title {
+                        display: flex;
+                    }
+                    .news-content {
+                        display: inline;
+                        position: relative;
+                        .news-pic {
+                            position: static;
+                            display: inline-block;
+                            height: 250px;
+                            width: 90%;
+                            padding: 15px;
+                            > img {
+                                float: left;
+                                object-fit: cover;
+                            }
+                        }
+                        .news-txt {
+                            width: unset;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width:576px){
+    .conduct {
+        min-width: 95%;
+    }
 }

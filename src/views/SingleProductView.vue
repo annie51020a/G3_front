@@ -168,6 +168,7 @@ export default {
                 >img {
                     width: 31%;
                     border-radius: 20px;
+                    cursor: pointer;
                 }
             }
         }
@@ -305,7 +306,7 @@ export default {
                 > p {
                     &:first-child {
                         font-size: 24px;
-                        margin-bottom: 20px;
+                        margin-bottom: 10px;
                     }
                    
                 }
