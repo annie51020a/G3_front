@@ -7,7 +7,10 @@
     </section>
     <!-- 搜尋框和排序 -->
     <section class="search-section">
-        <input type="text" class="search-input" placeholder="搜尋商品名稱">
+        <div class="search-area">
+            <input @input="filterData" type="text" v-model="search" class="search-input" placeholder="搜尋商品名稱">
+            <i  class="fa-solid fa-x" @click="clear" ></i>
+        </div>
         <select>
             <option value="default">請選擇排序方式</option>
             <option value="highToLow">價格由高至低</option>
@@ -18,12 +21,19 @@
     <div class="container">
         <div class="row">
             <div class="product-menu">
-                <div class="product-tag" @click="clear">全部</div>
+                <div class="product-title" @click="clear">
+                    <img src="@/assets/pic/product/shoppingbag.png" alt="精緻手工油紙傘">
+                    精緻手工油紙傘
+                </div>
                 <div class="product-tag" @click="filterTag('圖案')">
                     圖案
                 </div>
                 <div class="product-tag" @click="filterTag('素色')">
                     素色
+                </div>
+                <div class="product-custom">
+                    <img src="@/assets/pic/product/umbrella.png" alt="客製化油紙傘">
+                    客製化油紙傘
                 </div>
             </div>
             <div class="product-window">
@@ -46,7 +56,8 @@ export default {
     data() {
         return {
             responseData: [],
-            displayData: []
+            displayData: [],
+            search: "",
         }
     },
     //可以用create也可以用mounted
@@ -71,13 +82,24 @@ export default {
             this.displayData = this.responseData.filter((item) => {
                 return item.tag === tagName
             })
-        }
+        },
+        filterData() {
+            console.log(this.search)
+            this.displayData = this.responseData.filter((item) => {
+                // return item.name == this.search
+                return item.name.includes(this.search)
+            })
+        },
+        clear() {
+            this.search = "";
+            this.displayData = this.responseData;
+        },
     }
 }
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped >
 // banner
 .product-banner-section {
     width: 100%;
@@ -113,8 +135,11 @@ export default {
     gap: 25px;
     margin-bottom: 50px;
 
-    .search-input {
+    .search-area {
+        position: relative;
         width: 25%;
+        .search-input {
+        width: 100%;
         box-sizing: border-box;
         padding: 10px 20px 10px 50px;
         /* 左邊的 padding 留更多空間放置放大鏡圖示 */
@@ -128,9 +153,15 @@ export default {
         background-size: 28px;
         font-family: noto serif hk;
 
-        &:focus {
-            outline: none;
-            border-color: #CB2E27;
+        }
+        .fa-x {
+            color: #564A41;
+            position: absolute;
+            right: 10px;
+            top: 13px;
+            cursor: pointer;
+            vertical-align: middle;
+
         }
     }
 
@@ -140,14 +171,14 @@ export default {
         background-color: white;
         color: #564A41;
         padding: 10px;
-        width: auto;
+        width: 25%;
         font-size: 14px;
         outline: none;
         font-family: noto serif hk;
         &:focus {
-            outline: none;
-            border-color: #CB2E27;
+            outline: 1px solid #564A41;
         }
+       
     }
 }
 
@@ -164,11 +195,33 @@ export default {
 
         .product-menu {
             width: 25%;
-
+            .product-title {
+                color:#564A41;
+                cursor: pointer;
+                font-size: 20px;
+                margin-bottom: 10px;
+                > img {
+                    vertical-align: text-bottom ;
+                }
+            }
             .product-tag {
                 margin-bottom: 10px;
                 cursor: pointer;
                 color: #564A41;
+                padding-left: 30px;
+            }
+            .product-custom {
+                color: #fff;;
+                cursor: pointer;
+                font-size: 20px;
+                margin-bottom: 10px;
+                width: 160px;
+                background-color: #B1241A;
+                padding: 10px;
+                border-radius: 20px;
+                > img {
+                    vertical-align: middle ;
+                }
             }
 
         }

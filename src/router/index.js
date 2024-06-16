@@ -27,6 +27,11 @@ const router = createRouter({
       name: 'activity',
       component: () => import('@/views/ActivityView.vue')
     },
+    {//活動詳細頁面
+      path: '/activity/:id',
+      name: 'activitydetail',
+      component: () => import('@/views/ActivityDetail.vue')
+    },
     {
       path: '/news',
       name: 'news',
@@ -72,6 +77,11 @@ const router = createRouter({
       name: 'NotFound',
       component: () => import('@/views/NotFoundView.vue')
     },
+    {
+      path: '/product/:id',
+      name: 'singleproduct',
+      component: () => import('@/views/SingleProductView.vue')
+    }
   ]
 })
 
