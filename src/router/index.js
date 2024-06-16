@@ -57,6 +57,16 @@ const router = createRouter({
       name: 'memberinfo',
       component: () => import('@/views/MemberInfo.vue')
     },
+    { // 會員_收藏清單
+      path: '/memberfav',
+      name: 'memberfav',
+      component: () => import('@/views/MemberFav.vue')
+    },
+    { // 會員_商品購買紀錄
+      path: '/memberbuy',
+      name: 'memberbuy',
+      component: () => import('@/views/MemberBuy.vue')
+    },
     {
       path: '/cart',
       name: 'cart',
