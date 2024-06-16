@@ -109,7 +109,7 @@ export default {
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .section-product-bg {
     width: 100%;
     height: 95px;
