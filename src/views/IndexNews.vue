@@ -33,7 +33,7 @@
                 </section>
             </div>
             <div class="index-more">
-                <a href="#" class="index-more-txt">更多消息</a>
+                <a href="./news" class="index-more-txt">更多消息</a>
             </div>
         </div>
     </section>
