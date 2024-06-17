@@ -1,6 +1,6 @@
 <template>
     <div v-if="item" class="card">
-        <router-link :to="`product/${item.id}`">
+        <router-link :to="`/product/${item.id}`">
             <div class="card-pic">
             <img v-if="item.pic1" :src="parseIcon(item.pic1)" :alt="item.name">
             <img v-else src="" alt="">
