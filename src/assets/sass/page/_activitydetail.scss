@@ -63,14 +63,19 @@
                 margin-top: 20px;
 
                 >button {
-                    width: 50%;
-                    background-color: white;
+                    width: 250px;
+                    background-color: #FFFBF6;
                     font-size: 16px;
                     color: #564A41;
                     border-radius: $btnBR;
                     padding: 15px 25px;
                     border: 1px solid #A9A8A8;
                     cursor: pointer;
+
+                    &:hover {
+                        background-color: rgb(255, 255, 255);
+                        border: 1px solid #B1241A;
+                    }
                 }
             }
 
@@ -79,16 +84,17 @@
         .num {
             display: flex;
             justify-content: space-between;
-            
-            >h5{
+
+            >h5 {
                 padding-right: 180px;
             }
-            .amount-button{
+
+            .amount-button {
                 display: flex;
                 justify-content: center;
                 gap: 30px;
 
-                >button{
+                >button {
                     border-radius: 50%;
                     background-color: transparent;
                     cursor: pointer;
@@ -102,26 +108,32 @@
             }
         }
 
-        .total-price{
+        .total-price {
             display: flex;
             justify-content: space-between;
         }
 
-        >hr{
+        >hr {
             width: 100%;
-          border:1px dashed #A9A8A8;
+            border: 1px dashed #A9A8A8;
         }
 
-        >.btn{
-width: 80%;
-margin: 0 auto;
-font-size: 16px;
-padding: 15px 25px;
+        >.btn {
+            width: 80%;
+            margin: 0 auto;
+            font-size: 16px;
+            padding: 15px 25px;
+
+            >a {
+                font-family: "Noto Serif HK", serif;
+                font-size: 16px;
+                color: white;
+            }
         }
     }
 }
 
-.section-activity-notice{
+.section-activity-notice {
     width: 90%;
     display: flex;
     flex-direction: column;
@@ -132,10 +144,11 @@ padding: 15px 25px;
         padding-left: 10px;
     }
 
-    h5{
+    h5 {
         margin: 20px 0;
     }
-    ul{
+
+    ul {
         list-style-type: disc;
         padding-left: 20px;
         font-size: 16px;
@@ -143,25 +156,26 @@ padding: 15px 25px;
         line-height: 1.5;
     }
 
-    .activity-notice{
+    .activity-notice {
         width: 100%;
         background-color: #FFE2BB;
         border-radius: 10px;
         padding: 20px 0;
         margin-top: 40px;
     }
-    .activity-notice-info{
+
+    .activity-notice-info {
         display: flex;
         justify-content: space-between;
 
-        .know-and-use{
+        .know-and-use {
             width: 45%;
         }
 
-        .cancel-and-map{
+        .cancel-and-map {
             width: 45%;
 
-            iframe{
+            iframe {
                 width: 100%;
                 margin-top: 20px;
                 border-radius: 10px;

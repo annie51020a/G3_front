@@ -72,20 +72,20 @@
       </div>
       <div class="num">
         <h5>選擇人數</h5>
-        <p>NT$499/人</p>
+        <p>NT${{price}}/人</p>
         <div class="amount-button">
-          <button><i class="fa-solid fa-minus"></i></button>
-          <p>1</p>
-          <button><i class="fa-solid fa-plus"></i></button>
+          <button @click="minus"><i class="fa-solid fa-minus"></i></button>
+          <p>{{ count }}</p>
+          <button @click="plus"><i class="fa-solid fa-plus"></i></button>
         </div>
       </div>
       <div class="total-price">
         <h5>總金額</h5>
-        <p>NT$499</p>
+        <p>NT${{total}}</p>
       </div>
       <hr>
       <button class="btn">
-        立即預約
+        <routerLink to="/checkout_act">立即預約</routerLink>
       </button>
 
     </div>
@@ -93,36 +93,38 @@
 
   <section class="section-activity-notice">
     <div class="activity-notice">
-        <h4>注意事項</h4>
+      <h4>注意事項</h4>
+    </div>
+    <div class="activity-notice-info">
+      <div class="know-and-use">
+        <h5>-預約須知-</h5>
+        <ul>
+          <li>活動日 6 天前可免費取消。</li>
+          <li>手作體驗活動，皆以人頭計費。</li>
+          <li>手作課程皆整點開始，請提早 20 分鐘至售票櫃台完成報到並等待入場通知，未完成者皆自動取消不另行通知。</li>
+          <li>活動中將會攝影、錄影作為未來宣傳用，若有無法露臉之需求，請於活動開始前告知主辦單位。</li>
+        </ul>
+        <h5>-如何使用-</h5>
+        <ul>
+          <li>現場請出示電子憑證。</li>
+          <li>需要按照預訂日期及當天開放時間內使用，逾期失效</li>
+        </ul>
       </div>
-      <div class="activity-notice-info">
-    <div class="know-and-use">
-      <h5>-預約須知-</h5>
-      <ul>
-        <li>活動日 6 天前可免費取消。</li>
-        <li>手作體驗活動，皆以人頭計費。</li>
-        <li>手作課程皆整點開始，請提早 20 分鐘至售票櫃台完成報到並等待入場通知，未完成者皆自動取消不另行通知。</li>
-        <li>活動中將會攝影、錄影作為未來宣傳用，若有無法露臉之需求，請於活動開始前告知主辦單位。</li>
-      </ul>
-      <h5>-如何使用-</h5>
-      <ul>
-        <li>現場請出示電子憑證。</li>
-        <li>需要按照預訂日期及當天開放時間內使用，逾期失效</li>
-      </ul>
+      <div class="cancel-and-map">
+        <h5>-取消政策-</h5>
+        <ul>
+          <li>所選日期 6 天（含）之前取消，收取手續費 0%</li>
+          <li>所選日期 0 ~ 5 天之間取消，收取手續費 100%</li>
+        </ul>
+        <h5>-體驗地點-</h5>
+        <ul>
+          <li>高雄市前鎮區中華五路123號5樓。(傘韻：油紙傘工作室)</li>
+        </ul>
+        <div class="loc-map"><iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.3608874604242!2d120.30601269999998!3d22.6029949!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e037089809907%3A0x8db05f77e1458f5d!2zODA26auY6ZuE5biC5YmN6Y6u5Y2A5Lit6I-v5LqU6LevMTIz6JmfNQ!5e0!3m2!1szh-TW!2stw!4v1718554242516!5m2!1szh-TW!2stw"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+      </div>
     </div>
-    <div class="cancel-and-map">
-      <h5>-取消政策-</h5>
-      <ul>
-        <li>所選日期 6 天（含）之前取消，收取手續費 0%</li>
-        <li>所選日期 0 ~ 5 天之間取消，收取手續費 100%</li>
-      </ul>
-      <h5>-體驗地點-</h5>
-      <ul>
-        <li>高雄市前鎮區中華五路123號5樓。(傘韻：油紙傘工作室)</li>
-      </ul>
-      <div class="loc-map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.3608874604242!2d120.30601269999998!3d22.6029949!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e037089809907%3A0x8db05f77e1458f5d!2zODA26auY6ZuE5biC5YmN6Y6u5Y2A5Lit6I-v5LqU6LevMTIz6JmfNQ!5e0!3m2!1szh-TW!2stw!4v1718554242516!5m2!1szh-TW!2stw"  loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
-    </div>
-  </div>  
   </section>
 </template>
 
@@ -139,6 +141,12 @@ import 'swiper/css/pagination';
 import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
 
 export default {
+  data() {
+    return {
+      count: 1,
+      price:499,
+    }
+  },
   components: {
     Swiper,
     SwiperSlide,
@@ -148,6 +156,20 @@ export default {
       modules: [Navigation, Pagination, Mousewheel, Keyboard],
     };
   },
+  computed:{
+    total(){
+      return this.count * this.price;
+    }
+  },
+  methods: {
+    plus() {
+      this.count += 1;
+    },
+    minus() {
+      if (this.count == 1) return
+      this.count -= 1;
+    },
+  }
 };
 </script>
 
