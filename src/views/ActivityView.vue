@@ -21,22 +21,21 @@
         <button>文創市集</button>
       </div>
     </div>
-      <div class="search-filter">
-        <label for="search-box"><img src="@/assets/pic/search.png" alt=""><input type="search" placeholder="搜尋框"
-            id="search-box"></label>
-        <button><img src="@/assets/pic/filter.png" alt="">篩選</button>
-      </div>
+    <div class="search-filter">
+      <div class="search-box"><img src="@/assets/pic/search.png" alt=""><input @input="filterData" type="text"
+          v-model="search" class="search-input" placeholder="搜尋活動名稱"><i class="fa-solid fa-x" @click="clear"></i></div>
+      <button><img src="@/assets/pic/filter.png" alt="">篩選</button>
+    </div>
   </section>
   <section class="section-activity">
-    <div
-      class="activity-card"
-      v-for="(activity, index) in activities"
-      :key="index"
-    >
+    <div class="activity-card" v-for="(activity, index) in activities" :key="index"
+      @click="goToActivityDetail(activity.id)">
       <div class="card-pic">
         <img :src="activity.pic" alt="活動圖片">
       </div>
-      <div class="card-title"><h5>{{ activity.title }}</h5></div>
+      <div class="card-title">
+        <h5>{{ activity.title }}</h5>
+      </div>
       <div class="card-date">{{ activity.date }}</div>
       <div class="card-time1">{{ activity.time1 }}</div>
       <div class="card-time2">{{ activity.time2 }}</div>
@@ -53,8 +52,25 @@ export default {
   name: 'ActivityView',
   data() {
     return {
-      activities
+      activities,
+      responseData: activities,
+      search: "",
     };
   },
+  methods: {
+    goToActivityDetail(id) {
+      this.$router.push({ name: 'activitydetail', params: { id } });
+    },
+    filterData() {
+      console.log(this.search);
+      this.activities = this.responseData.filter((activity) => {
+        return activity.title.includes(this.search);
+      });
+    },
+    clear() {
+      this.search = "";
+      this.activities = this.responseData;
+    },
+  }
 };
 </script>
