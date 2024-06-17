@@ -67,6 +67,11 @@ const router = createRouter({
       name: 'memberbuy',
       component: () => import('@/views/MemberBuy.vue')
     },
+    { // 會員_活動報名紀錄
+      path: '/memberactivity',
+      name: 'memberactivity',
+      component: () => import('@/views/MemberActivity.vue')
+    },
     {
       path: '/cart',
       name: 'cart',

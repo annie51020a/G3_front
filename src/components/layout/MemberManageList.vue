@@ -14,7 +14,7 @@
 
         <li class="registration-record">
             <img src="@/assets/pic/registration-record.png" alt="">
-            <h5>報名紀錄</h5>
+            <router-link to="/memberactivity">  <h5>報名紀錄</h5> </router-link>
         </li>
         
         <li class="discount">
