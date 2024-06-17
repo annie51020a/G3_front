@@ -20,7 +20,10 @@ const router = createRouter({
     {
       path: '/product',
       name: 'product',
-      component: () => import('@/views/ProductView.vue')
+      component: () => import('@/views/ProductView.vue'),
+      // meta:{
+      //   title: '周邊商品',
+      // }
     },
     {
       path: '/activity',
@@ -82,7 +85,24 @@ const router = createRouter({
       name: 'singleproduct',
       component: () => import('@/views/SingleProductView.vue')
     },
-  ]
+    { 
+      path: '/:pathMatch(.*)*', 
+      name: 'NotFound', 
+      component: () => import('../views/NotFoundView.vue')
+    }
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    // return 期望滚动到哪个的位置
+		// 始终滚动到顶部
+    return { top: 0 }
+  }
+})
+
+
+router.beforeEach(async (to, from) => {
+	if( to.meta && to.meta.title){
+		document.title = to.meta.title
+	}
 })
 
 export default router
