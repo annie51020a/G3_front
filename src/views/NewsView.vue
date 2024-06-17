@@ -102,25 +102,23 @@ export default {
     },
     methods: {
         showNews(date, name) {
-  const key = `${date}-${name}`;
-  if (this.showList.includes(key)) {
-    this.showList = this.showList.filter(item => item !== key); // 如果已经展开，则从 showList 中移除
-  } else {
-    this.showList.push(key); // 否则添加到 showList 中
-  }
+            const key = `${date}-${name}`;
+            if (this.showList.includes(key)) {
+                this.showList = this.showList.filter(item => item !== key); 
+            } else {
+                this.showList.push(key); 
+            }
 
-  // 遍历所有的 news-card，根据 showList 设置背景色
-  const newsCards = document.querySelectorAll('.news-card');
-  newsCards.forEach(card => {
-    const cardDate = card.querySelector('.news-date-name').textContent.split(' - ')[0].trim();
-    const cardName = card.querySelector('.news-date-name').textContent.split(' - ')[1].trim();
-    const cardKey = `${cardDate}-${cardName}`;
+            const newsCards = document.querySelectorAll('.news-card');
+            newsCards.forEach(card => {
+                const cardDate = card.querySelector('.news-date-name').textContent.split(' - ')[0].trim();
+                const cardName = card.querySelector('.news-date-name').textContent.split(' - ')[1].trim();
+                const cardKey = `${cardDate}-${cardName}`;
 
-    // 设置卡片背景色
-    card.style.backgroundColor = this.showList.includes(cardKey) ? '#FFF9F1' : '#FFFF';
-  });
-}
+                card.style.backgroundColor = this.showList.includes(cardKey) ? '#FFF9F1' : '#FFFF';
+                });
+                }
 
-    },
-}
+        },
+    }
 </script>

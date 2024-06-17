@@ -112,6 +112,9 @@ export default {
                 alert("登入成功!")
                 this.emailData = "";
                 this.pswData = "";
+                const loginBox = document.querySelector(".login-box");
+                loginBox.style.opacity = "0";
+                loginBox.style.pointerEvents = "none";
             } else {
                 alert("帳號或密碼錯誤!")
                 this.emailData = "";
