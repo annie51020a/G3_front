@@ -83,7 +83,7 @@ export default {
     //可以用create也可以用mounted
     // created() {
     mounted() {
-        fetch("/products.json")
+        fetch(`${import.meta.env.BASE_URL}products.json`)
             .then(res => res.json())
             .then(json => {
                 // 確認有沒有response

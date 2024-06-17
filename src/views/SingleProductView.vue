@@ -93,7 +93,7 @@ export default {
     },
     mounted() {
         this.fetchInfo();
-        fetch("/products.json")
+        fetch(`${import.meta.env.BASE_URL}products.json`)
             .then(res => res.json())
             .then(json => {
                 // 確認有沒有response
@@ -107,7 +107,7 @@ export default {
     methods: {
         fetchInfo() {
             // API
-            fetch("/products.json")
+            fetch(`${import.meta.env.BASE_URL}products.json`)
                 .then(res => res.json())
                 .then(json => {
                     this.productInfo = json.find(item => {
