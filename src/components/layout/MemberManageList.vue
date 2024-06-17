@@ -3,39 +3,40 @@
         <!-- 補上router -->
         <li class="mem-account">
             <img src="@/assets/pic/mem-account.png" alt="">
-            <router-link to="/memberinfo">  <h5>會員資料</h5> </router-link>
+            <router-link to="/memberinfo">  會員資料 </router-link>
         </li>
 
         <li class="favorite-list">
             <img src="@/assets/pic/favorite-list.png" alt="">
-            <router-link to="/memberfav">  <h5>收藏清單</h5> </router-link>
+            <router-link to="/memberfav">  收藏清單 </router-link>
             
         </li>
 
         <li class="registration-record">
             <img src="@/assets/pic/registration-record.png" alt="">
-            <router-link to="/memberactivity">  <h5>報名紀錄</h5> </router-link>
+            <router-link to="/memberactivity">  報名紀錄 </router-link>
         </li>
         
         <li class="discount">
             <img src="@/assets/pic/discount.png" alt="">
-            <router-link to="/memberdiscount">  <h5>優惠券</h5> </router-link>
+            <router-link to="/memberdiscount">  優惠券 </router-link>
         </li>
 
         <li class="purchase-history">
             <img src="@/assets/pic/purchase-history.png" alt="">
-            <router-link to="/memberbuy">  <h5>購買紀錄</h5> </router-link>
+            <router-link to="/memberbuy">  購買紀錄 </router-link>
         </li>
     </ul>
 </template>
 
 <style lang="scss" scoped>
 .member-manage-list{
-    width: 20%;
+    width: 17%;
     background-color: #be1a0e;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
+
 
     @media screen and (max-width:576px) {
         display: grid;
@@ -64,9 +65,8 @@
         color: white;
         > a {
             color: #FFF;
-        }
-        > h4 {
-            padding-left: 1%;
+            font-size: clamp(18px, 1.562vw, 20px);
+            padding-left: 2%;
         }
         @media screen and (max-width:576px) {
             width: 120px;
@@ -95,9 +95,8 @@
         color: white;
         > a {
             color: #FFF;
-        }
-        > h4 {
-            padding-left: 1%;
+            font-size: clamp(18px, 1.562vw, 20px);
+            padding-left: 2%;
         }
         @media screen and (max-width:576px) {
             width: 120px;
@@ -126,9 +125,8 @@
         color: white;
         > a {
             color: #FFF;
-        }
-        > h4 {
-            padding-left: 1%;
+            font-size: clamp(18px, 1.562vw, 20px);
+            padding-left: 2%;
         }
         @media screen and (max-width:576px) {
             width: 120px;
@@ -157,9 +155,8 @@
         color: white;
         > a {
             color: #FFF;
-        }
-        > h4 {
-            padding-left: 1%;
+            font-size: clamp(18px, 1.562vw, 20px);
+            padding-left: 2%;
         }
         @media screen and (max-width:576px) {
             width: 120px;
@@ -188,9 +185,8 @@
         color: white;
         > a {
             color: #FFF;
-        }
-        > h4 {
-            padding-left: 1%;
+            font-size: clamp(18px, 1.562vw, 20px);
+            padding-left: 2%;
         }
         @media screen and (max-width:576px) {
             width: 120px;

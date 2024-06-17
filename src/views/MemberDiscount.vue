@@ -32,7 +32,7 @@ import MemberManageList from '../components/layout/MemberManageList.vue'
 
     .my-discount-title {
         >h1 {
-            margin-top: 100px;
+            margin-top: 50px;
             color: #564a41;
             @media screen and (max-width:576px) {
                 margin-top: 180px;
