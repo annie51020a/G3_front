@@ -11,7 +11,7 @@
             <input @input="filterData" type="text" v-model="search" class="search-input" placeholder="搜尋商品名稱">
             <i  class="fa-solid fa-x" @click="clear" ></i>
         </div>
-        <select>
+        <select @change="sortData($event)" >
             <option value="default">請選擇排序方式</option>
             <option value="highToLow">價格由高至低</option>
             <option value="lowToHigh">價格由低至高</option>
@@ -94,6 +94,16 @@ export default {
             this.search = "";
             this.displayData = this.responseData;
         },
+        sortData(event) {
+            const sortType = event.target.value;
+            if (sortType === 'highToLow') {
+                this.displayData.sort((a, b) => b.price - a.price);
+            } else if (sortType === 'lowToHigh') {
+                this.displayData.sort((a, b) => a.price - b.price);
+            } else {
+                this.displayData = [...this.responseData];
+            }
+        }
     }
 }
 
