@@ -11,9 +11,9 @@
     background-position: 50% 30%;
     letter-spacing: 3px;
     line-height: 150%;
-    text-shadow:1px 1px black;
+    text-shadow: 1px 1px black;
 
-    > p {
+    >p {
         font-size: 16px;
         color: white;
         padding-left: 5%;
@@ -35,12 +35,12 @@
         padding-top: 5%;
         padding-bottom: 2%;
 
-        > p {
+        >p {
             color: white;
             padding-right: 10px;
         }
 
-        > button {
+        >button {
             width: 40px;
             height: 40px;
             border-radius: 50%;
@@ -111,7 +111,7 @@
             color: #847164;
         }
 
-        > p {
+        >p {
             padding-left: 3%;
         }
     }
@@ -122,88 +122,119 @@
         width: 80%;
         justify-content: center;
         flex-wrap: wrap;
+        gap: 10px;
 
-        .popular-product1,
-        .popular-product2,
-        .popular-product3,
-        .content-img-box {
-            border-radius: 20px;
-            overflow: hidden;
-
-            img {
-                width: 100%;
-                height: auto;
-            }
-        }
-
-        .popular-product1 {
-            width: 39%;
-            height: 39%;
-        }
-
-        .popular-product2 {
-            width: 59%;
-            height: 39%;
-        }
-
-        .popular-product3 {
-            width: 59%;
-            height: 39%;
-        }
-
-        .content-img-box {
-            width: 39%;
-            height: 100%;
+        .content-img-box1 {
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            width: 100%;
+            height: 100%;
+            gap: 10px;
 
-            .popular-product4,
-            .popular-product5 {
-                width: 100%;
-                height: 49%;
-                overflow: hidden;
+            .popular-product1,
+            .popular-product2
+            {
                 border-radius: 20px;
+                overflow: hidden;
 
                 img {
                     width: 100%;
-                    height: auto;
+                    height: 100%;
                 }
             }
+
+            .popular-product1 {
+                width: 35vw;
+                height: 40vw;
+            }
+
+            .popular-product2 {
+                width: 40vw;
+                height: 40vw;
+            }
+        }
+
+
+        .content-img-box2 {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            gap: 10px;
+
+            .popular-product3{
+                width: 45vw;
+                height: 40vw;
+                overflow: hidden;
+                border-radius: 20px;
+                
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            .content-img-box3{
+                height: 100%;
+                overflow: hidden;
+                border-radius: 20px;
+                display: flex;
+                flex-direction: column;
+                gap: 1vw;
+
+                .popular-product4,
+                .popular-product5 {
+                    width: 30vw;
+                    height: 19.5vw;
+                    overflow: hidden;
+                    border-radius: 20px;
+    
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+
         }
     }
 }
 
 // index - activity
-.section-activity{
+.section-activity {
     width: 100%;
     margin: 100px 0;
     position: relative;
-    .bcg{
+
+    .bcg {
         width: 5%;
         position: absolute;
         top: -100px;
         left: 0;
-        img{
+
+        img {
             width: 100%;
             vertical-align: middle;
             object-fit: cover;
         }
     }
-    .activity-container{
+
+    .activity-container {
         width: 70%;
         margin-left: auto;
-        .info{
+
+        .info {
             position: relative;
-            &:hover img{
+
+            &:hover img {
                 transform: scale(1.1);
                 transition: all 0.3s ease;
             }
-            .pic{
+
+            .pic {
                 border-top-left-radius: 20px;
                 border-bottom-left-radius: 20px;
                 overflow: hidden;
-                img{
+
+                img {
                     width: 100%;
                     height: 100%;
                     vertical-align: middle;
@@ -211,27 +242,32 @@
                     transition: all 0.3s ease;
                 }
             }
-            h2{
-                position:absolute;
-                top:5%;
-                left:-14%;
+
+            h2 {
+                position: absolute;
+                top: 5%;
+                left: -14%;
             }
-            .txt{
-                color:white;
-                position:absolute;
+
+            .txt {
+                color: white;
+                position: absolute;
                 left: 5%;
                 bottom: 12%;
-                h3{
+
+                h3 {
                     letter-spacing: 1.5px;
                     line-height: 3.5rem;
                     margin-bottom: 1rem;
                 }
-                p{
+
+                p {
                     line-height: 2rem;
-                    color:white;
+                    color: white;
                 }
             }
-            .arrow{
+
+            .arrow {
                 width: 8%;
                 height: 12%;
                 background-color: white;
@@ -242,15 +278,18 @@
                 right: 5%;
                 bottom: 12%;
                 transition: all 0.3s ease;
-                &:hover{
+
+                &:hover {
                     background-color: #B1241A;
                     transition: all 0.3s ease;
                 }
-                &:hover path{
+
+                &:hover path {
                     stroke: white;
                     transition: all 0.3s ease;
                 }
-                svg{
+
+                svg {
                     width: 100%;
                     vertical-align: middle;
                     object-fit: cover;
@@ -259,39 +298,49 @@
         }
     }
 }
+
 @media screen and (max-width:576px) {
-    .section-activity{
+    .section-activity {
         margin: 40px 0;
-        .bcg{
+
+        .bcg {
             display: none;
         }
-        .activity-container{
+
+        .activity-container {
             width: 80%;
-            .info{
-                .pic{
+
+            .info {
+                .pic {
                     height: 400px;
                 }
-                h2{
-                    top:5%;
-                    left:-22%;
+
+                h2 {
+                    top: 5%;
+                    left: -22%;
                 }
-                .txt{
+
+                .txt {
                     left: 5%;
                     bottom: 8%;
-                    h3{
+
+                    h3 {
                         line-height: 2.5rem;
                         margin-bottom: .5rem;
                     }
-                    p{
+
+                    p {
                         line-height: 1.5rem;
                     }
                 }
-                .arrow{
+
+                .arrow {
                     width: 11%;
                     height: 9%;
                     right: 5%;
                     bottom: 5%;
-                    svg{
+
+                    svg {
                         width: 30%;
                     }
                 }
@@ -303,6 +352,7 @@
 // index - news
 .index-news {
     margin: 100px auto;
+
     .index-container {
         width: 63.5%;
         max-width: 1200px;
@@ -310,21 +360,26 @@
         margin: auto;
         flex-direction: column;
         gap: 30px;
+
         .index-news-main-title {
             display: flex;
             gap: 10px;
             align-items: center;
             justify-content: center;
+
             .title-pic {
                 width: clamp(70px, 11vw, 140px);
-                > img {
+
+                >img {
                     width: 100%;
                 }
             }
         }
+
         .index-card-list {
             width: 100%;
             margin: auto;
+
             .index-card {
                 box-sizing: border-box;
                 width: 100%;
@@ -338,6 +393,7 @@
                 background-color: #BE1A0E;
                 align-items: center;
                 position: relative;
+
                 .index-card-pic {
                     width: 30%;
                     height: 100%;
@@ -348,6 +404,7 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
+
                     img {
                         width: 100%;
                         vertical-align: top;
@@ -355,6 +412,7 @@
                         object-fit: cover;
                     }
                 }
+
                 .index-card-txt {
                     // width: 70%;
                     width: 70%;
@@ -368,45 +426,53 @@
                     gap: 10px 20px;
                     padding: 0 15px;
                     position: relative;
+
                     .media-center {
                         display: flex;
                         flex-direction: column;
                         gap: 15px;
                         width: 90%;
+
                         .index-card-titl {
                             display: flex;
                             justify-content: space-between;
                             align-items: end;
-                            .index-card-class, .index-card-name{
+
+                            .index-card-class,
+                            .index-card-name {
                                 color: #FFFFFF;
                                 width: 140px;
-                                overflow:hidden;
+                                overflow: hidden;
                                 white-space: nowrap;
                                 text-overflow: ellipsis;
                                 font-size: 20px;
                             }
+
                             .index-card-date {
                                 color: #FFFFFF;
                                 width: 140px;
-                                overflow:hidden;
+                                overflow: hidden;
                                 white-space: nowrap;
                                 text-overflow: ellipsis;
                             }
                         }
+
                         .index-card-content {
                             color: #FFFFFF;
-                            overflow:hidden;
+                            overflow: hidden;
                             white-space: nowrap;
                             text-overflow: ellipsis;
                         }
                     }
+
                     .arrow-right {
                         display: block;
                         text-decoration: none;
                         position: absolute;
                         top: 23%;
                         right: 0;
-                        > img {
+
+                        >img {
                             width: 50px;
                             height: 50px;
                         }
@@ -415,9 +481,11 @@
             }
         }
     }
+
     .index-more {
         display: flex;
         justify-content: flex-end;
+
         .index-more-txt {
             font-size: 24px;
             color: #FFFFFF;
@@ -426,12 +494,12 @@
             border-radius: 20px;
             padding: 8px 15px;
             align-self: center;
-            
+
         }
     }
 }
 
-@media screen and (max-width:$lg){
+@media screen and (max-width:$lg) {
     .index-news {
         .index-container {
             .index-card-list {
@@ -442,6 +510,7 @@
                                 .index-card-class {
                                     display: none;
                                 }
+
                                 .index-card-name {
                                     width: 55%;
                                 }
@@ -463,38 +532,48 @@
                     height: auto;
                     justify-content: flex-start;
                     gap: 25px;
+
                     .index-card-pic {
                         // overflow: visible;
                         width: auto;
                         height: 200px;
-                        > img {
+
+                        >img {
                             object-fit: cover;
                         }
                     }
+
                     .index-card-txt {
                         width: 90%;
                         height: auto;
+
                         .media-center {
                             .index-card-titl {
                                 display: block;
+
                                 .index-card-class {
                                     display: block;
                                     width: auto;
                                 }
-                                .index-card-name, .index-card-date {
+
+                                .index-card-name,
+                                .index-card-date {
                                     width: auto;
                                 }
                             }
+
                             .index-card-content {
                                 overflow: visible;
                                 white-space: wrap;
                             }
-                            
+
                         }
+
                         .arrow-right {
                             top: unset;
                             bottom: 0;
-                            > img {
+
+                            >img {
                                 width: 30px;
                                 height: 30px;
                             }
@@ -515,38 +594,48 @@
                     height: auto;
                     justify-content: flex-start;
                     gap: 25px;
+
                     .index-card-pic {
                         // overflow: visible;
                         width: auto;
                         height: 200px;
-                        > img {
+
+                        >img {
                             object-fit: cover;
                         }
                     }
+
                     .index-card-txt {
                         width: auto;
                         height: auto;
+
                         .media-center {
                             .index-card-titl {
                                 display: block;
+
                                 .index-card-class {
                                     display: block;
                                     width: auto;
                                 }
-                                .index-card-name, .index-card-date {
+
+                                .index-card-name,
+                                .index-card-date {
                                     width: auto;
                                 }
                             }
+
                             .index-card-content {
                                 overflow: visible;
                                 white-space: wrap;
                             }
-                            
+
                         }
+
                         .arrow-right {
                             top: unset;
                             bottom: 0;
-                            > img {
+
+                            >img {
                                 width: 30px;
                                 height: 30px;
                             }
