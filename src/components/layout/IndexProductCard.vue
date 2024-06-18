@@ -5,7 +5,7 @@
             <img v-if="item.pic1" :src="parseIcon(item.pic1)" :alt="item.name">
             <img v-else src="" alt="">
             <div class="card-fav">
-                <div class="card-fav-icon" @click="toogleFav(item.id)" >
+                <div class="card-fav-icon" @click.prevent="toogleFav(item.id)" >
                     <i v-if="item.fav" class="fa-solid fa-heart"></i>
                     <i v-else class="fa-regular fa-heart"></i>
                 </div>
