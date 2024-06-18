@@ -87,8 +87,8 @@ export default {
     },
     mounted() {
         Promise.all([
-            fetch("/public/news.json").then(res => res.json()),
-            fetch("/public/news_related.json").then(res => res.json())
+            fetch(`${import.meta.env.BASE_URL}news.json`).then(res => res.json()),
+            fetch(`${import.meta.env.BASE_URL}news_related.json`).then(res => res.json())
     ]   )
         .then(([newsData, newsRelatedData]) => {
             console.log(newsData);

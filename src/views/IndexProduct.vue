@@ -110,6 +110,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import "@/assets/sass/style";
+
 .section-product-bg {
     width: 100%;
     height: 95px;
@@ -149,11 +151,18 @@ export default {
 
     .product-loop {
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
+        
+        @include m(md) {
+            justify-content: flex-end;
+        }
 
         .cardlist {
-            width: 70%;
-            margin: 0;
+            @include m(md) {
+                width: 70%;
+                margin: 0;
+        }
+            
 
             .swiper-button-prev,
             .swiper-button-next {

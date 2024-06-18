@@ -11,7 +11,8 @@
             "工作坊結束後將進行作品展示和交流。"
         ],
         "image": "/src/assets/pic/news/3.png",
-        "arrow": "/src/assets/pic/news/down-arrow.png"
+        "arrow": "/src/assets/pic/news/down-arrow.png",
+        "class": "傳統技藝相關活動信息"
     },
     {
         "id": 2,
@@ -25,7 +26,8 @@
             "優秀作品將有機會在工作室展覽。"
         ],
         "image": "/src/assets/pic/news/4.png",
-        "arrow": "/src/assets/pic/news/down-arrow.png"
+        "arrow": "/src/assets/pic/news/down-arrow.png",
+        "class": "傳統技藝相關活動信息"
     },
     {
         "id": 3,
@@ -39,6 +41,7 @@
             "參加者可獲得精美紀念品。"
         ],
         "image": "/src/assets/pic/news/5.png",
-        "arrow": "/src/assets/pic/news/down-arrow.png"
+        "arrow": "/src/assets/pic/news/down-arrow.png",
+        "class": "傳統技藝相關活動信息"
     }
 ]

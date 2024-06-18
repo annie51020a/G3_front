@@ -73,8 +73,8 @@
                     cursor: pointer;
 
                     &:hover {
-                        background-color: rgb(255, 255, 255);
-                        border: 1px solid #B1241A;
+                        background-color: #BE1A0E;
+                        color: white;
                     }
                 }
             }
@@ -139,16 +139,16 @@
     flex-direction: column;
     margin: auto;
 
-    h4,
-    h5 {
+    ~h4,
+    ~h5 {
         padding-left: 10px;
     }
 
-    h5 {
+    ~h5 {
         margin: 20px 0;
     }
 
-    ul {
+    ~ul {
         list-style-type: disc;
         padding-left: 20px;
         font-size: 16px;

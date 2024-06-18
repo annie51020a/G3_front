@@ -1,5 +1,5 @@
-.banner {
-    background-image: url(../pic/banner-img.png);
+.index-banner {
+    background-image: url(@/assets/pic/banner-img.png);
     background-repeat: no-repeat;
     width: 90%;
     height: 90%;
@@ -22,7 +22,6 @@
 
     .slogan {
         color: white;
-        font-size: 65px;
         padding-left: 5%;
         padding-top: 5%;
         line-height: 150%;
@@ -309,8 +308,7 @@
 
 // index - news
 .index-news {
-    // margin: 100px auto;
-    padding: 100px 0;
+    margin: 100px auto;
     .index-container {
         width: 63.5%;
         max-width: 1200px;
@@ -345,13 +343,14 @@
                 margin-bottom: 35px;
                 background-color: #BE1A0E;
                 align-items: center;
+                position: relative;
                 .index-card-pic {
                     width: 30%;
                     height: 100%;
                     display: block;
                     overflow: hidden;
                     border-radius: 15px;
-                    object-fit: cover;
+                    // object-fit: cover;
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -376,34 +375,35 @@
                     padding: 0 15px;
                     position: relative;
                     .media-center {
-                        width: 85%;
-                        .index-card-date-status {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 15px;
+                        width: 90%;
+                        .index-card-titl {
                             display: flex;
-                            align-items: center;
                             justify-content: space-between;
-                            width: 170px;
-                            height: 30px;
-                            margin-bottom: 15px;
-                            .index-card-data {
+                            align-items: end;
+                            .index-card-class, .index-card-name{
                                 color: #FFFFFF;
-                            }
-                            .index-card-status {
-                                color: #FFFFFF;
-                                padding: 5px 8px;
-                                border-radius: 10px;
-                                border: 1px solid #FFFFFF;
-                            }
-                        }
-                        .index-card-content {
-                            .index-card-content-txt {
-                                width: 100%;
-                                height: auto;
+                                width: 140px;
                                 overflow:hidden;
                                 white-space: nowrap;
                                 text-overflow: ellipsis;
-                                color: #FFFFFF;
-                                font-size: clamp(16px, 1.562vw, 20px);
+                                font-size: 20px;
                             }
+                            .index-card-date {
+                                color: #FFFFFF;
+                                width: 140px;
+                                overflow:hidden;
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
+                            }
+                        }
+                        .index-card-content {
+                            color: #FFFFFF;
+                            overflow:hidden;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
                         }
                     }
                     .arrow-right {
@@ -418,7 +418,6 @@
                         }
                     }
                 }
-                
             }
         }
     }
@@ -437,56 +436,130 @@
         }
     }
 }
-@media screen and (max-width:576px) {
+
+@media screen and (max-width:$lg){
     .index-news {
-        padding: 50px 0;
-        background-position: -15% 0, 140% 3%;
-        margin: auto;
+        .index-container {
+            .index-card-list {
+                .index-card {
+                    .index-card-txt {
+                        .media-center {
+                            .index-card-titl {
+                                .index-card-class {
+                                    display: none;
+                                }
+                                .index-card-name {
+                                    width: 55%;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:$md) {
+    .index-news {
         .index-container {
             .index-card-list {
                 .index-card {
                     flex-direction: column;
-                    height: 400px;
-                    padding: 10px 15px;
-                    justify-content: space-around;
-                    // justify-content: start;
+                    height: auto;
+                    justify-content: flex-start;
+                    gap: 25px;
                     .index-card-pic {
-                        width: 228px;
-                        height: 135px;
+                        // overflow: visible;
+                        width: auto;
+                        height: 200px;
+                        > img {
+                            object-fit: cover;
+                        }
                     }
                     .index-card-txt {
-                        flex-direction: row;
-                        width: 100%;
+                        width: 90%;
                         height: auto;
-                        padding: 0 0;
                         .media-center {
-                            align-self: center;
-                            .index-card-content {
-                                align-self: center;
-                                .index-card-content-txt {
-                                    overflow: visible;
-                                    white-space: wrap;
+                            .index-card-titl {
+                                display: block;
+                                .index-card-class {
+                                    display: block;
+                                    width: auto;
                                 }
-                        }
+                                .index-card-name, .index-card-date {
+                                    width: auto;
+                                }
+                            }
+                            .index-card-content {
+                                overflow: visible;
+                                white-space: wrap;
+                            }
+                            
                         }
                         .arrow-right {
-                            line-height: 30px;
-                            margin-left: calc(100% - 30px);
-                            position: static;
+                            top: unset;
+                            bottom: 0;
                             > img {
                                 width: 30px;
                                 height: 30px;
                             }
                         }
                     }
-                    
                 }
             }
         }
     }
 }
+
 @media screen and (max-width:375px) {
-    .section {
-        background-position: -15% 0, 160% 3%;
+    .index-news {
+        .index-container {
+            .index-card-list {
+                .index-card {
+                    flex-direction: column;
+                    height: auto;
+                    justify-content: flex-start;
+                    gap: 25px;
+                    .index-card-pic {
+                        // overflow: visible;
+                        width: auto;
+                        height: 200px;
+                        > img {
+                            object-fit: cover;
+                        }
+                    }
+                    .index-card-txt {
+                        width: auto;
+                        height: auto;
+                        .media-center {
+                            .index-card-titl {
+                                display: block;
+                                .index-card-class {
+                                    display: block;
+                                    width: auto;
+                                }
+                                .index-card-name, .index-card-date {
+                                    width: auto;
+                                }
+                            }
+                            .index-card-content {
+                                overflow: visible;
+                                white-space: wrap;
+                            }
+                            
+                        }
+                        .arrow-right {
+                            top: unset;
+                            bottom: 0;
+                            > img {
+                                width: 30px;
+                                height: 30px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
