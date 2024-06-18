@@ -27,10 +27,30 @@
       <button @click="toggleFilterPopup"><img src="@/assets/pic/filter.png" alt="">篩選</button>
       <div v-if="showFilterPopup" class="filter-popup">
         <div class="filter-popup-content">
-        <h3>Filter Options</h3>
-        <button @click="closeFilterPopup">Close</button>
-        <!-- Add filter options here -->
-      </div>
+          <button class="closebtn" @click="closeFilterPopup">✖</button>
+          <h4>篩選</h4>
+          <h5>地點</h5>
+          <div class="filter-loc">
+            <button>
+              <p>高雄</p>
+            </button>
+            <button>
+              <p>台北</p>
+            </button>
+          </div>
+          <h5>活動日期</h5>
+          <div class="filter-date">
+            <img src="../assets/pic/activity/calendar.png" alt="">
+            <button>
+              <p>日期選擇</p>
+            </button>
+          </div>
+          <hr>
+          <div class="filter-result">
+            <button class="clear"><p>清除</p></button>
+            <button class="result"><p>查看結果</p></button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -54,19 +74,27 @@
 </template>
 
 <script>
-import activities from '../../public/activities.json';
 
 export default {
   name: 'ActivityView',
   data() {
     return {
-      activities,
-      responseData: activities,
+      activities: [],
+      responseData: [],
       search: "",
       currentStatus: '全部',
       currentType: '全部',
       showFilterPopup: false
     };
+  },
+  mounted() {
+    fetch(`${import.meta.env.BASE_URL}activities.json`)
+      .then(response => response.json())
+      .then(data => {
+        this.activities = data;
+        this.responseData = data;
+      })
+      .catch(error => console.error('Error fetching activities:', error));
   },
   computed: {
     filteredActivities() {
@@ -118,26 +146,121 @@ export default {
   }
 }
 </script>
-<!-- 
+
 <style lang="scss" scoped>
 .filter-popup {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  width: 300px;
-  height: 300px;
-  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
-}
 
-.filter-popup-content {
-  width: 300px;
-  height: 300px;
-  background-color: white;
-  padding: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  .filter-popup-content {
+    width: 400px;
+    height: 400px;
+    background-color: #FAF8F4;
+    border: 1px solid #564A41;
+    border-radius: 30px;
+    position: relative;
+
+    >h4 {
+      margin: 20px 0px 0px 20px;
+    }
+
+    >h5 {
+      margin: 30px 0px 20px 20px;
+    }
+
+    .closebtn {
+      cursor: pointer;
+      border: 0;
+      background: transparent;
+      position: absolute;
+      right: -35px;
+      top: -10px;
+      font-size: 25px;
+      color: #FAF8F4;
+    }
+
+    .filter-loc {
+      margin-left: 20px;
+      display: flex;
+      gap: 30px;
+
+      >button {
+        border: 1px solid #A9A8A8;
+        border-radius: 20px;
+        background: transparent;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #BE1A0E;
+          color: white;
+        }
+
+        >p {
+          padding: 10px 20px;
+
+          &:hover {
+            color: white;
+          }
+        }
+
+      }
+
+    }
+
+    .filter-date {
+      width: 100px;
+      display: flex;
+      border: 1px solid #A9A8A8;
+      border-radius: 20px;
+      cursor: pointer;
+
+
+      margin-left: 20px;
+      padding: 10px 20px;
+
+      >img {
+        width: 20px;
+        height: 22px;
+      }
+
+      >button {
+        border: 0;
+        background: transparent;
+
+      }
+    }
+
+    >hr {
+      margin: 20px 0;
+
+    }
+
+    .filter-result {
+      margin: 0 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .clear{
+      border: 0;
+      background: transparent;
+     
+      >p{
+        font-size: 20px;
+      }
+
+    }
+
+
+
+  }
 }
-</style> -->
+</style>

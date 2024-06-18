@@ -1,5 +1,5 @@
-.banner {
-    background-image: url(../pic/banner-img.png);
+.index-banner {
+    background-image: url(@/assets/pic/banner-img.png);
     background-repeat: no-repeat;
     width: 90%;
     height: 90%;
@@ -22,7 +22,6 @@
 
     .slogan {
         color: white;
-        font-size: 65px;
         padding-left: 5%;
         padding-top: 5%;
         line-height: 150%;

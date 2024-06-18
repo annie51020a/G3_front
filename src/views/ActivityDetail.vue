@@ -199,9 +199,9 @@ export default {
     width: 50px;
     height: 50px;
     background-color: white;
-    border: 1px solid #B1241A;
+    border: 1px solid #BE1A0E;
     border-radius: 50%;
-    color: #B1241A;
+    color: #BE1A0E;
 
     &::after {
       font-size: 20px;
@@ -221,7 +221,7 @@ export default {
   ::v-deep .swiper-pagination-bullet-active {
     width: 15px;
     height: 15px;
-    background-color: #B1241A;
+    background-color: #BE1A0E;
   }
 }
 </style>
