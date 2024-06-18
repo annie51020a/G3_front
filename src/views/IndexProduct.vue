@@ -1,5 +1,4 @@
 <template>
-    <section class="section-product-bg"></section>
     <section class="section-product">
         <div class="container-product">
             <div class="product-row">
@@ -112,14 +111,7 @@ export default {
 <style lang="scss">
 @import "@/assets/sass/style";
 
-.section-product-bg {
-    width: 100%;
-    height: 95px;
-    background-color: #FFFBF6;
-    background-image: url('../assets/pic/index-product-bg.png');
-    background-position: top center;
-    background-repeat: repeat-x;
-}
+
 
 .section-product {
     background-color: #CB2E27;
