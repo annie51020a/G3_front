@@ -138,6 +138,8 @@ export default {
         background-size: cover;
         border-radius: 30px;
         padding: 10% 0;
+        margin-top: 40px;
+
 
         >h1 {
             text-align: center;
