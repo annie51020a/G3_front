@@ -9,16 +9,16 @@
         </div>
         <div class="banner-btn-box">
             <div class="book-link">
-                <a href="">
+                <router-link to="/activity">
                     <img src="../assets/pic/book-link.png" alt="">
                     <p>預約手作</p>
-                </a>
+            </router-link>
             </div>
             <div class="product-link">
-                <a href="">
+                <router-link to="/product">
                     <img src="../assets/pic/product-link.png" alt="">
                     <p>周邊商品</p>
-                </a>
+                </router-link>
             </div>
         </div>
     </section>
