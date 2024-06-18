@@ -9,26 +9,25 @@
             </div>
             <div class="index-card-list">
                 <section class="index-card" 
-                v-for="data in card" 
-                :key="data.src">
+                v-for="item in sortedAndFilteredData" 
+                :key="item.id">
                     <picture class="index-card-pic">
-                        <img :src="data.src" alt="" />
+                        <img :src="item.image" alt="" />
                     </picture>
                     <div class="index-card-txt">
                         <div class="media-center">
-                            <div class="index-card-date-status">
-                                <p class="index-card-status">News</p>
-                                <p class="index-card-data">2023.06.01</p>
+                            <div class="index-card-titl">
+                                <p class="index-card-class">{{ item.class }}</p>
+                                <p class="index-card-name">{{ item.name }}</p>
+                                <p class="index-card-date">{{ item.date }}</p>
                             </div>
-                            <div class="index-card-content">
-                                <p class="index-card-content-txt">
-                                    近期，傳統油紙傘在國際市場上備受矚目。多家知名品牌及設計師紛紛將油紙傘推向國際舞台，受到外國消費者的熱烈歡迎。                                
-                                </p>
-                            </div>
-                            <a href="#" class="arrow-right">
-                                <img src="../assets/pic/product-right.png" alt="">
-                            </a>
+                            <p class="index-card-content">
+                                {{ item.details }}
+                            </p>
                         </div>
+                        <a href="./news" class="arrow-right">
+                            <img src="../assets/pic/product-right.png" alt="">
+                        </a>
                     </div>
                 </section>
             </div>
@@ -43,26 +42,39 @@
 export default {
     data() {
         return {
-            card: [
-            {
-                src: '/src/assets/pic/2.jpg'
-            },
-            {
-                src: '/src/assets/pic/banner-img.png'
-            },
-            {
-                src: '/src/assets/pic/profile_24.jpg'
-            },
-            {
-                src: '/src/assets/pic/takuya-matsuo-TjzUflpAx7k-unsplash.jpg'
-            }
-            ],
+            news_data: [],
+            news_related_data: [],
+            combinedData: []
         }
     },
-    methods: {
-        
+    computed: {
+        sortedAndFilteredData() {
+            // 将combinedData按照日期降序排序，并只取前四个元素
+            return this.combinedData
+                .slice()
+                .sort((a, b) => {
+                    const dateA = new Date(a.date.replace(/年|月/g, '-').replace('日', ''));
+                    const dateB = new Date(b.date.replace(/年|月/g, '-').replace('日', ''));
+                    return dateB - dateA;
+                })
+                .slice(0, 4);
+        }
     },
     mounted() {
+        Promise.all([
+            fetch(`${import.meta.env.BASE_URL}news.json`).then(res => res.json()),
+            fetch(`${import.meta.env.BASE_URL}news_related.json`).then(res => res.json())
+        ])
+        .then(([newsData, newsRelatedData]) => {
+            console.log(newsData);
+            console.log(newsRelatedData);
+            this.news_data = newsData;
+            this.news_related_data = newsRelatedData;
+            this.combinedData = [...this.news_data, ...this.news_related_data];
+        })
+        .catch(error => {
+            console.error("Error fetching data: ", error);
+        });
     }
 }
 </script>

@@ -19,7 +19,7 @@
                     </RouterLink>
                 </button>
                 <button>
-                    <a href="#" @click="loginIn">
+                    <a href="#" @click="login">
                     <img src="../../assets/pic/icon_user.svg" alt="會員登入/註冊">
                     </a>
                 </button>             
@@ -47,7 +47,7 @@ export default {
         };
     },
     methods: {
-        loginIn() {
+        login() {
             const loginBox = document.querySelector(".login-box");
             loginBox.style.opacity = "1";
             loginBox.style.pointerEvents = "auto";
