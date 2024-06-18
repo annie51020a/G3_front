@@ -49,12 +49,13 @@ export default {
 
 <style lang="scss" scoped >
 .card {
+    width: 280px;
     .card-pic {
         position: relative;
         margin-bottom: 15px;
 
         > img {
-            width: 280px;
+            width: 100%;
             border-radius: 20px;
             object-fit: cover;
         }
