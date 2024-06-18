@@ -172,7 +172,7 @@ export default {
     }
 
     .search-area {
-        
+        position: relative;
         
         @include m(lg) {
         width: 25%;
