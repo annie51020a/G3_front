@@ -14,7 +14,7 @@
     </section>
 </template>
 
-<script setup>
+<script >
 import MemberManageList from '../components/layout/MemberManageList.vue'
 </script>
 
@@ -24,7 +24,7 @@ import MemberManageList from '../components/layout/MemberManageList.vue'
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     margin: auto;
     position: relative;
 
@@ -58,7 +58,9 @@ import MemberManageList from '../components/layout/MemberManageList.vue'
             position: absolute;
             top: 0%;
             left: 0%;
-            height: 50%;
+            height: auto;
+            display: grid;
+            row-gap: 15px;
         }
 
         @media screen and (min-width:577px) and (max-width:996px) {

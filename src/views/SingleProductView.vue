@@ -93,6 +93,11 @@ export default {
             currentLgPic: ''
         }
     },
+    watch: {
+        "$route.params.id"() {
+            this.fetchInfo();
+        },
+    },
     mounted() {
         this.fetchInfo();
         fetch(`${import.meta.env.BASE_URL}products.json`)
