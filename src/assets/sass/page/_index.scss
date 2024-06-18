@@ -108,7 +108,6 @@
         margin: 4% 0;
 
         h2 {
-            font-size: 60px;
             color: #847164;
         }
 
@@ -130,7 +129,6 @@
         .content-img-box {
             border-radius: 20px;
             overflow: hidden;
-            margin-top: 1%;
 
             img {
                 width: 100%;
@@ -140,26 +138,22 @@
 
         .popular-product1 {
             width: 39%;
-            height: 350px;
-            margin-right: 1%;
+            height: 39%;
         }
 
         .popular-product2 {
             width: 59%;
-            height: 350px;
-            margin-left: 1%;
+            height: 39%;
         }
 
         .popular-product3 {
             width: 59%;
-            height: 450px;
-            margin-right: 1%;
+            height: 39%;
         }
 
         .content-img-box {
             width: 39%;
-            height: 450px;
-            margin-left: 1%;
+            height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: space-between;

@@ -1,20 +1,22 @@
 .news-banner {
-    margin-top: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border: 30px;
+
     .container {
-        max-width: 90%;
         width: 90%;
-        padding: 10% 0;
         background-image: url(/src/assets/pic/4.jpg);
-        background-size: cover;
         background-position: center;
-        margin: auto;
+        background-size: cover;
         border-radius: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        .title {
-            color: #FFFF;
-            padding: 15px 110px;
+        padding: 10% 0;
+        margin-top: 40px;
+
+        >h1 {
+            text-align: center;
+            margin: auto;
+            color: white;
             text-shadow: 0 4px 4px rgba(0, 0, 0, 0.9);
         }
     }
