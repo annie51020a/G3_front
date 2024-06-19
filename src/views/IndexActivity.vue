@@ -1,5 +1,5 @@
 <template>
-    <section class="section-activity">
+    <section class="section-index-activity">
         <div class="bcg">
             <img src="/src/assets/pic/activity_bcg.png" alt="">
         </div>
