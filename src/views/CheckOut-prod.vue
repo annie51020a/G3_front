@@ -228,7 +228,7 @@ export default {
     methods: {
         async fetchCities() {
             try {
-                const response = await fetch('/Taiwan_address_data.json');
+                const response = await fetch(`${import.meta.env.BASE_URL}Taiwan_address_data.json`);
                 if (!response.ok) {
                     throw new Error('網絡出現問題，請稍後再試');
                 }

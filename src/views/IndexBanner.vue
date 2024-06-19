@@ -5,7 +5,9 @@
         <p>傳統油紙傘在現代社會中仍然綻放著獨特的光彩<br>並且受到越來越多人的喜愛與重視。<br><br>讓我們一起珍惜這份傳統<br>將它的美麗與價值傳承下去<br>讓油紙傘的華麗風采永遠流傳下去。</p>
         <div class="about-us-btn">
             <p>了解我們傘韻</p>
-            <button><img src="@/assets/pic/about-us-btn.png" alt=""></button>
+            <router-link to="/about">
+                <button class="about-us-link"><img src="@/assets/pic/about-us-btn.png" alt=""></button>
+            </router-link>
         </div>
         <div class="banner-btn-box">
             <div class="book-link">

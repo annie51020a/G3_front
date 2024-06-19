@@ -14,6 +14,8 @@
         margin: 40px 0 30px 0;
         object-fit: cover;
 
+
+
         .choose-all {
             display: flex;
             align-items: center;
@@ -60,7 +62,7 @@
             display: flex;
             align-items: center;
             height: 240px;
-            margin-bottom: 40px;
+
             background: #ffffff;
             border-radius: 20px;
             border: 1px solid #828282;
@@ -171,6 +173,89 @@
                 color: #ffffff;
                 font-size: 16px;
 
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 967px) {
+    .card {
+        display: flex;
+        align-items: center;
+        height: 240px;
+
+        background: #ffffff;
+        border-radius: 10px;
+        border: 1px solid #828282;
+        padding: 0 30px;
+        margin-bottom: 20px;
+
+        input {
+            width: 20px;
+            height: 20px;
+            margin: 0 20px 0 0;
+            cursor: pointer;
+        }
+
+        .prod-detail {
+            display: flex;
+            align-items: center;
+            // margin: 0 400px 0 20px;
+            width: 60%;
+
+            .prod {
+                width: 20%;
+                height: 180px;
+                border-radius: 20px;
+                margin-right: 20px;
+
+            }
+
+            .info {
+                h5 {
+                    margin-bottom: 16px;
+
+                }
+
+                p {
+                    font-weight: 500;
+                }
+            }
+        }
+
+        .amount {
+            display: flex;
+            align-items: center;
+            width: 30%;
+
+            p {
+                padding: 0 20px;
+                font-weight: 600;
+            }
+
+            button {
+                margin: 0 10px;
+            }
+
+            span {
+                color: #564a41;
+                font-weight: 600;
+            }
+        }
+
+        .price {
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        .delete {
+            button {
+                background-color: transparent;
+                border: none;
+
+                img {
+                    cursor: pointer;
+                }
             }
         }
     }
