@@ -199,7 +199,7 @@
 }
 
 // index - activity
-.section-activity{
+.section-index-activity{
     width: 100%;
     margin: 100px 0;
     position: relative;
@@ -299,8 +299,8 @@
     }
 }
 
-@media screen and (max-width:576px) {
-    .section-activity {
+@media screen and (max-width:$md) {
+    .section-index-activity {
         margin: 40px 0;
 
         .bcg {
