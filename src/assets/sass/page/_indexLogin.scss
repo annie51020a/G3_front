@@ -201,6 +201,7 @@
                         .login-input {
                             .txt {
                                 font-size: 20px;
+                                text-align: left;
                             }
                             .forget-input {
                                 height: 40px;
@@ -249,11 +250,159 @@
                         }
                     }
                 }
+
+                
+                // 註冊會員
+                .input-field {
+                    .content-container {
+                        width: 80%;
+                        margin: auto;
+                        text-align: center;
+                        .register-input {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 25px;
+                            .email {
+                                height: 40px;
+                                width: calc(100% - 18px);
+                                padding-left: 15px;
+                                background-color: #F9F1E5;
+                                border: 1px solid #AE8461;
+                                border-radius: 5px;
+                            }
+                            .email:focus {
+                                outline: none;
+                            }
+                            .email::placeholder {
+                                color: #AAAAAA;
+                            }
+                            .input-icon {
+                                position: relative;
+                                .password {
+                                height: 40px;
+                                width: calc(100% - 18px);
+                                padding-left: 15px;
+                                background-color: #F9F1E5;
+                                border: 1px solid #AE8461;
+                                border-radius: 5px;
+                                }
+                                .password:focus {
+                                    outline: none;
+                                }
+                                .password::placeholder {
+                                    color: #AAAAAA;
+                                }
+                                .eyes {
+                                    position: absolute;
+                                    right: 8px;
+                                    top: 10px;
+                                    width: 25px;
+                                    > img {
+                                        width: 100%;
+                                    }
+                                }
+                            }
+                            .verify-group{
+                                width: 100%;
+                                color: #564A41;
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                font-size: 16px;
+                                .verify {
+                                    width: 60%;
+                                    height: 40px;
+                                    padding-left: 15px;
+                                    background-color: #F9F1E5;
+                                    border: 1px solid #AE8461;
+                                    border-radius: 5px;
+                                    &:focus {
+                                        outline: none;
+                                    }
+                                    &::placeholder {
+                                        color: #AAAAAA;
+                                    }
+                                }
+                                .captcha-img{
+                                    margin: 0 5px;
+                                }
+                                .verify-btn{
+                                    all: unset;
+                                    width: 50px;
+                                    height: 40px;
+                                    background-color: #E7BD86;
+                                    border: 1px solid #AF8B5C;
+                                    border-radius: 5px;
+                                    text-align: center;
+                                    transition: 0.3s;
+                                    &:hover{
+                                        color: white;
+                                        background-color: #AF8B5C ;
+                                        transition: 0.3s;
+                                        cursor: pointer;
+                                    }
+                                }
+                            }
+                            .gender{
+                                margin-right: auto;
+                                h5{
+                                    display: inline-block;
+                                }
+                                input[type="radio"] {
+                                    accent-color: #564A41;
+                                    cursor: pointer;
+                                }
+                                label{
+                                    font-size: 16px;
+                                    cursor: pointer;
+                                    &+input{
+                                        margin-left: 10px;
+                                    }
+                                }
+                            }
+                            .date{
+                                display: flex;
+                                align-items: center;
+                                h5{
+                                }
+                                input[type="date"]{
+                                    width: 65%;
+                                    color: #564A41;
+                                    accent-color: #564A41;
+                                    padding: 5px 15px;
+                                    box-sizing: border-box;
+                                    border: 1px solid #ccc;
+                                    border-radius: 20px;
+                                    font-size: 16px;
+                                }
+                            }
+                        }
+                    }
+                    .register-btn {
+                        width: 80px;
+                        padding: 10px;
+                        margin: 30px auto 0;
+                        font-family: 'Noto Serif HK', serif;
+                        border: 1px solid #BE1A0E;
+                        border-radius: 20px;
+                        background-color: #BE1A0E;
+                        color: white;
+                        transition: .4s;
+                        &:hover {
+                            border: 1px solid #BE1A0E;
+                            background-color: #fff;
+                            color: #BE1A0E;
+                            cursor: pointer;
+                        }
+                    }
+                }
             }
-        
+
         }
+        
     }
 }
+
 
 
 

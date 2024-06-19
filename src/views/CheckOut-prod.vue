@@ -1,7 +1,7 @@
 <template>
     <div class="go-back">
-        <router-link to="/activity/:id">
-            <返回活動詳情頁 </router-link>
+        <router-link to="/cart">
+            <返回購物車 </router-link>
     </div>
     <div class="checkout-container">
         <div class="confirm-info">
@@ -34,47 +34,95 @@
             </div>
             <div class="disc-line"></div>
 
-            <div class="act-info">
+            <div class="prod-info">
                 <!-- <button><i class="fa-solid fa-chevron-down"></i></button> -->
-                <img class="act-img" src="../assets/pic/act-teaching1.jpg" alt="教學活動1">
-                <div class="act-detail">
-                    <div class="act-location">
-                        <h5>油紙傘手工教室</h5>
-                        <span>地點：傘韻手工教室204</span><br>
-                        <span>活動時間：2024.05.20(一) 17:00~19:00</span><br>
-                        <div class="mention">*只需填寫一位參與者資料作為代表即可</div>
+                <img class="prod-img" src="../assets/pic/um1.jpg" alt="商品1">
+                <div class="prod-spec">
+                    <div class="prod-card">
+                        <h5>數字精緻手工油紙傘</h5>
+                        <span>圖案</span><br>
+                        <div class="mention">*暫不支持超商取貨</div>
                     </div>
-                    <div class="act-people">
-                        人數：<span>1/人</span>
+                    <div class="prod-count">
+                        數量：<span>2/隻</span>
                     </div>
-                    <div class="act-amount">
-                        總計：NT$<span>300</span>
+                    <div class="prod-sum">
+                        總計：NT$<span>1398</span>
                     </div>
+                    <!-- <div class="prod-card">
+                        <h5>數字精緻手工油紙傘</h5>
+                        <span>圖案</span><br>
+                        <div class="mention">*暫不支持超商取貨</div>
+                    </div>
+                    <div class="prod-count">
+                    數量：<span>2/隻</span>
+                    </div>
+                    <div class="prod-sum">
+                        總計：NT$<span>1398</span>
+                    </div> -->
                 </div>
             </div>
             <div class="disc-line"></div>
-            <div class="join-info">
-                <span class="join-person">參與者資料</span>
+            <div class="receiver-info">
+                <span class="receiver">收件人資料</span>
                 <input type="checkbox"><span>同訂購人資料</span>
             </div>
             <form>
                 <div class="form-group">
-                    <label for="name">姓名:</label>
+                    <label for="name">收件人姓名:</label>
                     <input type="text" id="name">
                 </div>
                 <div class="form-group">
-                    <label for="phone">聯繫電話：</label>
+                    <label for="phone">收件人聯絡電話：</label>
                     <input type="text" id="phone">
                 </div>
                 <div class="form-group">
-                    <label for="email">電子郵箱：</label>
+                    <label for="address">收件人地址：</label>
+                    <select v-model="selectedCity" @change="onCityChange" class="select">
+                        <option disabled value="">請選擇縣市</option>
+                        <option v-for="city in uniqueCities" :key="city" :value="city">{{ city }}</option>
+                    </select>
+
+                    <select v-model="selectedDistrict" class="select" :disabled="!selectedCity">
+                        <option disabled value="">請選擇鄉鎮區</option>
+                        <option v-for="district in filteredDistricts" :key="district.name" :value="district.name">{{
+                            district.name }}</option>
+                    </select>
+
+                    <input type="text" v-model="addressDetail" placeholder="請填寫詳細地址">
+                </div>
+                <div class="form-group">
+                    <label for="email">收件人電子郵箱：</label>
                     <input type="email" id="email">
+                </div>
+                <div class="form-group">
+                    <label for="prefer-time">偏好收貨時間：</label>
+                    <select v-model="preferTime" @change="onTimeChange" class="select">
+                        <option disabled value="">請選擇時間段</option>
+                        <option v-for="time in times" :key="time.name" value="time.name">{{ time.name }}</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="text">特殊需求備註：</label>
                     <!-- 特殊需求備註要改text格式 -->
                     <textarea id="memo" v-model="memo" maxlength="500" class="large-textarea"></textarea>
+                </div>
 
+            </form>
+            <div class="disc-line-form"></div>
+            <div class="invoicing-title">
+                <span>發票與統編</span>
+            </div>
+            <form class="invoicing-form">
+                <div class="form-group">
+                    <label for="invoicing">載具編號：</label>
+                    <input type="text" id="invoicing" maxlength="8">
+                    <input type="checkbox" class="invoicing-cb"><span>設定為常用載具</span>
+                </div>
+                <div class="form-group">
+                    <label for="compilation-title">統一編號：</label>
+                    <input type="text" id="compilation" maxlength="8">
+                    <input type="checkbox" class="invoicing-cb"><span>設定為常用統編</span>
                 </div>
             </form>
         </div>
@@ -115,7 +163,8 @@
                     </div>
                     <div class="form-group">
                         <label for="use-coupon">是否使用優惠券：</label>
-                        <input type="checkbox" id="use-coupon" class="switch">
+                        <input type="checkbox" id="use-coupon" class="switch" disabled><span
+                            class="switch-alert">*無可使用之優惠券</span>
                     </div>
                 </form>
             </div>
@@ -123,23 +172,23 @@
         <div class="invoice">
             <div class="invoice-item">
                 <div class="item-description">
-                    <p>油紙傘手工教室</p>
-                    <p>人數：1人</p>
-                    <p>NT$300(元)</p>
+                    <p>數字精緻手工油紙傘</p>
+                    <p>數量：2/隻</p>
+                    <p>NT$1398(元)</p>
                 </div>
-                <div class="item-multiplier">
+                <!-- <div class="item-multiplier">
                     <p>x</p>
                 </div>
                 <div class="item-discount">
                     <p>優惠折扣(8折)</p>
                     <p>優惠券號碼：CID101</p>
                     <p>80%</p>
-                </div>
+                </div> -->
 
             </div>
             <div class="disc-line"></div>
             <div class="invoice-total">
-                <p>總計：NT$240</p>
+                <p>總計：NT$1398</p>
             </div>
         </div>
         <div class="confirm-checkout">
@@ -150,11 +199,52 @@
 <script>
 export default {
     data() {
+        return {
+            selectedCity: '',
+            selectedDistrict: '',
+            addressDetail: '',
+            preferTime: '',
+            times: [
+                { name: '無偏好' },
+                { name: '上午(9:00~12:00)' },
+                { name: '下午(13:00~18:00)' }
+            ],
+            cities: [],
+            districts: []
+        };
     },
-    mounted() { },
+    computed: {
+        uniqueCities() {
+            const cityNames = this.cities.map(city => city.city_name);
+            return [...new Set(cityNames)];
+        },
+        filteredDistricts() {
+            return this.cities.filter(city => city.city_name == this.selectedCity);
+        }
+    },
+    created() {
+        this.fetchCities();
+    },
     methods: {
+        async fetchCities() {
+            try {
+                const response = await fetch(`${import.meta.env.BASE_URL}Taiwan_address_data.json`);
+                if (!response.ok) {
+                    throw new Error('網絡出現問題，請稍後再試');
+                }
+                this.cities = await response.json();
+            } catch (error) {
+                console.error('無法選取資料:', error);
+            }
+        },
+        onCityChange() {
+            this.selectDistrict = '';
+        },
+        onTimeChange() {
+            console.Consolelog('Selected time:', this.preferTime);
+        }
     }
-}
+};
 </script>
 <style scoped lang="scss">
 .go-back {
@@ -226,7 +316,7 @@ export default {
         background: #ffffff;
         border-radius: 20px;
         margin: 40px 0;
-        height: 565px;
+        height: 945px;
 
         .confirm-ord-title {
             height: 48px; //高的問題要解決
@@ -240,7 +330,7 @@ export default {
             background-color: #828282;
         }
 
-        .act-info {
+        .prod-info {
             display: flex;
             padding-left: 20px;
             height: 30%;
@@ -250,22 +340,22 @@ export default {
                 border: none;
             }
 
-            .act-img {
-                height: 80%;
+            .prod-img {
+                height: auto;
                 width: 20%;
                 object-fit: cover;
                 border-radius: 20px;
-                margin: auto 10px;
+                margin: auto 10px auto 0;
 
             }
 
-            .act-detail {
+            .prod-spec {
                 display: flex;
                 margin: auto 0;
                 width: 80%;
                 justify-content: space-between;
 
-                .act-location {
+                .prod-card {
                     h5 {
                         padding-bottom: 10px;
                     }
@@ -277,29 +367,29 @@ export default {
 
                     .mention {
                         font-size: 12px;
-                        padding-top: 20px;
+                        padding-top: 50px;
                     }
 
                 }
 
-                .act-people {
+                .prod-count {
                     margin: auto;
                 }
 
-                .act-amount {
+                .prod-sum {
                     margin: auto;
                 }
 
             }
         }
 
-        .join-info {
+        .receiver-info {
             display: flex;
             margin: 20px 0;
             padding-left: 30px;
             align-items: center;
 
-            .join-person {
+            .receiver {
                 position: relative;
                 margin-right: 80px;
 
@@ -318,6 +408,7 @@ export default {
             input {
                 margin: 0 10px 0 0;
             }
+
         }
 
         form {
@@ -334,7 +425,7 @@ export default {
                 margin: auto 0;
 
                 label {
-                    flex-basis: 18%;
+                    flex-basis: 20%;
                     margin: auto 0;
                 }
 
@@ -342,6 +433,14 @@ export default {
                     height: 20px;
                     flex-basis: 25%;
                 }
+
+                select {
+                    height: 26px;
+                    flex-basis: 15%;
+                    margin-right: 10px;
+                    background-color: rgba(249, 241, 229, 1);
+                }
+
                 .large-textarea {
                     height: 80px;
                     flex-basis: 25%;
@@ -349,9 +448,71 @@ export default {
                     /* 允許垂直調整大小 */
 
                 }
+
+
+            }
+
+        }
+
+        .disc-line-form {
+            margin-top: 20px;
+            height: 1px;
+            background-color: #828282;
+        }
+
+        .invoicing-title {
+            display: flex;
+            margin: 20px 0;
+            padding-left: 30px;
+            position: relative;
+
+            &::before {
+                content: "";
+                position: absolute;
+                height: 18px;
+                width: 2px;
+                background-color: rgba(190, 26, 14, 1);
+                left: 20px;
+                bottom: 0;
+                top: 0;
             }
         }
 
+        .invoicing-form {
+            display: flex;
+            flex-direction: column;
+            margin-top: 40px;
+            gap: 25px;
+            width: 100%;
+            padding-left: 20px;
+
+            .form-group {
+                display: flex;
+                align-items: flex-start;
+                margin: auto 0;
+
+                label {
+                    flex-basis: 20%;
+                    margin: auto 0;
+                }
+                input {
+                        height: 20px;
+                        flex-basis: 0;
+
+                    }
+
+                .invoicing-cb {
+                    width: 13px;
+                    height: 13px;
+                    margin: auto 10px auto 30px;
+                }
+
+                span {
+                    display: inline-block;
+                    margin: auto 0;
+                }
+            }
+        }
 
     }
 
@@ -480,6 +641,12 @@ export default {
                             transform: translateX(20px);
                         }
                     }
+
+                    .switch-alert {
+                        color: #be1a0e;
+                        font-size: 12px;
+                        padding-left: 20px;
+                    }
                 }
             }
         }
@@ -527,6 +694,7 @@ export default {
         }
 
     }
+
     .confirm-checkout {
         display: flex;
         justify-content: center;

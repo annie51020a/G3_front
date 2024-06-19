@@ -1,6 +1,7 @@
 <template>
     <section class="product-popular">
         <div class="product-popular-text">
+            <img src="@/assets/pic/index-popular-product-img.png" alt="">
             <h2>暢銷商品</h2>
             <p>設計師們將傳統油紙傘與現代元素相結合，打造出獨特的風格。<br>這些傘子可能會擁有更現代化的圖案、色彩和材質，同時保留傳統油紙傘的精神和工藝。</p>
         </div>

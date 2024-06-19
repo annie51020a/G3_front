@@ -37,10 +37,13 @@
                 <div class="product-tag" data-value="素色" @click="filterTag($event)">
                     素色
                 </div>
-                <div class="product-custom">
-                    <img src="@/assets/pic/product/umbrella.png" alt="客製化油紙傘">
-                    客製化油紙傘
-                </div>
+                <router-link to="/customized">
+                    <div class="product-custom">
+                        <img src="@/assets/pic/product/umbrella.png" alt="客製化油紙傘">
+                        客製化油紙傘
+                    </div>
+                </router-link>
+
             </div>
             <div class="product-window">
                 <div v-if="responseData.length === 0">loading...</div>
@@ -273,7 +276,6 @@ export default {
 
             .product-custom {
                 color: #fff;
-                ;
                 cursor: pointer;
                 font-size: 20px;
                 margin-bottom: 10px;
@@ -303,6 +305,9 @@ export default {
                 gap: 25px;
                 flex-wrap: wrap;
                 justify-content: space-between;
+                @include m(lg) {
+                    justify-content: flex-start;
+                }
                 
                 .product-card {
                     width: 100%;
