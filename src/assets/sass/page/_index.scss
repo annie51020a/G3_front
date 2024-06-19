@@ -471,8 +471,8 @@
                         position: absolute;
                         top: 23%;
                         right: 0;
-
-                        >img {
+                        cursor: pointer;
+                        > img {
                             width: 50px;
                             height: 50px;
                         }
@@ -485,7 +485,7 @@
     .index-more {
         display: flex;
         justify-content: flex-end;
-
+        cursor: pointer;
         .index-more-txt {
             font-size: 24px;
             color: #FFFFFF;
