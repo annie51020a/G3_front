@@ -12,7 +12,7 @@
                 v-for="item in sortedAndFilteredData" 
                 :key="item.id">
                     <picture class="index-card-pic">
-                        <img :src="item.image" alt="" />
+                        <img :src="parseIcon(item.image)" alt="" />
                     </picture>
                     <div class="index-card-txt">
                         <div class="media-center">
@@ -77,6 +77,10 @@ export default {
         });
     },
     methods: {
+        parseIcon(file) {
+            // 指到src || ..的意思是“回到上一層”
+            return new URL(`../assets/pic/news/${file}`, import.meta.url).href;
+        },
         goToNewsPage(){
             this.$router.push({ name: 'news'});
         }
