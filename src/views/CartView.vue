@@ -66,7 +66,8 @@
     <p>NT$<span>1398</span></p>
     </div>
     <div class="checkout">
-   <button>結帳</button>
+        <router-link to="/checkout_prod" class="checkout-link"><button>
+    結帳</button></router-link>
     </div>
 </div>
 </template>
