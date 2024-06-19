@@ -3,38 +3,40 @@
         <!-- 補上router -->
         <li class="mem-account">
             <img src="@/assets/pic/mem-account.png" alt="">
-            <h5>會員資料</h5>
+            <router-link to="/memberinfo">  會員資料 </router-link>
         </li>
 
         <li class="favorite-list">
             <img src="@/assets/pic/favorite-list.png" alt="">
-            <h5>收藏清單</h5>
+            <router-link to="/memberfav">  收藏清單 </router-link>
+            
         </li>
 
         <li class="registration-record">
             <img src="@/assets/pic/registration-record.png" alt="">
-            <h5>報名紀錄</h5>
+            <router-link to="/memberactivity">  報名紀錄 </router-link>
         </li>
         
         <li class="discount">
             <img src="@/assets/pic/discount.png" alt="">
-            <h5>優惠券</h5>
+            <router-link to="/memberdiscount">  優惠券 </router-link>
         </li>
 
         <li class="purchase-history">
             <img src="@/assets/pic/purchase-history.png" alt="">
-            <h5>購買紀錄</h5>
+            <router-link to="/memberbuy">  購買紀錄 </router-link>
         </li>
     </ul>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .member-manage-list{
-    width: 20%;
+    width: 17%;
     background-color: #be1a0e;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
+
 
     @media screen and (max-width:576px) {
         display: grid;
@@ -61,8 +63,10 @@
         align-items: center;
         margin: 3% 0 1% 5%;
         color: white;
-        > h4 {
-            padding-left: 1%;
+        > a {
+            color: #FFF;
+            font-size: clamp(18px, 1.562vw, 20px);
+            padding-left: 2%;
         }
         @media screen and (max-width:576px) {
             width: 120px;
@@ -89,8 +93,10 @@
         align-items: center;
         margin: 1% 0 1% 5%;
         color: white;
-        > h4 {
-            padding-left: 1%;
+        > a {
+            color: #FFF;
+            font-size: clamp(18px, 1.562vw, 20px);
+            padding-left: 2%;
         }
         @media screen and (max-width:576px) {
             width: 120px;
@@ -117,8 +123,10 @@
         align-items: center;
         margin: 1% 0 1% 5%;
         color: white;
-        > h4 {
-            padding-left: 1%;
+        > a {
+            color: #FFF;
+            font-size: clamp(18px, 1.562vw, 20px);
+            padding-left: 2%;
         }
         @media screen and (max-width:576px) {
             width: 120px;
@@ -145,8 +153,10 @@
         align-items: center;
         margin: 1% 0 1% 5%;
         color: white;
-        > h4 {
-            padding-left: 1%;
+        > a {
+            color: #FFF;
+            font-size: clamp(18px, 1.562vw, 20px);
+            padding-left: 2%;
         }
         @media screen and (max-width:576px) {
             width: 120px;
@@ -173,8 +183,10 @@
         align-items: center;
         margin: 1% 0 3% 5%;
         color: white;
-        > h4 {
-            padding-left: 1%;
+        > a {
+            color: #FFF;
+            font-size: clamp(18px, 1.562vw, 20px);
+            padding-left: 2%;
         }
         @media screen and (max-width:576px) {
             width: 120px;

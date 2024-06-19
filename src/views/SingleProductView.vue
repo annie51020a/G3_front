@@ -4,12 +4,15 @@
             <!-- {{ $route.params.id }} -->
             <div class="product-pic">
                 <div class="product-pic-lg">
-                    <img :src="currentLgPic"  :alt="productInfo.name">
+                    <img :src="currentLgPic" :alt="productInfo.name">
                 </div>
                 <div class="product-pic-sm">
-                    <img @click="changeLgPic(productInfo.pic1)" :src="parseIcon(productInfo.pic1)" :alt="productInfo.name">
-                    <img @click="changeLgPic(productInfo.pic2)" :src="parseIcon(productInfo.pic2)" :alt="productInfo.name">
-                    <img @click="changeLgPic(productInfo.pic3)" :src="parseIcon(productInfo.pic3)" :alt="productInfo.name">
+                    <img @click="changeLgPic(productInfo.pic1)" :src="parseIcon(productInfo.pic1)"
+                        :alt="productInfo.name">
+                    <img @click="changeLgPic(productInfo.pic2)" :src="parseIcon(productInfo.pic2)"
+                        :alt="productInfo.name">
+                    <img @click="changeLgPic(productInfo.pic3)" :src="parseIcon(productInfo.pic3)"
+                        :alt="productInfo.name">
                 </div>
 
             </div>
@@ -40,7 +43,7 @@
                     <button type="button">
                         <i class="fa-regular fa-heart"></i>
                         加入收藏
-                        
+
                     </button>
                 </div>
                 <div class="product-cart">
@@ -49,11 +52,10 @@
                             shopping_cart
                         </span>
                         加入購物車
-                        
+
                     </button>
                 </div>
-                <div></div>
-                <div></div>
+                <div class="product-space"></div>
                 <div class="product-info">
                     <p>商品介紹</p>
                     <p>{{ productInfo.desc || '' }}</p>
@@ -68,7 +70,7 @@
             <div v-if="responseData.length === 0">loading...</div>
             <div v-else-if="displayData.length === 0">nodata...</div>
             <div v-else class="display-window">
-                <ProductCard v-for="item in displayData" :key="item.id" :item="item" />
+                <ProductCard class="product-card" v-for="item in displayData" :key="item.id" :item="item" />
             </div>
         </div>
     </div>
@@ -91,9 +93,14 @@ export default {
             currentLgPic: ''
         }
     },
+    watch: {
+        "$route.params.id"() {
+            this.fetchInfo();
+        },
+    },
     mounted() {
         this.fetchInfo();
-        fetch("/products.json")
+        fetch(`${import.meta.env.BASE_URL}products.json`)
             .then(res => res.json())
             .then(json => {
                 // 確認有沒有response
@@ -107,7 +114,7 @@ export default {
     methods: {
         fetchInfo() {
             // API
-            fetch("/products.json")
+            fetch(`${import.meta.env.BASE_URL}products.json`)
                 .then(res => res.json())
                 .then(json => {
                     this.productInfo = json.find(item => {
@@ -128,7 +135,7 @@ export default {
             return new URL(`../assets/pic/product/${file}`, import.meta.url).href
         },
         changeLgPic(pic) {
-	        console.log(this.parseIcon(pic))
+            console.log(this.parseIcon(pic))
             this.currentLgPic = this.parseIcon(pic);
         },
 
@@ -138,18 +145,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/sass/style";
+
 .container {
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
 
     .product-window {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 50px;
+        margin-bottom: 100px;
+        @include m(md) {
+            display: flex;
+            justify-content: space-between;
+        }
 
         .product-pic {
+            width: 80%;
+            margin: 0 auto;
+            @include m(md) {
             width: 45%;
+            }
 
             .product-pic-lg {
                 margin-bottom: 20px;
@@ -174,11 +189,18 @@ export default {
         }
 
         .product-text {
-            width: 45%;
+            width: 80%;
+            margin: 0 auto;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            gap: 40px;
+            gap: 30px;
+            margin-top: 30px;
+            @include m(md) {
+            width: 45%;
+            gap: 5%;
+            }
+            
 
             .product-tag {
 
@@ -228,6 +250,7 @@ export default {
                     height: 28px;
                     font-size: 14px;
                     text-align: center;
+
                     &:hover {
                         background-color: #B1241A;
                         color: #fff;
@@ -283,6 +306,7 @@ export default {
                     font-size: 20px;
                     color: #B1241A;
                     transition: 0.1s;
+
                     &:hover {
                         background-color: #B1241A;
                         color: #fff;
@@ -302,13 +326,23 @@ export default {
 
                 }
             }
+
+            .product-space {
+                display: none;
+
+                @include m(xl) {
+                    display: block;
+                }
+
+            }
+
             .product-info {
-                > p {
+                >p {
                     &:first-child {
-                        font-size: 24px;
+                        font-size: clamp(16px, 1.875vw, 24px);
                         margin-bottom: 10px;
                     }
-                   
+
                 }
             }
         }
@@ -325,8 +359,26 @@ export default {
 
         .display-window {
             display: flex;
-            gap: 25px;
             flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+
+            @include m(lg) {
+                justify-content: space-evenly;
+                gap: 25px;
+            }
+            .product-card {
+                width: 80%;
+                > img {
+                    width: 100%;
+                }
+                @include m(md) {
+                    width: 45%;
+                }
+                @include m(lg) {
+                    width: 280px;
+                }
+            }
         }
     }
 }

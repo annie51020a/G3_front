@@ -7,11 +7,13 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "prod": "vite build --mode prod",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "format": "prettier --write src/"
   },
   "dependencies": {
     "aos": "^2.3.4",
+    "axios": "^1.7.2",
     "gsap": "^3.12.5",
     "pinia": "^2.1.7",
     "swiper": "^11.1.4",

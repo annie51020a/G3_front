@@ -1,6 +1,94 @@
+// header {
+//     height: 80px;
+//     width: 100%;
+
+//     .header-nav {
+//         width: 90%;
+//         display: flex;
+//         align-items: center;
+//         justify-content: space-between;
+//         margin: 5px auto;
+
+//         .logo {
+//             display: flex;
+//             align-items: center;
+
+//             img {
+//                 height: 70px;
+//                 width: 100%;
+
+//             }
+//         }
+
+//         .desktop-menu {
+//             ul {
+//                 display: flex;
+//                 list-style: none;
+//                 padding: 0;
+//                 margin: 0;
+
+//                 li {
+//                     position: relative;
+//                     margin-right: 20px;
+
+//                     &:hover>ul {
+//                         display: block;
+//                     }
+
+//                     ul {
+//                         display: none;
+//                         position: absolute;
+//                         top: 100%;
+//                         left: 0;
+//                         background-color: white;
+//                         list-style: none;
+//                         padding: 10px;
+//                         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+//                         li {
+//                             margin: 0;
+
+//                             a {
+//                                 padding: 5px 10px;
+//                                 display: block;
+//                             }
+//                         }
+//                     }
+//                 }
+
+//                 .icons {
+//                     display: flex;
+//                     align-items: center;
+
+//                     button {
+//                         background-color: transparent;
+//                         border: none;
+//                         cursor: pointer;
+//                         margin-left: 5px;
+
+//                         img {
+//                             margin: 0 5px;
+//                         }
+//                     }
+
+//                     .hamburger-menu {
+//                         display: none;
+
+//                         @media (max-width: 768px) {
+//                             display: block;
+//                         }
+//                     }
+//                 }
+//             }
+
+//         }
+//     }
+
 header {
     height: 80px;
     width: 100%;
+    padding: 0;
+    margin: 0;
 
     .header-nav {
         width: 90%;
@@ -9,26 +97,292 @@ header {
         justify-content: space-between;
         margin: 5px auto;
 
+        @media (max-width: 996px) {
+            background-color: #B1241A;
+            width: 100%;
+            margin: 0 auto;
+            height: 70px;
+        }
+
+
         .logo {
             display: flex;
             align-items: center;
+
+            .mobile-logo {
+                display: none;
+
+                @media (max-width: 996px) {
+                    display: block;
+                }
+            }
+
+            .desktop-logo {
+                @media (max-width: 996px) {
+                    display: none;
+                }
+            }
 
             img {
                 height: 70px;
                 width: 100%;
 
+                @media (max-width: 996px) {
+                    height: 50px;
+                    width: auto;
+                }
+            }
+        }
+
+        .mobile-logo {
+            display: none;
+
+            @media (max-width: 996px) {
+                display: flex;
+                margin: 0px 10px;
+            }
+
+            img {
+                height: 60px;
+                width: 100%;
+            }
+        }
+
+
+
+        .desktop-menu {
+            ul {
+                display: flex;
+                list-style: none;
+                padding: 0;
+                margin: 0;
+
+
+                li {
+                    position: relative;
+                    margin-right: 20px;
+
+                    a {
+                        white-space: nowrap;
+                        /* 修改這裡，防止次級選單標題換行 */
+                    }
+
+                    &:hover>ul {
+                        display: block;
+                    }
+
+                    ul {
+                        display: none;
+                        position: absolute;
+                        top: 100%;
+                        left: 0;
+                        background-color: #fffbf6;
+                        list-style: none;
+                        padding: 10px;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                        z-index: 2;
+
+                        li {
+                            margin: 0;
+
+                            a {
+                                padding: 10px 10px;
+                                display: block;
+                            }
+
+                            &:not(:last-child) {
+                                border-bottom: 1px solid #ccc;
+                            }
+                        }
+                    }
+                }
+            }
+
+            @media (max-width: 996px) {
+                display: none;
             }
         }
 
         .icons {
+            display: flex;
+            align-items: center;
+
+            @media (max-width: 996px) {
+                margin: 5px 10px;
+            }
+
             button {
                 background-color: transparent;
                 border: none;
+                cursor: pointer;
+                margin-left: 5px;
 
                 img {
-                    margin: 0 5px;
+                    height: 24px;
+                }
+            }
+
+            .desktop-cart {
+                @media (max-width: 996px) {
+                    display: none;
+                }
+            }
+
+            .mobile-cart {
+                display: none;
+
+                @media (max-width: 996px) {
+                    display: block;
+                }
+            }
+
+            .desktop-user {
+                @media (max-width: 996px) {
+                    display: none;
+                }
+            }
+
+            .mobile-user {
+                display: none;
+
+                @media (max-width: 996px) {
+                    display: block;
+                }
+            }
+
+            .hamburger-menu {
+                display: none;
+
+                @media (max-width: 996px) {
+                    display: block;
+                    font-size: 24px;
+                    color: #FFFFFF;
+                }
+            }
+        }
+
+
+    }
+
+    .mobile-menu {
+        display: none;
+
+        @media (max-width: 996px) {
+            display: block;
+        }
+
+        ul {
+            position: absolute;
+            list-style: none;
+            width: 50%;
+            background-color: #B1241A;
+            z-index: 1;
+            right: 0;
+            height: 100vh;
+
+            li {
+                margin-bottom: 10px;
+
+                a {
+                    display: block;
+                    padding: 10px;
+                    color: #F9F1E5;
+
+                    ul {
+                        padding-left: 20px;
+
+                        li {
+                            margin-bottom: 0;
+
+                            a {
+                                padding: 5px 10px;
+                                color: #F9F1E5;
+                            }
+                        }
+                    }
                 }
             }
         }
     }
 }
+
+//     .mobile-menu {
+//         display: none;
+
+//         @media (max-width: 996px) {
+//             display: block;
+//             position: fixed;
+//             top: 0;
+//             right: 0;
+//             width: 75%;
+//             height: 100%;
+//             background-color: #B1241A;
+//             padding: 20px;
+//             box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+//             transform: translateX(100%);
+//             transition: transform 0.3s ease-in-out;
+//             z-index: 10;
+//             /* 確保在遮罩層之上 */
+//             overflow-y: auto;
+//             /* 如果內容過多，可以滾動 */
+//         }
+
+//         ul {
+//             list-style: none;
+//             padding: 0;
+//             margin: 0;
+
+//             li {
+//                 margin-bottom: 10px;
+
+//                 a {
+//                     display: block;
+//                     padding: 10px;
+//                     color: #F9F1E5;
+
+//                     ul {
+//                         padding-left: 20px;
+
+//                         li {
+//                             margin-bottom: 0;
+
+//                             a {
+//                                 padding: 5px 10px;
+//                                 color: #F9F1E5;
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+
+//     .overlay {
+//         display: none;
+
+//         @media (max-width: 996px) {
+//             display: block;
+//             position: fixed;
+//             top: 0;
+//             left: 0;
+//             width: 100%;
+//             height: 100%;
+//             background: rgba(0, 0, 0, 0.5);
+//             z-index: 5;
+//         }
+//     }
+
+// }
+
+// /* 顯示和隱藏 mobile-menu 的動畫效果 */
+// .mobile-menu-open {
+//     transform: translateX(0);
+//     z-index: 10;
+// }
+
+
+
+
+// @media (max-width: 996px) {
+
+// }

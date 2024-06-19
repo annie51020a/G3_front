@@ -1,5 +1,4 @@
 <template>
-    <section class="section-product-bg"></section>
     <section class="section-product">
         <div class="container-product">
             <div class="product-row">
@@ -83,7 +82,7 @@ export default {
     //可以用create也可以用mounted
     // created() {
     mounted() {
-        fetch("/products.json")
+        fetch(`${import.meta.env.BASE_URL}products.json`)
             .then(res => res.json())
             .then(json => {
                 // 確認有沒有response
@@ -110,14 +109,9 @@ export default {
 </script>
 
 <style lang="scss">
-.section-product-bg {
-    width: 100%;
-    height: 95px;
-    background-color: #FFFBF6;
-    background-image: url('../assets/pic/index-product-bg.png');
-    background-position: top center;
-    background-repeat: repeat-x;
-}
+@import "@/assets/sass/style";
+
+
 
 .section-product {
     background-color: #CB2E27;
@@ -149,11 +143,18 @@ export default {
 
     .product-loop {
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
+        
+        @include m(md) {
+            justify-content: flex-end;
+        }
 
         .cardlist {
-            width: 70%;
-            margin: 0;
+            @include m(md) {
+                width: 70%;
+                margin: 0;
+        }
+            
 
             .swiper-button-prev,
             .swiper-button-next {

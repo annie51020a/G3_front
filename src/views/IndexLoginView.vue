@@ -112,6 +112,9 @@ export default {
                 alert("登入成功!")
                 this.emailData = "";
                 this.pswData = "";
+                const loginBox = document.querySelector(".login-box");
+                loginBox.style.opacity = "0";
+                loginBox.style.pointerEvents = "none";
             } else {
                 alert("帳號或密碼錯誤!")
                 this.emailData = "";
@@ -120,7 +123,7 @@ export default {
         }
     },
     mounted() {
-        fetch("/public/member.json")
+        fetch(`${import.meta.env.BASE_URL}/public/member.json`)
             .then(res => res.json())
             .then(json => {
                 console.log(json);
