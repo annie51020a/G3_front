@@ -35,7 +35,7 @@
             <div class="disc-line"></div>
 
             <div class="act-info">
-                <button><i class="fa-solid fa-chevron-down"></i></button>
+                <!-- <button><i class="fa-solid fa-chevron-down"></i></button> -->
                 <img class="act-img" src="../assets/pic/act-teaching1.jpg" alt="教學活動1">
                 <div class="act-detail">
                     <div class="act-location">
