@@ -164,7 +164,7 @@ export default {
     .mem-box {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-start;
         margin: 2% 0 15% 0;
         width: 100%;
 
