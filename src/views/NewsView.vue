@@ -74,39 +74,45 @@
 </template>
 
 
-<script >
+<script>
 export default {
     data() {
         return {
-            news_data:[],
-            news_related_data:[],
+            news_data: [],
+            news_related_data: [],
             li: [],
             contentBox: false,
-            showList:[]
-        }
+            showList: []
+        };
     },
     mounted() {
         Promise.all([
             fetch(`${import.meta.env.BASE_URL}news.json`).then(res => res.json()),
             fetch(`${import.meta.env.BASE_URL}news_related.json`).then(res => res.json())
-    ]   )
+        ])
         .then(([newsData, newsRelatedData]) => {
-            console.log(newsData);
-            console.log(newsRelatedData);
-            this.news_data = newsData;
-            this.news_related_data = newsRelatedData;
+            this.news_data = newsData.sort((a, b) => new Date(b.date.replace(/年|月/g, '-').replace('日', '')) - new Date(a.date.replace(/年|月/g, '-').replace('日', '')));
+            this.news_related_data = newsRelatedData.sort((a, b) => new Date(b.date.replace(/年|月/g, '-').replace('日', '')) - new Date(a.date.replace(/年|月/g, '-').replace('日', '')));
         })
         .catch(error => {
             console.error("Error fetching data: ", error);
         });
     },
+    computed: {
+        sortedNewsData() {
+            return this.news_data;
+        },
+        sortedNewsRelatedData() {
+            return this.news_related_data;
+        }
+    },
     methods: {
         showNews(date, name) {
             const key = `${date}-${name}`;
             if (this.showList.includes(key)) {
-                this.showList = this.showList.filter(item => item !== key); 
+                this.showList = this.showList.filter(item => item !== key);
             } else {
-                this.showList.push(key); 
+                this.showList.push(key);
             }
 
             const newsCards = document.querySelectorAll('.news-card');
@@ -116,9 +122,8 @@ export default {
                 const cardKey = `${cardDate}-${cardName}`;
 
                 card.style.backgroundColor = this.showList.includes(cardKey) ? '#FFF9F1' : '#FFFF';
-                });
-                }
-
-        },
+            });
+        }
     }
+};
 </script>

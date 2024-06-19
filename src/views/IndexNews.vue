@@ -25,14 +25,14 @@
                                 {{ item.details }}
                             </p>
                         </div>
-                        <a href="./news" class="arrow-right">
-                            <img src="../assets/pic/product-right.png" alt="">
-                        </a>
+                        <div class="arrow-right" >
+                            <img src="../assets/pic/product-right.png" alt="" @click="goToNewsPage">
+                        </div>
                     </div>
                 </section>
             </div>
             <div class="index-more">
-                <a href="./news" class="index-more-txt">更多消息</a>
+                <div class="index-more-txt" @click="goToNewsPage">更多消息</div>
             </div>
         </div>
     </section>
@@ -75,6 +75,11 @@ export default {
         .catch(error => {
             console.error("Error fetching data: ", error);
         });
+    },
+    methods: {
+        goToNewsPage(){
+            this.$router.push({ name: 'news'});
+        }
     }
 }
 </script>
