@@ -96,28 +96,38 @@ const router = createRouter({
       component: () => import('@/views/NotFoundView.vue')
     },
     {
+      path: '/checkout_prod',
+      name: 'checkout_prod',
+      component: () => import('@/views/CheckOut-prod.vue')
+    },
+    {
       path: '/product/:id',
       name: 'singleproduct',
       component: () => import('@/views/SingleProductView.vue')
     },
-    { 
-      path: '/:pathMatch(.*)*', 
-      name: 'NotFound', 
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
       component: () => import('../views/NotFoundView.vue')
+    },
+    {
+      path: '/checkout_self-prod',
+      name: 'checkout_self-prod',
+      component: () => import('@/views/CheckOut-self-prod.vue')
     }
   ],
-  scrollBehavior (to, from, savedPosition) {
+  scrollBehavior(to, from, savedPosition) {
     // return 期望滚动到哪个的位置
-		// 始终滚动到顶部
+    // 始终滚动到顶部
     return { top: 0 }
   }
 })
 
 
 router.beforeEach(async (to, from) => {
-	if( to.meta && to.meta.title){
-		document.title = to.meta.title
-	}
+  if (to.meta && to.meta.title) {
+    document.title = to.meta.title
+  }
 })
 
 export default router

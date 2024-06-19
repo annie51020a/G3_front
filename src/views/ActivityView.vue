@@ -9,22 +9,22 @@
     <div class="activity-category">
       <div class="register">
         <h4>報名</h4>
-        <button @click="filterByStatus('全部')">全部</button>
-        <button @click="filterByStatus('進行中')">進行中</button>
-        <button @click="filterByStatus('已結束')">已結束</button>
+        <button @click="filterByStatus('全部')"><p>全部</p></button>
+        <button @click="filterByStatus('進行中')"><p>進行中</p></button>
+        <button @click="filterByStatus('已結束')"><p>已結束</p></button>
       </div>
       <div class="category">
         <h4>類型</h4>
-        <button @click="filterByType('全部')">全部</button>
-        <button @click="filterByType('DIY 手作')">DIY 手作</button>
-        <button @click="filterByType('導覽預約')">導覽預約</button>
-        <button @click="filterByType('文創市集')">文創市集</button>
+        <button @click="filterByType('全部')"><p>全部</p></button>
+        <button @click="filterByType('DIY 手作')"><p>DIY手作</p></button>
+        <button @click="filterByType('導覽預約')"><p>導覽預約</p></button>
+        <button @click="filterByType('文創市集')"><p>文創市集</p></button>
       </div>
     </div>
     <div class="search-filter">
       <div class="search-box"><img src="@/assets/pic/search.png" alt=""><input @input="filterData" type="text"
           v-model="search" class="search-input" placeholder="搜尋活動名稱"><i class="fa-solid fa-x" @click="clear"></i></div>
-      <button @click="toggleFilterPopup"><img src="@/assets/pic/filter.png" alt="">篩選</button>
+      <button @click="toggleFilterPopup"><img src="@/assets/pic/filter.png" alt=""><p>篩選</p></button>
       <div v-if="showFilterPopup" class="filter-popup">
         <div class="filter-popup-content">
           <button class="closebtn" @click="closeFilterPopup">✖</button>
@@ -47,8 +47,12 @@
           </div>
           <hr>
           <div class="filter-result">
-            <button class="clear"><p>清除</p></button>
-            <button class="result"><p>查看結果</p></button>
+            <button class="clear-btn">
+              <p>清除</p>
+            </button>
+            <button class="result-btn">
+              <p>查看結果</p>
+            </button>
           </div>
         </div>
       </div>
@@ -220,11 +224,9 @@ export default {
       display: flex;
       border: 1px solid #A9A8A8;
       border-radius: 20px;
-      cursor: pointer;
-
-
       margin-left: 20px;
       padding: 10px 20px;
+      cursor: pointer;
 
       >img {
         width: 20px;
@@ -234,29 +236,41 @@ export default {
       >button {
         border: 0;
         background: transparent;
+        cursor: pointer;
 
       }
     }
 
     >hr {
-      margin: 20px 0;
+      margin-top: 20px;
 
     }
 
     .filter-result {
-      margin: 0 20px;
+      margin: 25px 20px;
       display: flex;
       justify-content: space-between;
-    }
 
-    .clear{
-      border: 0;
-      background: transparent;
-     
-      >p{
-        font-size: 20px;
+      .clear-btn {
+        border: 0;
+        background: transparent;
+
+        >p {
+          text-decoration: underline;
+        }
       }
 
+      .result-btn{
+        background-color: #BE1A0E;
+    border-radius: 30px;
+    padding: 20px 50px;
+    border: none;
+    cursor: pointer;
+
+    >p{
+      color: white;
+    }
+      }
     }
 
 

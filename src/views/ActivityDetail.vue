@@ -72,8 +72,8 @@
       </div>
       <div class="num">
         <h5>選擇人數</h5>
-        <p>NT${{price}}/人</p>
         <div class="amount-button">
+          <p>NT${{price}}/人</p>
           <button @click="minus"><i class="fa-solid fa-minus"></i></button>
           <p>{{ count }}</p>
           <button @click="plus"><i class="fa-solid fa-plus"></i></button>
@@ -174,8 +174,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/sass/style";
+
 .section-activity-swiper {
   width: 100%;
+  margin-top: 40px;
 
   .swiper {
     width: 100%;
@@ -185,6 +188,10 @@ export default {
     width: 90%;
     height: 350px;
     border-radius: 30px;
+
+    @media (max-width: $sm) {
+      height: 250px;
+          }
 
     >img {
       border-radius: 30px;

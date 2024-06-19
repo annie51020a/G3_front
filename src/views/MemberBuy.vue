@@ -16,9 +16,74 @@
 
 <script >
 import MemberManageList from '../components/layout/MemberManageList.vue'
+
+export default {
+    components: {
+        MemberManageList
+    },
+    data() {
+        return {
+            responseData: [],
+            displayData: [],
+            search: "",
+        }
+    },
+    //可以用create也可以用mounted
+    // created() {
+    mounted() {
+        fetch(`${import.meta.env.BASE_URL}memberfav.json`)
+            .then(res => res.json())
+            .then(json => {
+                // 確認有沒有response
+                console.log(json);
+                // 備份還原用
+                this.responseData = json
+                // 顯示用
+                this.displayData = json.filter(item => item.fav === true);
+            })
+    },
+    methods: {
+        clear() {
+            this.search = "";
+            this.displayData = [...this.responseData];
+        },
+        filterTag(event) {
+            const selectedTag = event.target.value || event.target.dataset.value;
+            if (selectedTag === 'default') {
+                this.displayData = [...this.responseData];
+            } else {
+                this.displayData = this.responseData.filter(item => item.tag === selectedTag);
+            }
+        },
+        filterData() {
+            console.log(this.search)
+            this.displayData = this.responseData.filter((item) => {
+                // return item.name == this.search
+                return item.name.includes(this.search)
+            })
+        },
+        clear() {
+            this.search = "";
+            this.displayData = this.responseData;
+        },
+        sortData(event) {
+            const sortType = event.target.value;
+            if (sortType === 'highToLow') {
+                this.displayData.sort((a, b) => b.price - a.price);
+            } else if (sortType === 'lowToHigh') {
+                this.displayData.sort((a, b) => a.price - b.price);
+            } else {
+                this.displayData = [...this.responseData];
+            }
+        }
+    }
+}
+
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/sass/style";
+
 .mem-buy {
     width: 90%;
     display: flex;
@@ -29,6 +94,8 @@ import MemberManageList from '../components/layout/MemberManageList.vue'
     position: relative;
 
     .mem-title {
+        width: 100%;
+        text-align: center;
         >h1 {
             margin-top: 50px;
             color: #564a41;
