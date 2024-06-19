@@ -3,12 +3,12 @@
         <div class="login-container">
             <div class="login-wrap">
                 <div class="link">
-                    <button class="login">會員登入</button>
-                    <button class="register">會員註冊</button>
+                    <button class="login" @click="showContent('login')">會員登入</button>
+                    <button class="register" @click="showContent('register')">會員註冊</button>
                 </div>
                 <div class="login-frame">
                     <!-- for login page use v-if to switch-->
-                    <div class="input-field" v-if="forgetPswBox">
+                    <div class="input-field" v-if="content === 'login'">
                         <div class="content-container">
                             <div class="login-input">
                                 <input class="email" name="memId" type="email" placeholder="電子郵件" v-model="emailData" >
@@ -20,7 +20,7 @@
                                 </div>
                             </div>
                             <div class="forget-login-btn">
-                                <button class="forget" @click="showForgetPassword">忘記密碼？</button>
+                                <button class="forget" @click="showContent('forget')">忘記密碼？</button>
                                 <button class="btn" @click="memLogin">登入</button>
                             </div>
                             <p class="quick">使用以下帳號快速登入</p>
@@ -35,14 +35,14 @@
                         </div>
                     </div>
                     <!-- for forgetPassword page use v-if to switch-->
-                    <div class="input-field" v-if="!forgetPswBox">
+                    <div class="input-field" v-if="content === 'forget'">
                         <div class="content-container">
                             <div class="login-input">
                                 <p class="txt">忘記密碼 :</p>
                                 <input class="forget-input" type="email" placeholder="請輸入電子郵件">
                             </div>
                             <div class="previous-page-verify">
-                                <button class="previous-page-btn" @click="showMemberLogin">
+                                <button class="previous-page-btn" @click="showContent('login')">
                                     上一頁
                                 </button>
                                 <button class="btn">
@@ -52,6 +52,47 @@
                         </div>
                     </div>
 
+                    <!-- 註冊會員 -->
+                    <div class="input-field" v-if="content === 'register'">
+                        <div class="content-container">
+                                <div class="register-input">
+                                    <input class="email" name="memId" type="email" placeholder="請輸入電子郵件" v-model="emailData" >
+                                    <div class="input-icon">
+                                        <input class="password" name="memPsw" type="password" placeholder="請輸入密碼" maxlength="12" minlength="6" v-model="pswData">
+                                        <picture @click="showPsw" class="eyes">
+                                            <img id="eye" src="/src/assets/pic/login/eye-close.svg" alt="" title="close">
+                                        </picture>
+                                    </div>
+                                    <div class="input-icon">
+                                        <input class="password" name="memPsw" type="password" placeholder="確認密碼" maxlength="12" minlength="6" v-model="pswData">
+                                        <picture @click="showPsw" class="eyes">
+                                            <img id="eye" src="/src/assets/pic/login/eye-close.svg" alt="" title="close">
+                                        </picture>
+                                    </div>
+                                    <div class="verify-group">
+                                        <input class="verify" type="text"  placeholder="請輸入右方驗證碼" maxlength="5" required>
+                                        <div class="captcha-img">AB123</div>
+                                        <button class="verify-btn" type="submit">驗證</button>
+                                    </div>
+                                    <div class="gender">
+                                        <h5>性別 ：</h5>
+                                        <input type="radio" id="gender-man" name="gender" value="man" checked />
+                                        <label for="gender-man">男性</label>
+                                        <input type="radio" id="gender-girl" name="gender" value="girl" />
+                                        <label for="gender-girl">女性</label>
+                                        <input type="radio" id="gender-else" name="gender" value="else" />
+                                        <label for="gender-else">其他</label>
+                                    </div>
+                                    <div class="date">
+                                        <h5>生日 ：</h5>
+                                        <input type="date" value="2000-06-19" min="1960-01-01" max="2006-12-31" />
+                                    </div>
+                                </div>
+                                <button class="register-btn">
+                                    註冊
+                                </button>
+                        </div>
+                    </div>
 
                     <span class="x" @click="closeLoginInBtn">
                         <img src="/src/assets/pic/login/ph_x-bold.png" alt="">
@@ -61,6 +102,7 @@
                         <img src="/src/assets/pic/login/ph_x-bold.png" alt="">
                     </span>
                 </div>
+
             </div>
         </div>
     </section>
@@ -70,13 +112,18 @@
 export default {
     data() {
         return {
-            forgetPswBox: true,
+            content:'login',
+            // forgetPswBox: true,
             mem:[],
             emailData: '',
             pswData:''
         }
     },
     methods: {
+        // 點擊後更變內容
+        showContent(content) {
+        this.content = content; 
+        },
         closeLoginInBtn() {
             const closeLoginInBtn = document.querySelector(".x");
             if (closeLoginInBtn) {
@@ -99,12 +146,12 @@ export default {
                 password.type = "password";
             }
         },
-        showForgetPassword() {
-            this.forgetPswBox = false;
-        },
-        showMemberLogin() {
-            this.forgetPswBox = true;
-        },
+        // showForgetPassword() {
+        //     this.forgetPswBox = false;
+        // },
+        // showMemberLogin() {
+        //     this.forgetPswBox = true;
+        // },
         memLogin() {
             if((this.emailData === this.mem[0].account) 
                 && (this.pswData === this.mem[0].psw)
