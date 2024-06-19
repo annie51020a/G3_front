@@ -1,7 +1,7 @@
 [
     {
       "id": 1,
-      "pic": "../src/assets/pic/activity/activity-9.jpg",
+      "pic": "activity-9.jpg",
       "title": "油紙傘彩繪 DIY 體驗",
       "date": "2024.07.14(日)",
       "time1": "第一場次10:00-12:00",
@@ -12,7 +12,7 @@
       "type": "DIY 手作"
     },
     {
-      "pic": "../src/assets/pic/activity/guide-2.jpg",
+      "pic": "guide-2.jpg",
       "title": "傳統油紙傘文化導覽",
       "date": "2024.07.21(日)",
       "time1": "第一場次10:00-12:00",
@@ -23,7 +23,7 @@
       "type": "導覽預約"
     },
     {
-      "pic": "../src/assets/pic/activity/market-2.jpg",
+      "pic": "market-2.jpg",
       "title": "夏日油紙傘文創市集",
       "date": "2024.07.27(日)",
       "time1": "上午營業時間10:00-12:00",
@@ -33,7 +33,7 @@
       "status": "進行中",
       "type": "文創市集"
     },{
-      "pic": "../src/assets/pic/activity/activity-1.jpg",
+      "pic": "activity-1.jpg",
       "title": "油紙傘彩繪手作工作坊",
       "date": "2024.08.03(日)",
       "time1": "第一場次10:00-12:00",
@@ -44,7 +44,7 @@
       "type": "DIY 手作"
     },
     {
-      "pic": "../src/assets/pic/activity/guide-3.jpg",
+      "pic": "guide-3.jpg",
       "title": "傳統油紙傘文化導覽",
       "date": "2024.08.10(日)",
       "time1": "第一場次10:00-12:00",
@@ -55,7 +55,7 @@
       "type": "導覽預約"
     },
     {
-      "pic": "../src/assets/pic/activity/market-1.jpg",
+      "pic": "market-1.jpg",
       "title": "美濃油紙傘文創市集",
       "date": "2024.08.17(日)",
       "time1": "上午營業時間10:00-12:00",
@@ -65,7 +65,7 @@
       "status": "進行中",
       "type": "文創市集"
     },{
-      "pic": "../src/assets/pic/activity/activity-6.jpg",
+      "pic": "activity-6.jpg",
       "title": "油紙傘彩繪 DIY 體驗",
       "date": "2023.08.24(日)",
       "time1": "第一場次10:00-12:00",
@@ -76,7 +76,7 @@
       "type": "DIY 手作"
     },
     {
-      "pic": "../src/assets/pic/activity/guide-1.jpg",
+      "pic": "guide-1.jpg",
       "title": "傳統油紙傘文化導覽",
       "date": "2023.08.31(日)",
       "time1": "第一場次10:00-12:00",
@@ -87,7 +87,7 @@
       "type": "導覽預約"
     },
     {
-      "pic": "../src/assets/pic/activity/market-3.jpg",
+      "pic": "market-3.jpg",
       "title": "秋季油紙傘文創市集",
       "date": "2023.09.07(日)",
       "time1": "上午營業時間10:00-12:00",

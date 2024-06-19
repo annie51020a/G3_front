@@ -62,7 +62,7 @@
     <div class="activity-card" v-for="(activity, index) in filteredActivities" :key="index"
       @click="goToActivityDetail(activity.id)">
       <div class="card-pic">
-        <img :src="activity.pic" alt="活動圖片">
+        <img :src="parseIcon(activity.pic)" alt="活動圖片">
       </div>
       <div class="card-title">
         <h5>{{ activity.title }}</h5>
@@ -97,6 +97,7 @@ export default {
       .then(data => {
         this.activities = data;
         this.responseData = data;
+        
       })
       .catch(error => console.error('Error fetching activities:', error));
   },
@@ -116,6 +117,10 @@ export default {
     }
   },
   methods: {
+    parseIcon(file) {
+            // 指到src || ..的意思是“回到上一層”
+            return new URL(`../assets/pic/activity/${file}`, import.meta.url).href;
+    },
     goToActivityDetail(id) {
       this.$router.push({ name: 'activitydetail', params: { id } });
     },
