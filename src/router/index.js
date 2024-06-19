@@ -46,7 +46,7 @@ const router = createRouter({
       component: () => import('@/views/QuizView.vue')
     },
     {//關於我們-品牌故事
-      path: '/aboutstory',
+      path: '/about/story',
       name: 'aboutstory',
       component: () => import('@/views/AboutStory.vue')
     },

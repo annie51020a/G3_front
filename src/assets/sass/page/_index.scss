@@ -39,18 +39,19 @@
             color: white;
             padding-right: 10px;
         }
-
-        >button {
+        .about-us-link{
             width: 40px;
             height: 40px;
             border-radius: 50%;
             color: white;
+            border: none;
 
             img {
                 margin: auto;
                 width: 100%;
             }
         }
+
     }
 
     .banner-btn-box {
@@ -93,7 +94,6 @@
     }
 }
 
-
 .product-popular {
     display: flex;
     flex-direction: column;
@@ -104,15 +104,27 @@
         display: flex;
         align-items: center;
         width: 80%;
-        justify-content: flex-start;
         margin: 4% 0;
+        
+        @media (max-width: 996px) {
+            justify-content: center;
+        }
+
 
         h2 {
             color: #847164;
+            @media (min-width: 997px) {
+                flex-grow: 1;
+            }
         }
 
         >p {
+            width: 50%;
             padding-left: 3%;
+
+            @media (max-width: 996px) {
+                display: none;
+            }
         }
     }
 

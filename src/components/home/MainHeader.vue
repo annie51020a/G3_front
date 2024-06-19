@@ -152,7 +152,7 @@ export default {
     data() {
         return {
             links: [
-                { name: '關於我們', path: '/about', showSubMenu: false, submenu: [{ name: '歷史沿革', path: '/about' },{ name: '品牌故事', path: '/aboutstory' }] },
+                { name: '關於我們', path: '/about', showSubMenu: false, submenu: [{ name: '歷史沿革', path: '/about' },{ name: '品牌故事', path: '/about/story' }] },
                 { name: '最新消息', path: '/news' },
                 { name: '活動資訊', path: '/activity' },
                 { name: '周邊商品', path: '/product' },
