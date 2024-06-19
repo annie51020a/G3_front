@@ -70,7 +70,7 @@
                                 </div>
                                 <span>範本</span>
                             </div>
-                            <div class="item">
+                            <div class="item" v-show="!showImg">
                                 <div class="icon">
                                     <img src="/src/assets/pic/customized/customized-i-con.png" alt="">
                                 </div>
@@ -89,7 +89,7 @@
                                 <span>重置</span>
                             </div>
                         </div>
-                        <div class="img-group">
+                        <div class="img-group" v-show="showImg">
                             <div class="pics">
                                 <div class="pic">
                                     <img src="/src/assets/pic/customized/Icon-1.png" alt="">
@@ -98,11 +98,6 @@
                                     <img src="/src/assets/pic/customized/Icon-2.png" alt="">
                                 </div>  
                             </div>
-                        </div>
-                        <div class="list-arrow">
-                            <svg width="11" height="19" viewBox="0 0 11 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0.897949 0.816406L10.0816 10.0001L1.91836 18.1633" stroke="#ffffff" stroke-linecap="round"/>
-                            </svg>
                         </div>
                     </div>
                     <div class="design">
@@ -161,11 +156,9 @@
                     </div>    
                     <div class="txt">
                         <h3>特製手工油紙傘</h3>
-                        <span>獨一無二</span>
-                        <div class="price">
+                        <span class="tag">獨一無二</span>
                             <span>NT$ 999</span>
                             <span>合計$ 999</span>
-                        </div>
                         <div class="amount">
                             <span>數量：</span>
                             <button>-</button>
@@ -179,7 +172,9 @@
                                     </svg>
                                 直接購買
                             </button>
-                            <button class="btn">取消</button>
+                            <router-link to="/product">
+                                <button class="btn">取消</button>
+                            </router-link>
                         </div>
                     </div>
                 </div>
@@ -195,7 +190,11 @@
         data() {
             return {
                 currentStep : 1
+                
             }
+        },
+        mounted() {
+
         },
     }
 </script>

@@ -37,10 +37,12 @@
                 <div class="product-tag" data-value="素色" @click="filterTag($event)">
                     素色
                 </div>
-                <div class="product-custom">
-                    <img src="@/assets/pic/product/umbrella.png" alt="客製化油紙傘">
-                    客製化油紙傘
-                </div>
+                <router-link to="/customized">
+                    <div class="product-custom">
+                        <img src="@/assets/pic/product/umbrella.png" alt="客製化油紙傘">
+                        客製化油紙傘
+                    </div>
+                </router-link>
             </div>
             <div class="product-window">
                 <div v-if="responseData.length === 0">loading...</div>

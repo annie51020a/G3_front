@@ -291,26 +291,6 @@
                             }
                         }
                     }
-                    .list-arrow{
-                        width: 20px;
-                        height: 120px;
-                        border-top-right-radius: 10px;
-                        border-bottom-right-radius: 10px;
-                        background-color: #B1241A;
-                        display: flex;
-                        align-items: center;
-                        position: absolute;
-                        top: 50%;
-                        right:-160px;
-                        transform: translate(0, -50%);
-                        z-index: 2;
-                        // transform:rotateZ(180deg);
-                        svg{
-                            width: 100%;
-                            object-fit: cover;
-                            vertical-align: middle;
-                        }
-                    }
                 }
                 .design{
                     width: 50%;
@@ -414,7 +394,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
             .title{
                 margin:20px 0;
                 display: flex;
@@ -473,11 +453,16 @@
                     width: 50%;
                     .smallpics{
                         width: 20%;
+                        margin-right: 15px;
                         .pic{
                             width: 100%;
                             border: 1px solid #564A41;
                             border-radius: 20px;
-                            overflow: hidden;        
+                            overflow: hidden;
+                            cursor: pointer;
+                            &+.pic{
+                                margin-top: 10px;
+                            }       
                             img{
                                 width: 100%;
                                 object-fit: cover;
@@ -498,20 +483,19 @@
                 }
                 .txt{
                     width: 30%;
+                    margin-left: 30px;
                     color: #564A41;
                     font-size: 20px;
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
                     align-items: start;
-                    >span{
+                    .tag{
                         font-size: 14px;
                         color: #B1241A;
                         padding:5px 15px;
                         border: 1px solid #B1241A;
                         border-radius: 20px;
-                    }
-                    .price{
                     }
                     .amount{
                         display: flex;
@@ -523,25 +507,28 @@
                     .button{
                         width: 100%;
                         button{
-                            all: unset; /* 重置所有屬性 */
-                            display: block; /* 確保按鈕仍然顯示 */
-                            cursor: pointer; /* 確保按鈕仍然有手形游標 */
-                            text-align: center; /* 居中文字 */
+                            all: unset; 
+                            display: block; 
+                            cursor: pointer; 
+                            text-align: center; 
                         }
                         .btn{
                             color: #ffffff;
                             width: 100%;
                             padding: 8px 0;
+                            margin-bottom: 15px;
                             background-color: #B1241A;
                             border-radius: 20px;
+                            transition: all 0.3s ease;
+                            &:hover{
+                                background-color:#94150C;
+                                transition: all 0.3s ease;
+                            }
                                 svg{
                                     width: 10%;
                                     object-fit: cover;
                                     vertical-align:middle;
                                 }
-                        }
-                        .btn+.btn{
-                            margin-top: 10px;
                         }
                     }
 

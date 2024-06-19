@@ -30,7 +30,7 @@ const router = createRouter({
       name: 'activity',
       component: () => import('@/views/ActivityView.vue')
     },
-    {//活動詳細頁面
+    {// 活動詳細頁面
       path: '/activity/:id',
       name: 'activitydetail',
       component: () => import('@/views/ActivityDetail.vue')
@@ -45,7 +45,7 @@ const router = createRouter({
       name: 'quiz',
       component: () => import('@/views/QuizView.vue')
     },
-    {//關於我們-品牌故事
+    {// 關於我們-品牌故事
       path: '/aboutstory',
       name: 'aboutstory',
       component: () => import('@/views/AboutStory.vue')
