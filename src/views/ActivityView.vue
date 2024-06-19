@@ -62,7 +62,7 @@
     <div class="activity-card" v-for="(activity, index) in filteredActivities" :key="index"
       @click="goToActivityDetail(activity.id)">
       <div class="card-pic">
-        <img :src="activity.pic" alt="活動圖片">
+        <img :src="parseIcon(activity.pic)" alt="活動圖片">
       </div>
       <div class="card-title">
         <h5>{{ activity.title }}</h5>
@@ -73,11 +73,12 @@
       <div class="card-loc"><img src="@/assets/pic/activity/map.png" alt="">{{ activity.loc }}</div>
       <div class="card-price">{{ activity.price }}</div>
     </div>
-
   </section>
+
 </template>
 
 <script>
+
 
 export default {
   name: 'ActivityView',
@@ -88,7 +89,7 @@ export default {
       search: "",
       currentStatus: '全部',
       currentType: '全部',
-      showFilterPopup: false
+      showFilterPopup: false,
     };
   },
   mounted() {
@@ -116,6 +117,10 @@ export default {
     }
   },
   methods: {
+    parseIcon(file) {
+            // 指到src || ..的意思是“回到上一層”
+            return new URL(`../assets/pic/activity/${file}`, import.meta.url).href;
+    },
     goToActivityDetail(id) {
       this.$router.push({ name: 'activitydetail', params: { id } });
     },
@@ -272,9 +277,8 @@ export default {
     }
       }
     }
-
-
-
   }
 }
+
+
 </style>
