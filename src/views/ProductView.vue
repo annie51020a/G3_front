@@ -43,6 +43,10 @@
                         客製化油紙傘
                     </div>
                 </router-link>
+<<<<<<< HEAD
+=======
+                
+>>>>>>> dev
             </div>
             <div class="product-window">
                 <div v-if="responseData.length === 0">loading...</div>
