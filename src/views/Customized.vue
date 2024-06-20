@@ -30,7 +30,7 @@
                     class="pic"
                     @click="selectPic(index)"
                     >
-                    <img :src="pic.img" />
+                    <img :src="parseIcon(pic.img)" />
                     <h4>{{ pic.title }}</h4>
                     </div>
                 </div>
@@ -144,11 +144,11 @@
                             <div class="pic" v-for="(pic, index) in smallPics" 
                                 :key="index" 
                                 @click="showBigPic(pic.img)">
-                                <img :src="pic.img" alt="">
+                                <img :src="parseIcon(pic.img)" alt="">
                             </div>
                         </div>
                         <div class="bigpic">
-                            <img :src="bigPic.img" alt="">
+                            <img :src="parseIcon(bigPic.img)" alt="">
                         </div>
                     </div>    
                     <div class="txt">
@@ -192,30 +192,33 @@
                 // step 1
                 pics: [
                     {   
-                        img: '/src/assets/pic/customized/material_pic1.jpg',  
+                        img: 'material_pic1.jpg',  
                         title: '棉布' 
                     },
                     { 
-                        img: '/src/assets/pic/customized/material_pic2.jpg', 
+                        img: 'material_pic2.jpg', 
                         title: '綢布' 
                     },
                     { 
-                        img: '/src/assets/pic/customized/material_pic3.jpg', 
+                        img: 'material_pic3.jpg', 
                         title: '宣紙' }
                     ],
                 selectedIndex : null,
 
+                // step 2
+
+
                 // step 3
                 smallPics: [
                     { 
-                        img: '/src/assets/pic/customized/finish.jpg'
+                        img: 'finish.jpg'
                     },
                     { 
-                        img: '/src/assets/pic/customized/finish2.jpg'
+                        img: 'finish2.jpg'
                     }
                 ],
                 bigPic: { 
-                    img: '/src/assets/pic/customized/finish.jpg'
+                    img: 'finish.jpg'
                 },
                 price: 999,
                 amount:1
@@ -227,6 +230,10 @@
             }
         },
         methods: {
+            parseIcon(file) {
+            // 指到src || ..的意思是“回到上一層”
+            return new URL(`../assets/pic/customized/${file}`, import.meta.url).href
+            },
             // step1 沒被選擇的變暗
             selectPic(index) {
                 this.selectedIndex = index;
