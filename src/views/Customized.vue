@@ -23,17 +23,15 @@
                     <h3>選擇喜歡的傘面材質</h3>
                 </div>
                 <div class="pics">
-                    <div class="pic">
-                        <img src="/src/assets/pic/customized/material_pic1.jpg" alt="">
-                        <h4>棉布</h4>
-                    </div>
-                    <div class="pic">
-                        <img src="/src/assets/pic/customized/material_pic2.jpg" alt="">
-                        <h4>綢布</h4>
-                    </div>
-                    <div class="pic">
-                        <img src="/src/assets/pic/customized/material_pic3.jpg" alt="">
-                        <h4>宣紙</h4>
+                    <div
+                    v-for="(pic, index) in pics"
+                    :key="index"
+                    :class="{'dark': selectedIndex !== null && selectedIndex !== index}"
+                    class="pic"
+                    @click="selectPic(index)"
+                    >
+                    <img :src="pic.img" />
+                    <h4>{{ pic.title }}</h4>
                     </div>
                 </div>
                 <div class="next-arrow" @click="currentStep++">
@@ -143,27 +141,26 @@
                 <div class="info">
                     <div class="pics">
                         <div class="smallpics">
-                            <div class="pic">
-                                <img src="/src/assets/pic/customized/finish.jpg" alt="">
-                            </div>
-                            <div class="pic">
-                                <img src="/src/assets/pic/customized/finish.jpg" alt="">
+                            <div class="pic" v-for="(pic, index) in smallPics" 
+                                :key="index" 
+                                @click="showBigPic(pic.img)">
+                                <img :src="pic.img" alt="">
                             </div>
                         </div>
                         <div class="bigpic">
-                            <img src="/src/assets/pic/customized/finish.jpg" alt="">
+                            <img :src="bigPic.img" alt="">
                         </div>
                     </div>    
                     <div class="txt">
                         <h3>特製手工油紙傘</h3>
                         <span class="tag">獨一無二</span>
-                            <span>NT$ 999</span>
-                            <span>合計$ 999</span>
+                            <span>NT$ {{price}}</span>
+                            <span>合計$ {{total}}</span>
                         <div class="amount">
                             <span>數量：</span>
-                            <button>-</button>
-                            <span>1</span>
-                            <button>+</button>
+                            <button @click="decrement()">-</button>
+                            <span>{{amount}}</span>
+                            <button @click="increment()" >+</button>
                         </div>
                         <div class="button">
                             <router-link to="/checkout_self-prod">
@@ -191,12 +188,66 @@
     export default{
         data() {
             return {
-                currentStep : 1
-                
+                currentStep : 1,
+                // step 1
+                pics: [
+                    {   
+                        img: '/src/assets/pic/customized/material_pic1.jpg',  
+                        title: '棉布' 
+                    },
+                    { 
+                        img: '/src/assets/pic/customized/material_pic2.jpg', 
+                        title: '綢布' 
+                    },
+                    { 
+                        img: '/src/assets/pic/customized/material_pic3.jpg', 
+                        title: '宣紙' }
+                    ],
+                selectedIndex : null,
+
+                // step 3
+                smallPics: [
+                    { 
+                        img: '/src/assets/pic/customized/finish.jpg'
+                    },
+                    { 
+                        img: '/src/assets/pic/customized/finish2.jpg'
+                    }
+                ],
+                bigPic: { 
+                    img: '/src/assets/pic/customized/finish.jpg'
+                },
+                price: 999,
+                amount:1
+                };
+        },
+        computed: {
+            total() {
+            return this.price * this.amount;
             }
         },
-        mounted() {
+        methods: {
+            // step1 沒被選擇的變暗
+            selectPic(index) {
+                this.selectedIndex = index;
+            },
 
-        },
+            // step3 ----
+            // 小圖變大圖
+            showBigPic(src) {
+                this.bigPic.img = src;
+            },
+            // 數量++
+            increment() {
+                this.amount++;
+            },
+            // 數量--
+            decrement() {
+                if (this.amount > 1) {
+                    this.amount--;
+                }
+            }
+
+        }
     }
 </script>
