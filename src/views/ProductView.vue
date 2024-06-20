@@ -7,7 +7,7 @@
     </section>
     <!-- 搜尋框和排序 -->
     <section class="search-section">
-        <select class="mb-select" @change="filterTag" >
+        <select class="mb-select" @change="filterTag">
             <option value="default">精緻手工油紙傘</option>
             <option value="圖案">圖案</option>
             <option value="素色">素色</option>
@@ -16,7 +16,7 @@
             <input @input="filterData" type="text" v-model="search" class="search-input" placeholder="搜尋商品名稱">
             <i class="fa-solid fa-x" @click="clear"></i>
         </div>
-        <select @change="sortData($event)">
+        <select class="price-select" @change="sortData($event)">
             <option value="default">請選擇排序方式</option>
             <option value="highToLow">價格由高至低</option>
             <option value="lowToHigh">價格由低至高</option>
@@ -31,7 +31,7 @@
                     <img src="@/assets/pic/product/shoppingbag.png" alt="精緻手工油紙傘">
                     精緻手工油紙傘
                 </div>
-                <div class="product-tag" data-value="圖案"  @click="filterTag($event)">
+                <div class="product-tag" data-value="圖案" @click="filterTag($event)">
                     圖案
                 </div>
                 <div class="product-tag" data-value="素色" @click="filterTag($event)">
@@ -122,7 +122,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 @import "@/assets/sass/style";
 
 // banner
@@ -162,25 +161,26 @@ export default {
     position: flex;
     flex-direction: column;
     gap: 10px;
+
     @include m(lg) {
         flex-direction: row;
         justify-content: flex-end;
         gap: 20px;
         width: 90%;
     }
-    
+
     .mb-select {
         @include m(lg) {
-                display: none;
-            }
+            display: none;
+        }
     }
 
     .search-area {
         position: relative;
-        
+
         @include m(lg) {
-        width: 25%;
-    }
+            width: 25%;
+        }
 
         .search-input {
             width: 100%;
@@ -211,7 +211,8 @@ export default {
         }
     }
 
-    select {
+    .price-select,
+    .mb-select {
         width: 100%;
         border-radius: 20px;
         border: 1px solid #564A41;
@@ -225,9 +226,10 @@ export default {
         &:focus {
             outline: 1px solid #564A41;
         }
+
         @include m(lg) {
-        width: 25%;
-    }
+            width: 25%;
+        }
 
     }
 }
@@ -247,14 +249,15 @@ export default {
 
         .product-menu {
             display: none;
+
             @include m(lg) {
                 width: 20%;
                 display: block;
             }
-            
+
 
             .product-title {
-                
+
                 color: #564A41;
                 cursor: pointer;
                 font-size: 20px;
@@ -263,7 +266,7 @@ export default {
                 >img {
                     vertical-align: text-bottom;
                 }
-                
+
             }
 
             .product-tag {
@@ -293,10 +296,11 @@ export default {
         .product-window {
             width: 90%;
             margin: 0 auto;
+
             @include m(lg) {
                 width: 80%;
             }
-            
+
 
             .display-window {
                 width: 100%;
@@ -304,18 +308,21 @@ export default {
                 gap: 25px;
                 flex-wrap: wrap;
                 justify-content: space-between;
+
                 @include m(lg) {
                     justify-content: flex-start;
                 }
-                
+
                 .product-card {
                     width: 100%;
+
                     @include m(md) {
                         width: 45%;
-                }
+                    }
+
                     @include m(lg) {
                         width: 30%;
-                }
+                    }
                 }
             }
         }
