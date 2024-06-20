@@ -269,6 +269,7 @@ header {
 
         @media (max-width: 996px) {
             display: block;
+
         }
 
         ul {
@@ -276,7 +277,7 @@ header {
             list-style: none;
             width: 50%;
             background-color: #B1241A;
-            z-index: 1;
+            z-index: 5;
             right: 0;
             height: 100vh;
 
