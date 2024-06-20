@@ -56,19 +56,19 @@
                 <div class="design-group">
                     <div class="customized-list">
                         <div class="item-list">
-                            <div class="item">
+                            <div class="item"  @click="showGroup('upload')">
                                 <div class="icon">
                                     <img src="/src/assets/pic/customized/customized-img.png" alt="">
                                 </div>
                                 <span>上傳圖片</span>
                             </div>
-                            <div class="item">
+                            <div class="item"  @click="showGroup('template')">
                                 <div class="icon">
                                     <img src="/src/assets/pic/customized/customized-template.png" alt="">
                                 </div>
                                 <span>範本</span>
                             </div>
-                            <div class="item" v-show="!showImg">
+                            <div class="item" v-show="!showImg" @click="showGroup('icon')">
                                 <div class="icon">
                                     <img src="/src/assets/pic/customized/customized-i-con.png" alt="">
                                 </div>
@@ -87,14 +87,11 @@
                                 <span>重置</span>
                             </div>
                         </div>
-                        <div class="img-group" v-show="showImg">
+                        <div class="img-group" v-if="currentGroup">
                             <div class="pics">
-                                <div class="pic">
-                                    <img src="/src/assets/pic/customized/Icon-1.png" alt="">
+                                <div class="pic" v-for="(pic, index) in getImageList(currentGroup)" :key="index">
+                                    <img :src="pic" alt="">
                                 </div>
-                                <div class="pic">
-                                    <img src="/src/assets/pic/customized/Icon-2.png" alt="">
-                                </div>  
                             </div>
                         </div>
                     </div>
@@ -206,7 +203,22 @@
                 selectedIndex : null,
 
                 // step 2
-
+                currentGroup: null,
+                showImg: false,
+                picArrays: {
+                    upload: [
+                        '/src/assets/pic/customized/Icon-1.png',
+                        '/src/assets/pic/customized/Icon-2.png'
+                    ],
+                    template: [
+                        '/src/assets/pic/customized/template-1.png',
+                        '/src/assets/pic/customized/template-2.png'
+                    ],
+                    icon: [
+                        '/src/assets/pic/customized/icon-1.png',
+                        '/src/assets/pic/customized/icon-2.png'
+                    ],
+                },
 
                 // step 3
                 smallPics: [
@@ -222,7 +234,7 @@
                 },
                 price: 999,
                 amount:1
-                };
+                }
         },
         computed: {
             total() {
@@ -234,9 +246,29 @@
             // 指到src || ..的意思是“回到上一層”
             return new URL(`../assets/pic/customized/${file}`, import.meta.url).href
             },
+
             // step1 沒被選擇的變暗
             selectPic(index) {
                 this.selectedIndex = index;
+            },
+
+            // step 2
+            showGroup(group) {
+                if (this.currentGroup === group) {
+                    // 如果重複點擊同一個 group，收起 img-group
+                    this.currentGroup = null;
+                } else {
+                    // 否則顯示相應的 img-group
+                    this.currentGroup = group;
+                    if (group === picArrays[0]) {
+                    this.showImg = true;
+                    } else {
+                    this.showImg = false;
+                    }
+                }
+            },
+            getImageList(group) {
+                return this.picArrays[group] || [];
             },
 
             // step3 ----
