@@ -73,11 +73,12 @@
       <div class="card-loc"><img src="@/assets/pic/activity/map.png" alt="">{{ activity.loc }}</div>
       <div class="card-price">{{ activity.price }}</div>
     </div>
-
   </section>
+
 </template>
 
 <script>
+
 
 export default {
   name: 'ActivityView',
@@ -88,7 +89,7 @@ export default {
       search: "",
       currentStatus: '全部',
       currentType: '全部',
-      showFilterPopup: false
+      showFilterPopup: false,
     };
   },
   mounted() {
@@ -277,9 +278,8 @@ export default {
     }
       }
     }
-
-
-
   }
 }
+
+
 </style>

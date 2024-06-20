@@ -216,7 +216,7 @@ export default {
     }
   }
 
-  ::v-deep .swiper-pagination-bullet {
+  :deep(.swiper-pagination-bullet) {
     width: 10px;
     height: 10px;
     display: inline-block;
@@ -225,7 +225,7 @@ export default {
     opacity: 1;
   }
 
-  ::v-deep .swiper-pagination-bullet-active {
+  :deep(.swiper-pagination-bullet-active) {
     width: 15px;
     height: 15px;
     background-color: #BE1A0E;
