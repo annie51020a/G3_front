@@ -222,7 +222,6 @@ export default {
 
             }
 
-            .product-rating {}
 
             .product-price {
                 font-family: noto sans tc;
@@ -250,11 +249,6 @@ export default {
                     height: 28px;
                     font-size: 14px;
                     text-align: center;
-
-                    &:hover {
-                        background-color: #B1241A;
-                        color: #fff;
-                    }
                 }
 
                 >span {
@@ -274,6 +268,7 @@ export default {
                     font-size: 20px;
                     color: #B1241A;
                     transition: 0.1s;
+                    cursor: pointer;
 
                     &:hover {
                         background-color: #B1241A;
@@ -306,6 +301,7 @@ export default {
                     font-size: 20px;
                     color: #B1241A;
                     transition: 0.1s;
+                    cursor: pointer;
 
                     &:hover {
                         background-color: #B1241A;
@@ -354,19 +350,23 @@ export default {
     }
 
     .other-product-window {
-        width: 100%;
         margin-bottom: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
 
         .display-window {
             display: flex;
+            width: auto;
+            margin: 0 auto;
             flex-wrap: wrap;
             justify-content: center;
             gap: 25px;
-
             @include m(lg) {
-                justify-content: space-evenly;
-                gap: 25px;
-            }
+                    flex-wrap: nowrap;
+                }
+
             .product-card {
                 width: 80%;
                 > img {
@@ -376,6 +376,9 @@ export default {
                     width: 45%;
                 }
                 @include m(lg) {
+                    width: 30%;
+                }
+                @include m(xl) {
                     width: 280px;
                 }
             }
