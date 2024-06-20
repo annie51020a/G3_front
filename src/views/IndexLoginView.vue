@@ -170,7 +170,7 @@ export default {
         }
     },
     mounted() {
-        fetch(`${import.meta.env.BASE_URL}/public/member.json`)
+        fetch(`${import.meta.env.BASE_URL}member.json`)
             .then(res => res.json())
             .then(json => {
                 console.log(json);
