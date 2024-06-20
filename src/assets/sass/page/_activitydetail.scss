@@ -3,10 +3,21 @@
     display: flex;
     justify-content: space-between;
     margin: auto;
+
+    @media (max-width: $md) {
+        flex-direction: column;
+      }
+
                    
     .activity-info {
         width: 45%;
         margin-top: 40px;
+
+        @media (max-width: $md) {
+            width: 95%;
+        margin: auto;
+        margin-top: 40px;
+        }
 
         >h5 {
             margin: 20px 0;
@@ -33,6 +44,12 @@
         gap: 20px;
         margin-top: 40px;
 
+        @media (max-width: $md) {
+            width: 100%;
+        margin: auto;
+        margin-top: 40px;
+        }
+
         h4,
         h5 {
             padding-left: 10px;
@@ -50,10 +67,6 @@
             justify-content: flex-start;
             gap: 40px;
 
-            @media (max-width: $md) {
-                flex-direction: column;
-                gap: 20px;
-              }
 
               >p{
                 @media (max-width: $md) {
@@ -74,11 +87,6 @@
                 gap: 40px;
                 padding-left: 10px;
                 margin-top: 20px;
-
-                @media (max-width: $sm) {
-                    flex-direction: column;
-                    gap: 10px;
-                  }
 
                 >button {
                     width: 50%;
@@ -106,27 +114,13 @@
         .num {
             display: flex;
             justify-content: space-between;
-
-            
-            @media (max-width: $md) {
-                flex-direction: column;
-              }
-
+            align-items: center;
 
             .amount-button {
                 display: flex;
                 justify-content: center;
                 gap: 15px;
 
-                @media (max-width: $md) {
-                    justify-content: flex-start;
-                    margin-top: 20px;
-                    padding-left: 10px;
-                }
-
-                @media (max-width: $sm) {
-                    gap: 10px;
-                  }
 
                 >button {
                     border-radius: 50%;
@@ -145,13 +139,10 @@
         .total-price {
             display: flex;
             justify-content: space-between;
+            align-items: center;
 
-            @media (max-width: $md) {
-                flex-direction: column;
-            }
 
             >p{
-                margin-top: 20px;
                 padding-left: 10px;
 
             }
