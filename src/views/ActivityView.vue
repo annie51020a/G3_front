@@ -9,16 +9,24 @@
     <div class="activity-category">
       <div class="register">
         <h4>報名</h4>
-        <button @click="filterByStatus('全部')"><p>全部</p></button>
-        <button @click="filterByStatus('進行中')"><p>進行中</p></button>
-        <button @click="filterByStatus('已結束')"><p>已結束</p></button>
+        <button @click="filterByStatus('全部')"
+         :class="{ 'default-status': currentStatus === '全部' }"><p>全部</p></button>
+        <button @click="filterByStatus('進行中')"
+        :class="{ 'default-status': currentStatus === '進行中' }"><p>進行中</p></button>
+        <button @click="filterByStatus('已結束')"
+        :class="{ 'default-status': currentStatus === '已結束' }"><p>已結束</p></button>
       </div>
       <div class="category">
         <h4>類型</h4>
-        <button @click="filterByType('全部')"><p>全部</p></button>
-        <button @click="filterByType('DIY 手作')"><p>DIY手作</p></button>
-        <button @click="filterByType('導覽預約')"><p>導覽預約</p></button>
-        <button @click="filterByType('文創市集')"><p>文創市集</p></button>
+        <button @click="filterByType('全部')"
+        :class="{ 'default-type': currentType === '全部' }">
+        <p>全部</p></button>
+        <button @click="filterByType('DIY 手作')"
+        :class="{ 'default-type': currentType === 'DIY 手作' }"><p>DIY 手作</p></button>
+        <button @click="filterByType('導覽預約')"
+        :class="{ 'default-type': currentType === '導覽預約' }"><p>導覽預約</p></button>
+        <button @click="filterByType('文創市集')"
+        :class="{ 'default-type': currentType === '文創市集' }"><p>文創市集</p></button>
       </div>
     </div>
     <div class="search-filter">
@@ -62,7 +70,7 @@
     <div class="activity-card" v-for="(activity, index) in filteredActivities" :key="index"
       @click="goToActivityDetail(activity.id)">
       <div class="card-pic">
-        <img :src="parseIcon(activity.pic)" alt="活動圖片">
+        <img :src="parseImg(activity.pic)" alt="活動圖片">
       </div>
       <div class="card-title">
         <h5>{{ activity.title }}</h5>
@@ -117,7 +125,7 @@ export default {
     }
   },
   methods: {
-    parseIcon(file) {
+    parseImg(file) {
             // 指到src || ..的意思是“回到上一層”
             return new URL(`../assets/pic/activity/${file}`, import.meta.url).href;
     },

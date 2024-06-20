@@ -82,12 +82,12 @@
 
                 >button {
                     width: 50%;
-                    background-color: #FFFBF6;
+                    border: rgba(177, 36, 26, 1) 1px solid;
+                    background-color: white;
                     font-size: 16px;
                     color: #564A41;
                     border-radius: $btnBR;
                     padding: 15px 0;
-                    border: 1px solid #A9A8A8;
                     cursor: pointer;
 
                     @media (max-width: $sm) {
@@ -130,7 +130,7 @@
 
                 >button {
                     border-radius: 50%;
-                    background-color: transparent;
+                    background-color: white;
                     cursor: pointer;
                     border: rgba(177, 36, 26, 1) 1px solid;
                     color: rgba(177, 36, 26, 1);

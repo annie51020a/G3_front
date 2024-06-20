@@ -46,43 +46,42 @@
 
         .register {
             display: flex;
-            gap: 5%;
+            gap:3%;
         }
 
         .category {
             display: flex;
-            gap: 5%;
+            gap: 3%;
             margin-top: 20px;
         }
 
+        .default-status,
+        .default-type{
+            width: 110px;
+            border: 1px solid #564A41;
+            border-radius: 20px;
+            background-color: white;
+            padding: 5px 0;
+            cursor: pointer;
+          }
 
         button {
             border: 0;
             background-color: #FFFBF6;
+            cursor: pointer;
 
             >p{
                 font-family: "Noto Serif HK", serif;
-            }
-
-            &:hover {
-                border: 1px solid #564A41;
-                border-radius: 20px;
-                background-color: white;
-                width: 15%;
-                cursor: pointer;
-
-                @media (max-width: $sm) {
-                    width: 18%;
-                  }
+                font-size: clamp(16px, 1.562vw, 18px);
             }
         }
     }
 
     .search-filter {
-        width: 35%;
+        width: 45%;
         display: flex;
         justify-content:flex-end;
-        gap: 5%;
+        gap: 10%;
         align-items: flex-end;
         position: relative;
 
@@ -93,45 +92,48 @@
           }
 
         .search-box {
+            width: 70%;
             position: relative;
+            display: flex;
+            align-items: center;
 
             >img {
-                width: 25px;
+                width: 28px;
                 position: absolute;
-                top: 5px;
                 left: 10px;
             }
 
             >input {
+                width: 100%;
                 border: 1px solid #564A41;
                 border-radius: 20px;
                 background-color: white;
-                padding: 10px 0px 10px 40px;
+                padding: 10px 0px 10px 50px;
             }
 
             >i{
                 width: 25px;
                 position: absolute;
-                top: 10px;
-                right: 2px;
+                right: 0px;
                 color:#564A41;
             }
 
         }
 
         >button {
+            width: 25%;
             cursor: pointer;
             border: 1px solid #564A41;
             border-radius: 30px;
             background-color: white;
-            padding: 5px 10px;
+            padding: 10px 10px;
             height: 35px;
             display: flex;
             align-items: center;
+            justify-content: center;
 
             >p{
                 display: flex;
-                flex-direction: row;
                 font-family: "Noto Serif HK", serif;
                 font-optical-sizing: auto;
                 font-style: normal;
