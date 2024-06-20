@@ -23,17 +23,15 @@
                     <h3>選擇喜歡的傘面材質</h3>
                 </div>
                 <div class="pics">
-                    <div class="pic">
-                        <img src="/src/assets/pic/customized/material_pic1.jpg" alt="">
-                        <h4>棉布</h4>
-                    </div>
-                    <div class="pic">
-                        <img src="/src/assets/pic/customized/material_pic2.jpg" alt="">
-                        <h4>綢布</h4>
-                    </div>
-                    <div class="pic">
-                        <img src="/src/assets/pic/customized/material_pic3.jpg" alt="">
-                        <h4>宣紙</h4>
+                    <div
+                    v-for="(pic, index) in pics"
+                    :key="index"
+                    :class="{'dark': selectedIndex !== null && selectedIndex !== index}"
+                    class="pic"
+                    @click="selectPic(index)"
+                    >
+                    <img :src="parseIcon(pic.img)" />
+                    <h4>{{ pic.title }}</h4>
                     </div>
                 </div>
                 <div class="next-arrow" @click="currentStep++">
@@ -58,19 +56,19 @@
                 <div class="design-group">
                     <div class="customized-list">
                         <div class="item-list">
-                            <div class="item">
+                            <div class="item"  @click="showGroup('upload')">
                                 <div class="icon">
                                     <img src="/src/assets/pic/customized/customized-img.png" alt="">
                                 </div>
                                 <span>上傳圖片</span>
                             </div>
-                            <div class="item">
+                            <div class="item"  @click="showGroup('template')">
                                 <div class="icon">
                                     <img src="/src/assets/pic/customized/customized-template.png" alt="">
                                 </div>
                                 <span>範本</span>
                             </div>
-                            <div class="item" v-show="!showImg">
+                            <div class="item" v-show="!showImg" @click="showGroup('icon')">
                                 <div class="icon">
                                     <img src="/src/assets/pic/customized/customized-i-con.png" alt="">
                                 </div>
@@ -89,14 +87,11 @@
                                 <span>重置</span>
                             </div>
                         </div>
-                        <div class="img-group" v-show="showImg">
+                        <div class="img-group" v-if="currentGroup">
                             <div class="pics">
-                                <div class="pic">
-                                    <img src="/src/assets/pic/customized/Icon-1.png" alt="">
+                                <div class="pic" v-for="(pic, index) in getImageList(currentGroup)" :key="index">
+                                    <img :src="pic" alt="">
                                 </div>
-                                <div class="pic">
-                                    <img src="/src/assets/pic/customized/Icon-2.png" alt="">
-                                </div>  
                             </div>
                         </div>
                     </div>
@@ -143,27 +138,26 @@
                 <div class="info">
                     <div class="pics">
                         <div class="smallpics">
-                            <div class="pic">
-                                <img src="/src/assets/pic/customized/finish.jpg" alt="">
-                            </div>
-                            <div class="pic">
-                                <img src="/src/assets/pic/customized/finish.jpg" alt="">
+                            <div class="pic" v-for="(pic, index) in smallPics" 
+                                :key="index" 
+                                @click="showBigPic(pic.img)">
+                                <img :src="parseIcon(pic.img)" alt="">
                             </div>
                         </div>
                         <div class="bigpic">
-                            <img src="/src/assets/pic/customized/finish.jpg" alt="">
+                            <img :src="parseIcon(bigPic.img)" alt="">
                         </div>
                     </div>    
                     <div class="txt">
                         <h3>特製手工油紙傘</h3>
                         <span class="tag">獨一無二</span>
-                            <span>NT$ 999</span>
-                            <span>合計$ 999</span>
+                            <span>NT$ {{price}}</span>
+                            <span>合計$ {{total}}</span>
                         <div class="amount">
                             <span>數量：</span>
-                            <button>-</button>
-                            <span>1</span>
-                            <button>+</button>
+                            <button @click="decrement()">-</button>
+                            <span>{{amount}}</span>
+                            <button @click="increment()" >+</button>
                         </div>
                         <div class="button">
                             <router-link to="/checkout_self-prod">
@@ -191,12 +185,108 @@
     export default{
         data() {
             return {
-                currentStep : 1
-                
+                currentStep : 1,
+                // step 1
+                pics: [
+                    {   
+                        img: 'material_pic1.jpg',  
+                        title: '棉布' 
+                    },
+                    { 
+                        img: 'material_pic2.jpg', 
+                        title: '綢布' 
+                    },
+                    { 
+                        img: 'material_pic3.jpg', 
+                        title: '宣紙' }
+                    ],
+                selectedIndex : null,
+
+                // step 2
+                currentGroup: null,
+                showImg: false,
+                picArrays: {
+                    upload: [
+                        '/src/assets/pic/customized/Icon-1.png',
+                        '/src/assets/pic/customized/Icon-2.png'
+                    ],
+                    template: [
+                        '/src/assets/pic/customized/template-1.png',
+                        '/src/assets/pic/customized/template-2.png'
+                    ],
+                    icon: [
+                        '/src/assets/pic/customized/icon-1.png',
+                        '/src/assets/pic/customized/icon-2.png'
+                    ],
+                },
+
+                // step 3
+                smallPics: [
+                    { 
+                        img: 'finish.jpg'
+                    },
+                    { 
+                        img: 'finish2.jpg'
+                    }
+                ],
+                bigPic: { 
+                    img: 'finish.jpg'
+                },
+                price: 999,
+                amount:1
+                }
+        },
+        computed: {
+            total() {
+            return this.price * this.amount;
             }
         },
-        mounted() {
+        methods: {
+            parseIcon(file) {
+            // 指到src || ..的意思是“回到上一層”
+            return new URL(`../assets/pic/customized/${file}`, import.meta.url).href
+            },
 
-        },
+            // step1 沒被選擇的變暗
+            selectPic(index) {
+                this.selectedIndex = index;
+            },
+
+            // step 2
+            showGroup(group) {
+                if (this.currentGroup === group) {
+                    // 如果重複點擊同一個 group，收起 img-group
+                    this.currentGroup = null;
+                } else {
+                    // 否則顯示相應的 img-group
+                    this.currentGroup = group;
+                    if (group === picArrays[0]) {
+                    this.showImg = true;
+                    } else {
+                    this.showImg = false;
+                    }
+                }
+            },
+            getImageList(group) {
+                return this.picArrays[group] || [];
+            },
+
+            // step3 ----
+            // 小圖變大圖
+            showBigPic(src) {
+                this.bigPic.img = src;
+            },
+            // 數量++
+            increment() {
+                this.amount++;
+            },
+            // 數量--
+            decrement() {
+                if (this.amount > 1) {
+                    this.amount--;
+                }
+            }
+
+        }
     }
 </script>
