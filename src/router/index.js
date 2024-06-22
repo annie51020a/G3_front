@@ -114,7 +114,7 @@ const router = createRouter({
       path: '/checkout_self-prod',
       name: 'checkout_self-prod',
       component: () => import('@/views/CheckOut-self-prod.vue')
-    }
+    },
   ],
   scrollBehavior(to, from, savedPosition) {
     // return 期望滚动到哪个的位置

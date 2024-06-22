@@ -518,10 +518,20 @@ export default {
                         >h3 {
                             color: #515a6e;
                             margin: 5%;
+
+                            @media (max-width: 576px) {
+                                font-size: 20px;
+                                margin: 0 auto;
+                            }
                         }
 
                         >p {
                             color: #ff4d00;
+
+                            @media (max-width: 576px) {
+                                font-size: 12px;
+                                margin: 3% auto 0 auto;
+                            }
                         }
 
                         >button {
@@ -533,6 +543,7 @@ export default {
                             height: 50px;
                             margin: 5% auto;
                             border: none;
+                            cursor: pointer;
 
                             &:hover {
                                 background-color: white;
@@ -589,6 +600,10 @@ export default {
 
                 h4 {
                     color: #847164;
+
+                    @media (max-width: 576px) {
+                        font-size: 16px;
+                    }
                 }
 
                 .quiz-answer {
@@ -596,6 +611,11 @@ export default {
                     display: flex;
                     justify-content: center;
                     margin: auto;
+
+                    @media (max-width: 576px) {
+                        margin: -5% auto 0 auto;
+                    }
+
 
                     .question-option {
                         width: 100px;
@@ -610,6 +630,12 @@ export default {
                         align-items: end;
                         text-align: center;
                         rotate: 14deg;
+                        cursor: pointer;
+
+                        @media (max-width: 576px) {
+                            width: 150px;
+                            margin: 10% 1%;
+                        }
 
                         >p {
                             font-size: 16px;
@@ -646,6 +672,10 @@ export default {
             left: 18%;
             z-index: 6;
 
+            @media (max-width: 576px) {
+                height: 90%;
+            }
+
             .result-box {
                 width: 90%;
                 height: 90%;
@@ -655,6 +685,10 @@ export default {
                 margin: auto;
                 background-color: white;
 
+                @media (max-width: 576px) {
+                    justify-content: center;
+                }
+
                 .next-question {
                     background-color: #be1a0e;
                     width: 140px;
@@ -662,10 +696,21 @@ export default {
                     margin: 5% auto;
                     border: none;
                     border-radius: 20px;
+                    cursor: pointer;
+
+                    @media (max-width: 576px) {
+                        width: 100px;
+                        height: 30px;
+                        margin: 5% auto 5% auto;
+                    }
 
                     >p {
                         font-size: 20px;
                         color: white;
+
+                        @media (max-width: 576px) {
+                            font-size: 16px;
+                        }
                     }
 
                     &:hover {
@@ -689,17 +734,36 @@ export default {
 
                     >h3 {
                         color: #515A6E;
+
+                        @media (max-width: 576px) {
+                            font-size: 20px;
+                        }
                     }
 
                     >img {
                         width: 15%;
+
+                        @media (max-width: 576px) {
+                            width: 5%;
+                        }
                     }
                 }
 
                 .result-explain {
                     width: 60%;
                     color: #FF4D00;
-                    margin: 1% auto;
+                    margin: auto;
+                    line-height: 1.5rem;
+
+                    @media (max-width: 576px) {
+                        display: none;
+                    }
+
+                    @media (min-width: 577px) and (max-width: 996px) {
+                        font-size: 12px;
+                        line-height: 1rem;
+                        width: 90%;
+                    }
                 }
             }
         }
@@ -717,6 +781,12 @@ export default {
             top: 10%;
             left: 18%;
             z-index: 8;
+
+            @media (max-width: 576px) {
+                width: 75vw;
+                height: 90%;
+                left: 12%;
+            }
 
             .discount-box {
                 display: none;
@@ -747,11 +817,17 @@ export default {
 
                     >h3 {
                         color: #515A6E;
+
+                        @media (max-width: 576px) {
+                            font-size: 20px;
+                            margin: auto;
+                        }
                     }
                 }
 
                 .button-box {
                     display: flex;
+
                     .link-to-product {
                         background-color: #be1a0e;
                         width: 140px;
@@ -762,10 +838,21 @@ export default {
                         display: flex;
                         align-items: center;
                         justify-content: center;
+
+                        @media (max-width: 576px) {
+                            width: 100px;
+                            height: 30px;
+                            margin:0 auto 2% auto;
+                        }
+
                         >p {
                             font-size: 20px;
                             color: white;
                             text-align: center;
+
+                            @media (max-width: 576px) {
+                                font-size: 16px;
+                            }
                         }
 
                         &:hover {
@@ -776,6 +863,10 @@ export default {
 
                             >p {
                                 color: #be1a0e;
+
+                                @media (max-width: 576px) {
+                                    font-size: 16px;
+                                }
                             }
                         }
                     }
@@ -787,10 +878,21 @@ export default {
                         margin: 5% auto;
                         border: none;
                         border-radius: 20px;
+                        cursor: pointer;
+
+                        @media (max-width: 576px) {
+                            width: 100px;
+                            height: 30px;
+                            margin:0 auto 2% auto;
+                        }
 
                         >p {
                             font-size: 20px;
                             color: white;
+
+                            @media (max-width: 576px) {
+                                font-size: 16px;
+                            }
                         }
 
                         &:hover {
@@ -823,6 +925,12 @@ export default {
             left: 18%;
             z-index: 6;
 
+            @media (max-width: 576px) {
+                width: 75vw;
+                height: 80%;
+                left: 12%;
+            }
+
             .failed-box {
                 width: 90%;
                 height: 90%;
@@ -842,6 +950,11 @@ export default {
                     >h3 {
                         color: #515A6E;
                         margin-bottom: 50px;
+
+                        @media (max-width: 576px) {
+                            font-size: 20px;
+                            margin: auto;
+                        }
                     }
                 }
 
@@ -853,9 +966,19 @@ export default {
                     border: none;
                     border-radius: 20px;
 
+                    @media (max-width: 576px) {
+                        width: 100px;
+                        height: 30px;
+                        margin: auto;
+                    }
+
                     >p {
                         font-size: 20px;
                         color: white;
+
+                        @media (max-width: 576px) {
+                            font-size: 16px;
+                        }
                     }
 
                     &:hover {
@@ -976,6 +1099,10 @@ export default {
             margin: 0 0 0 25%;
             position: relative;
             transition: 2s;
+
+            @media (max-width: 576px) {
+                margin-top: 2%;
+            }
 
             >img {
                 position: absolute;
