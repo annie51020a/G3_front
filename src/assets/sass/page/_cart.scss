@@ -34,18 +34,19 @@
         }
 
         .delete-all {
-            display: flex;
-            align-items: center;
-
             button {
+                display: flex;
+                align-items: center;
                 background-color: transparent;
                 border: none;
                 cursor: pointer;
+
+                h5 {
+                    padding: 0 5px;
+                }
             }
 
-            h5 {
-                padding: 0 5px;
-            }
+
         }
     }
 
