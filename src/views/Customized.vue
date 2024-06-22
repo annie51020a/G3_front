@@ -1,4 +1,4 @@
-<template>
+<template >
     <section class="section-customized">
         <div class="customized-bgc-l">
                     <img src="/src/assets/pic/customized/customized-bgc-l.png" alt="">
@@ -44,7 +44,7 @@
         </div>
 
         <!-- 客製化 step 2 -->
-        <div class="container-customized-step2"  v-show="currentStep === 3">
+        <div class="container-customized-step2" v-show="currentStep === 3">
             <div class="container-box">
                 <div class="title">
                     <div class="circle">
@@ -68,7 +68,7 @@
                                 </div>
                                 <span>範本</span>
                             </div>
-                            <div class="item" v-show="!showImg" @click="showGroup('icon')">
+                            <div class="item"  @click="showGroup('icon')">
                                 <div class="icon">
                                     <img src="/src/assets/pic/customized/customized-i-con.png" alt="">
                                 </div>
@@ -87,23 +87,38 @@
                                 <span>重置</span>
                             </div>
                         </div>
-                        <div class="img-group" v-if="currentGroup">
+                        <div class="img-group" v-if="currentGroup === 'upload' || currentGroup === 'template' || currentGroup === 'icon'">
                             <div class="pics">
-                                <div class="pic" v-for="(pic, index) in getImageList(currentGroup)" :key="index">
-                                    <img :src="pic" alt="">
+                                <div class="pic" v-for="(pic, index) in getImageList(currentGroup)" :key="index" @click="selectImage(pic)">
+                                    <img :src="pic" :alt="'pic' + index">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="design">
-                        <div class="pic">
-                            <img src="/src/assets/pic/customized/design.png" alt="">
+                        <div class="design-canvas" ref="designCanvas">
+                            <div
+                            class="design-item"
+                            v-for="(item, index) in designItems"
+                            :key="index"
+                            :style="{ top: item.top + 'px', left: item.left + 'px', transform: 'scale(' + item.scale + ')', zIndex: item.zIndex }"
+                            @mousedown="selectItem(index, $event)"
+                            @mouseup="releaseItem(index)"
+                            @mousemove="moveItem($event, index)"
+                            @dblclick="removeItem(index)"
+                            >
+                                <img :src="item.src" alt="" style="width: 100%; height: 100%;">
+                            </div>
                         </div>
+                        <!-- <div class="pic">
+                            <img src="/src/assets/pic/customized/design.png" alt="">
+                        </div> -->
                     </div>
                     <div class="preview-item">
                         <div class="preview">
                             <h5>效果預覽</h5>
                             <div class="pic">
+                                <img :src="selectedImage" v-if="selectedImage">
                                 <img src="/src/assets/pic/customized/Preview.png" alt="">
                             </div>
                         </div>
@@ -155,9 +170,9 @@
                             <span>合計$ {{total}}</span>
                         <div class="amount">
                             <span>數量：</span>
-                            <button @click="decrement()">-</button>
+                            <button @click="decrement()"><i class="fa-solid fa-minus"></i></button>
                             <span>{{amount}}</span>
-                            <button @click="increment()" >+</button>
+                            <button @click="increment()"><i class="fa-solid fa-plus"></i></button>
                         </div>
                         <div class="button">
                             <router-link to="/checkout_self-prod">
@@ -203,20 +218,24 @@
                 selectedIndex : null,
 
                 // step 2
+                designItems: [], // 存放设计框中的图标对象 { src, top, left, scale, zIndex }
+                selectedImage: null,
+
                 currentGroup: null,
                 showImg: false,
                 picArrays: {
                     upload: [
                         '/src/assets/pic/customized/Icon-1.png',
-                        '/src/assets/pic/customized/Icon-2.png'
+                        '/src/assets/pic/customized/Icon-1.png'
                     ],
                     template: [
-                        '/src/assets/pic/customized/template-1.png',
-                        '/src/assets/pic/customized/template-2.png'
+                        '/src/assets/pic/customized/icon-2.png',
+                        '/src/assets/pic/customized/icon-3.png',
                     ],
                     icon: [
                         '/src/assets/pic/customized/icon-1.png',
-                        '/src/assets/pic/customized/icon-2.png'
+                        '/src/assets/pic/customized/icon-2.png',
+                        '/src/assets/pic/customized/icon-3.png',
                     ],
                 },
 
@@ -254,17 +273,77 @@
 
             // step 2
             showGroup(group) {
-                if (this.currentGroup === group) {
-                    // 如果重複點擊同一個 group，收起 img-group
-                    this.currentGroup = null;
-                } else {
-                    // 否則顯示相應的 img-group
-                    this.currentGroup = group;
-                    if (group === picArrays[0]) {
-                    this.showImg = true;
-                    } else {
-                    this.showImg = false;
+                this.currentGroup = group;
+            },
+            getImageList(group) {
+                return this.picArrays[group] || [];
+            },
+            selectImage(image) {
+            // 點圖案，加入到設計框中
+                const newItem = {
+                    src: image,
+                    top: 100, // 初始位置
+                    left: 100, // 初始位置
+                    scale: 1, // 初始缩放比例
+                    zIndex: this.designItems.length + 1 // 層級設定
+                };
+                this.designItems.push(newItem);
+                // 設置預覽圖案
+                this.selectedImage = image; // 
+            },
+            saveDesignToLocalStorage() {
+                // 將完成圖保存到 Local Storage
+                localStorage.setItem('design', JSON.stringify(this.designItems));
+                // 也可以保存其他相關資訊
+            },
+            selectItem(index, event) {
+            // 選擇設計框中的圖標，並準備移動
+            this.selectedItemId = index;
+            const selectedItem = this.designItems[index];
+                if (selectedItem) {
+                    this.initialMouseX = event.clientX;
+                    this.initialMouseY = event.clientY;
+                    this.initialItemLeft = selectedItem.left;
+                    this.initialItemTop = selectedItem.top;
+                    // 置頂選取中的圖案
+                    selectedItem.zIndex = this.designItems.length; 
+                }
+            },
+            releaseItem() {
+                // 釋放選擇
+                this.selectedItemId = null;
+            },
+            moveItem(event, index) {
+                // 移動圖標
+                if (this.selectedItemId !== null) {
+                    const selectedItem = this.designItems[index];
+                    if (selectedItem) {
+                    const deltaX = event.clientX - this.initialMouseX;
+                    const deltaY = event.clientY - this.initialMouseY;
+                    selectedItem.left = this.initialItemLeft + deltaX;
+                    selectedItem.top = this.initialItemTop + deltaY;
                     }
+                }
+            },
+            removeItem(index) {
+                // 雙擊移除圖案
+                this.designItems.splice(index, 1);
+                // 移除預覽圖案
+                this.selectedImage = null; 
+            },
+
+
+            showGroup(group) {
+                if (this.currentGroup === group) {
+                this.currentGroup = null;
+                } else {
+                this.currentGroup = group;
+                }
+            },
+            handleOutsideClick(event) {
+                // 判斷點擊事件是否發生在 .customized-list 
+                if (!this.$el.contains(event.target)) {
+                    this.currentGroup = null;
                 }
             },
             getImageList(group) {
@@ -287,6 +366,10 @@
                 }
             }
 
-        }
+        },
+        mounted() {
+            // 监听点击事件，点击其他区域时收起 img-group
+            document.addEventListener('click', this.handleClickOutside);
+        },
     }
 </script>
