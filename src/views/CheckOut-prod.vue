@@ -248,6 +248,7 @@ export default {
 </script>
 <style scoped lang="scss">
 @import "@/assets/sass/style";
+
 .go-back {
     width: 90%;
     margin: 20px auto;
@@ -496,11 +497,12 @@ export default {
                     flex-basis: 20%;
                     margin: auto 0;
                 }
-                input {
-                        height: 20px;
-                        flex-basis: 0;
 
-                    }
+                input {
+                    height: 20px;
+                    flex-basis: 0;
+
+                }
 
                 .invoicing-cb {
                     width: 13px;
@@ -720,45 +722,173 @@ export default {
 
 }
 
-@media screen and (min-width: $lg) and (max-width: $xl){
+@media screen and (min-width: $md) and (max-width: $xl) {
     .checkout-container {
-    width: 60%;
-    margin: 50px auto;
+        width: 60%;
+        margin: 50px auto;
 
-    .confirm-info {
-        border: 1px solid #828282;
-        background: #ffffff;
-        border-radius: 20px;
-        height: 240px;
+        .confirm-info {
+            border: 1px solid #828282;
+            background: #ffffff;
+            border-radius: 20px;
+            height: 240px;
 
-        .confirm-title {
-            height: 48px;
-            padding-left: 20px;
-            display: flex;
-            align-items: center;
+            .confirm-title {
+                height: 48px;
+                padding-left: 20px;
+                display: flex;
+                align-items: center;
 
-            button {
-                background-color: transparent;
-                border: none;
+                button {
+                    background-color: transparent;
+                    border: none;
+                }
+            }
+
+            .disc-line {
+                height: 1px;
+                background-color: #828282;
+            }
+
+            .ord-info {
+                height: 80%;
+                display: flex;
+                align-items: center;
+                padding-left: 20px;
+
+                form {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 25px;
+                    width: 100%;
+
+                    .form-group {
+                        display: flex;
+                        align-items: flex-start;
+                        margin: auto 0;
+
+                        label {
+                            flex-basis: 25%;
+                            margin: auto 0;
+                            font-size: 14px;
+                        }
+
+                        input {
+                            height: 20px;
+                            flex-basis: 25%;
+                        }
+                    }
+                }
             }
         }
 
-        .disc-line {
-            height: 1px;
-            background-color: #828282;
-        }
+        .confirm-ord {
+            border: 1px solid #828282;
+            background: #ffffff;
+            border-radius: 20px;
+            margin: 40px 0;
+            height: 945px;
 
-        .ord-info {
-            height: 80%;
-            display: flex;
-            align-items: center;
-            padding-left: 20px;
+            .confirm-ord-title {
+                height: 48px; //高的問題要解決
+                padding-left: 20px;
+                display: flex;
+                align-items: center;
+            }
+
+            .disc-line {
+                height: 1px;
+                background-color: #828282;
+            }
+
+            .prod-info {
+                display: flex;
+                padding-left: 20px;
+                height: 30%;
+
+                button {
+                    background-color: transparent;
+                    border: none;
+                }
+
+                .prod-img {
+                    height: auto;
+                    width: 20%;
+                    object-fit: cover;
+                    border-radius: 20px;
+                    margin: auto 10px auto 0;
+
+                }
+
+                .prod-spec {
+                    display: flex;
+                    margin: auto 0;
+                    width: 80%;
+                    justify-content: space-between;
+
+                    .prod-card {
+                        h5 {
+                            padding-bottom: 10px;
+                        }
+
+                        span {
+                            line-height: 150%;
+                            font-size: 14px;
+                        }
+
+                        .mention {
+                            font-size: 12px;
+                            padding-top: 50px;
+                        }
+
+                    }
+
+                    .prod-count {
+                        margin: auto;
+                    }
+
+                    .prod-sum {
+                        margin: auto;
+                    }
+
+                }
+            }
+
+            .receiver-info {
+                display: flex;
+                margin: 20px 0;
+                padding-left: 30px;
+                align-items: center;
+
+                .receiver {
+                    position: relative;
+                    margin-right: 80px;
+
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        height: 18px;
+                        width: 2px;
+                        background-color: rgba(190, 26, 14, 1);
+                        left: -10px;
+                        bottom: 0;
+                        top: 0;
+                    }
+                }
+
+                input {
+                    margin: 0 10px 0 0;
+                }
+
+            }
 
             form {
                 display: flex;
                 flex-direction: column;
+                margin-top: 40px;
                 gap: 25px;
                 width: 100%;
+                padding-left: 20px;
 
                 .form-group {
                     display: flex;
@@ -774,93 +904,40 @@ export default {
                     input {
                         height: 20px;
                         flex-basis: 25%;
-                    }
-                }
-            }
-        }
-    }
-
-    .confirm-ord {
-        border: 1px solid #828282;
-        background: #ffffff;
-        border-radius: 20px;
-        margin: 40px 0;
-        height: 945px;
-
-        .confirm-ord-title {
-            height: 48px; //高的問題要解決
-            padding-left: 20px;
-            display: flex;
-            align-items: center;
-        }
-
-        .disc-line {
-            height: 1px;
-            background-color: #828282;
-        }
-
-        .prod-info {
-            display: flex;
-            padding-left: 20px;
-            height: 30%;
-
-            button {
-                background-color: transparent;
-                border: none;
-            }
-
-            .prod-img {
-                height: auto;
-                width: 20%;
-                object-fit: cover;
-                border-radius: 20px;
-                margin: auto 10px auto 0;
-
-            }
-
-            .prod-spec {
-                display: flex;
-                margin: auto 0;
-                width: 80%;
-                justify-content: space-between;
-
-                .prod-card {
-                    h5 {
-                        padding-bottom: 10px;
-                    }
-
-                    span {
-                        line-height: 150%;
                         font-size: 14px;
                     }
 
-                    .mention {
-                        font-size: 12px;
-                        padding-top: 50px;
+                    select {
+                        height: 26px;
+                        flex-basis: 10%;
+                        margin-right: 10px;
+                        background-color: rgba(249, 241, 229, 1);
                     }
 
-                }
+                    .large-textarea {
+                        height: 80px;
+                        flex-basis: 25%;
+                        resize: vertical;
+                        /* 允許垂直調整大小 */
 
-                .prod-count {
-                    margin: auto;
-                }
+                    }
 
-                .prod-sum {
-                    margin: auto;
+
                 }
 
             }
-        }
 
-        .receiver-info {
-            display: flex;
-            margin: 20px 0;
-            padding-left: 30px;
-            align-items: center;
+            .disc-line-form {
+                margin-top: 20px;
+                height: 1px;
+                background-color: #828282;
+            }
 
-            .receiver {
+            .invoicing-title {
+                display: flex;
+                margin: 20px 0;
+                padding-left: 30px;
                 position: relative;
-                margin-right: 80px;
 
                 &::before {
                     content: "";
@@ -868,167 +945,24 @@ export default {
                     height: 18px;
                     width: 2px;
                     background-color: rgba(190, 26, 14, 1);
-                    left: -10px;
+                    left: 20px;
                     bottom: 0;
                     top: 0;
                 }
             }
 
-            input {
-                margin: 0 10px 0 0;
-            }
-
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            margin-top: 40px;
-            gap: 25px;
-            width: 100%;
-            padding-left: 20px;
-
-            .form-group {
-                display: flex;
-                align-items: flex-start;
-                margin: auto 0;
-
-                label {
-                    flex-basis: 25%;
-                    margin: auto 0;
-                    font-size: 14px;
-                }
-
-                input {
-                    height: 20px;
-                    flex-basis: 25%;
-                    font-size: 14px;
-                }
-
-                select {
-                    height: 26px;
-                    flex-basis: 10%;
-                    margin-right: 10px;
-                    background-color: rgba(249, 241, 229, 1);
-                }
-
-                .large-textarea {
-                    height: 80px;
-                    flex-basis: 25%;
-                    resize: vertical;
-                    /* 允許垂直調整大小 */
-
-                }
-
-
-            }
-
-        }
-
-        .disc-line-form {
-            margin-top: 20px;
-            height: 1px;
-            background-color: #828282;
-        }
-
-        .invoicing-title {
-            display: flex;
-            margin: 20px 0;
-            padding-left: 30px;
-            position: relative;
-
-            &::before {
-                content: "";
-                position: absolute;
-                height: 18px;
-                width: 2px;
-                background-color: rgba(190, 26, 14, 1);
-                left: 20px;
-                bottom: 0;
-                top: 0;
-            }
-        }
-
-        .invoicing-form {
-            display: flex;
-            flex-direction: column;
-            margin-top: 40px;
-            gap: 25px;
-            width: 100%;
-            padding-left: 20px;
-
-            .form-group {
-                display: flex;
-                align-items: flex-start;
-                margin: auto 0;
-
-                label {
-                    flex-basis: 25%;
-                    margin: auto 0;
-                    font-size: 14px;
-                }
-                input {
-                        height: 20px;
-                        flex-basis: 0;
-
-                    }
-
-                .invoicing-cb {
-                    width: 13px;
-                    height: 13px;
-                    margin: auto 10px auto 30px;
-                }
-
-                span {
-                    display: inline-block;
-                    margin: auto 0;
-                    font-size: 14px;
-                }
-            }
-        }
-
-    }
-
-    .pay-way {
-        border: 1px solid #828282;
-        background: #ffffff;
-        border-radius: 20px;
-        height: 290px;
-
-        .payment-title {
-            height: 48px;
-            padding-left: 20px;
-            display: flex;
-            align-items: center;
-        }
-
-        .disc-line {
-            height: 1px;
-            background-color: #828282;
-        }
-
-        .payment-info {
-            height: 82%;
-            display: flex;
-            align-items: center;
-            padding-left: 20px;
-
-            form {
+            .invoicing-form {
                 display: flex;
                 flex-direction: column;
+                margin-top: 40px;
                 gap: 25px;
                 width: 100%;
-                margin: auto 0;
+                padding-left: 20px;
 
                 .form-group {
                     display: flex;
                     align-items: flex-start;
                     margin: auto 0;
-
-                    input[type="radio"] {
-                        margin-right: 10px;
-                        accent-color: #be1a0e;
-                    }
 
                     label {
                         flex-basis: 25%;
@@ -1036,191 +970,381 @@ export default {
                         font-size: 14px;
                     }
 
-                    .card-input {
-                        display: flex;
-                        width: 30px;
-                        flex-basis: 10%;
+                    input {
+                        height: 20px;
+                        flex-basis: 0;
+
+                    }
+
+                    .invoicing-cb {
+                        width: 13px;
+                        height: 13px;
+                        margin: auto 10px auto 30px;
                     }
 
                     span {
                         display: inline-block;
-                        padding: 0 3px;
                         margin: auto 0;
-                    }
-
-                    input[type="text"] {
-                        height: 20px;
                         font-size: 14px;
                     }
+                }
+            }
 
-                    #expiry-date-mm {
+        }
+
+        .pay-way {
+            border: 1px solid #828282;
+            background: #ffffff;
+            border-radius: 20px;
+            height: 290px;
+
+            .payment-title {
+                height: 48px;
+                padding-left: 20px;
+                display: flex;
+                align-items: center;
+            }
+
+            .disc-line {
+                height: 1px;
+                background-color: #828282;
+            }
+
+            .payment-info {
+                height: 82%;
+                display: flex;
+                align-items: center;
+                padding-left: 20px;
+
+                form {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 25px;
+                    width: 100%;
+                    margin: auto 0;
+
+                    .form-group {
                         display: flex;
-                        width: 30px;
-                        flex-basis: 10%;
-                    }
+                        align-items: flex-start;
+                        margin: auto 0;
 
-                    #expiry-date-yy {
-                        display: flex;
-                        width: 30px;
-                        flex-basis: 10%;
-                        
-                    }
-
-                    #cvc {
-                        margin-left: 14px;
-                        width: 50px;
-                        flex-basis: 20%;
-                        
-                    }
-
-                    .save-card-use {
-                        display: flex;
-                        align-items: center;
-
-                        input {
-                            margin: 0px;
+                        input[type="radio"] {
+                            margin-right: 10px;
+                            accent-color: #be1a0e;
                         }
 
                         label {
-                            flex-basis: 100%;
-                            padding-left: 10px;
-                        }
-                    }
-
-                    .switch {
-                        appearance: none;
-                        width: 40px;
-                        height: 20px;
-                        background: #ddd;
-                        border-radius: 10px;
-                        position: relative;
-                        cursor: pointer;
-                        outline: none;
-                        transition: background 0.3s;
-
-                        &:checked {
-                            background: #4caf50;
+                            flex-basis: 25%;
+                            margin: auto 0;
+                            font-size: 14px;
                         }
 
-                        &::before {
-                            content: '';
-                            position: absolute;
-                            width: 18px;
-                            height: 18px;
-                            background: #fff;
-                            border-radius: 50%;
-                            top: 1px;
-                            left: 1px;
-                            transition: transform 0.3s;
+                        .card-input {
+                            display: flex;
+                            width: 30px;
+                            flex-basis: 10%;
                         }
 
-                        &:checked::before {
-                            transform: translateX(20px);
+                        span {
+                            display: inline-block;
+                            padding: 0 3px;
+                            margin: auto 0;
                         }
-                    }
 
-                    .switch-alert {
-                        color: #be1a0e;
-                        font-size: 12px;
-                        padding-left: 20px;
+                        input[type="text"] {
+                            height: 20px;
+                            font-size: 14px;
+                        }
+
+                        #expiry-date-mm {
+                            display: flex;
+                            width: 30px;
+                            flex-basis: 10%;
+                        }
+
+                        #expiry-date-yy {
+                            display: flex;
+                            width: 30px;
+                            flex-basis: 10%;
+
+                        }
+
+                        #cvc {
+                            margin-left: 14px;
+                            width: 50px;
+                            flex-basis: 20%;
+
+                        }
+
+                        .save-card-use {
+                            display: flex;
+                            align-items: center;
+
+                            input {
+                                margin: 0px;
+                            }
+
+                            label {
+                                flex-basis: 100%;
+                                padding-left: 10px;
+                            }
+                        }
+
+                        .switch {
+                            appearance: none;
+                            width: 40px;
+                            height: 20px;
+                            background: #ddd;
+                            border-radius: 10px;
+                            position: relative;
+                            cursor: pointer;
+                            outline: none;
+                            transition: background 0.3s;
+
+                            &:checked {
+                                background: #4caf50;
+                            }
+
+                            &::before {
+                                content: '';
+                                position: absolute;
+                                width: 18px;
+                                height: 18px;
+                                background: #fff;
+                                border-radius: 50%;
+                                top: 1px;
+                                left: 1px;
+                                transition: transform 0.3s;
+                            }
+
+                            &:checked::before {
+                                transform: translateX(20px);
+                            }
+                        }
+
+                        .switch-alert {
+                            color: #be1a0e;
+                            font-size: 12px;
+                            padding-left: 20px;
+                        }
                     }
                 }
             }
         }
-    }
 
-    .invoice {
-        border: 1px solid #828282;
-        background: #ffffff;
-        border-radius: 20px;
-        height: 240px;
-        margin: 40px 0;
-
-        .invoice-item {
-            margin: auto 10px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 50px 0;
-
-
-            .item-description,
-            .item-discount,
-            .item-multiplier {
-                text-align: center;
-            }
-
-            .item-description p,
-            .item-discount p,
-            .item-multiplier p {
-                margin: 5px 0;
-            }
-
-        }
-
-        .disc-line {
-            height: 1px;
-            background-color: #828282;
-        }
-
-        .invoice-total {
-            margin: auto 40px;
-            text-align: right;
-            padding: 20px 0;
-            font-weight: 600;
-        }
-
-    }
-
-    .confirm-checkout {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 80px 0;
-
-        button {
-            background-color: transparent;
-            border: none;
-            background: #be1a0e;
+        .invoice {
+            border: 1px solid #828282;
+            background: #ffffff;
             border-radius: 20px;
-            width: 130px;
-            height: 50px;
-            color: #ffffff;
-            font-size: 16px;
-            cursor: pointer;
+            height: 240px;
+            margin: 40px 0;
+
+            .invoice-item {
+                margin: auto 10px;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                padding: 50px 0;
+
+
+                .item-description,
+                .item-discount,
+                .item-multiplier {
+                    text-align: center;
+                }
+
+                .item-description p,
+                .item-discount p,
+                .item-multiplier p {
+                    margin: 5px 0;
+                }
+
+            }
+
+            .disc-line {
+                height: 1px;
+                background-color: #828282;
+            }
+
+            .invoice-total {
+                margin: auto 40px;
+                text-align: right;
+                padding: 20px 0;
+                font-weight: 600;
+            }
+
         }
+
+        .confirm-checkout {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 80px 0;
+
+            button {
+                background-color: transparent;
+                border: none;
+                background: #be1a0e;
+                border-radius: 20px;
+                width: 130px;
+                height: 50px;
+                color: #ffffff;
+                font-size: 16px;
+                cursor: pointer;
+            }
+        }
+
+
+
+
     }
-
-
-
-
-} 
 }
 
-@media screen and (max-width: $lg){
+@media screen and (max-width: $md) {
     .checkout-container {
-    width: 80%;
-    margin: 50px auto;
+        width: 90%;
 
-    .confirm-info {
-        border-radius: 10px;
-        height: 240px;
+        .confirm-info {
+            border-radius: 10px;
+            height: 240px;
 
-        .confirm-title {
-            height: 48px;
-font-size: 15px;
+            .confirm-title {
+                height: 48px;
+                font-size: 15px;
+            }
+
+            .ord-info {
+                height: 80%;
+                display: flex;
+                align-items: center;
+                padding-left: 20px;
+
+                form {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 25px;
+                    width: 100%;
+
+                    .form-group {
+                        display: flex;
+                        align-items: flex-start;
+                        margin: auto 0;
+
+                        label {
+                            flex-basis: 25%;
+                            margin: auto 0;
+                            font-size: 14px;
+                        }
+
+                        input {
+                            height: 20px;
+                            flex-basis: 20%;
+                        }
+                    }
+                }
+            }
         }
 
-        .ord-info {
-            height: 80%;
-            display: flex;
-            align-items: center;
-            padding-left: 20px;
+        .confirm-ord {
+            border-radius: 10px;
+            height: 945px;
+
+            .confirm-ord-title {
+                height: 48px; //高的問題要解決
+                font-size: 15px;
+            }
+
+            .prod-info {
+                display: flex;
+                padding-left: 20px;
+                height: 30%;
+
+                button {
+                    background-color: transparent;
+                    border: none;
+                }
+
+                .prod-img {
+                    height: auto;
+                    width: 30%;
+                    object-fit: contain;
+                    border-radius: 10px;
+                    margin: auto 10px auto 0;
+
+                }
+
+                .prod-spec {
+                    display: flex;
+                    margin: auto 0;
+                    width: 70%;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+
+                    .prod-card {
+                        h5 {
+                            padding-bottom: 10px;
+                            font-size: 14px;
+                            flex-shrink: 1;
+                        }
+
+                        span {
+                            line-height: 150%;
+                            font-size: 14px;
+                        }
+
+                        .mention {
+                            font-size: 12px;
+                            padding-top: 50px;
+                        }
+
+                    }
+
+                    .prod-count {
+                        margin: auto;
+                    }
+
+                    .prod-sum {
+                        margin: auto;
+                    }
+
+                }
+            }
+
+            .receiver-info {
+                display: flex;
+                margin: 20px 0;
+                padding-left: 30px;
+                align-items: center;
+
+                .receiver {
+                    position: relative;
+                    margin-right: 80px;
+
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        height: 18px;
+                        width: 2px;
+                        background-color: rgba(190, 26, 14, 1);
+                        left: -10px;
+                        bottom: 0;
+                        top: 0;
+                    }
+                }
+
+                input {
+                    margin: 0 10px 0 0;
+                }
+
+            }
+
             form {
                 display: flex;
                 flex-direction: column;
+                margin-top: 40px;
                 gap: 25px;
                 width: 100%;
+                padding-left: 20px;
 
                 .form-group {
                     display: flex;
@@ -1236,84 +1360,40 @@ font-size: 15px;
                     input {
                         height: 20px;
                         flex-basis: 25%;
-                    }
-                }
-            }
-        }
-    }
-
-    .confirm-ord {
-        border-radius: 10px;
-        height: 945px;
-
-        .confirm-ord-title {
-            height: 48px; //高的問題要解決
-            font-size: 15px;
-        }
-
-        .prod-info {
-            display: flex;
-            padding-left: 20px;
-            height: 30%;
-
-            button {
-                background-color: transparent;
-                border: none;
-            }
-
-            .prod-img {
-                height: auto;
-                width: 30%;
-                object-fit: contain;
-                border-radius: 20px;
-                margin: auto 10px auto 0;
-
-            }
-
-            .prod-spec {
-                display: flex;
-                margin: auto 0;
-                width: 70%;
-                justify-content: space-between;
-
-                .prod-card {
-                    h5 {
-                        padding-bottom: 10px;
-                        font-size:14px; 
-                    }
-
-                    span {
-                        line-height: 150%;
                         font-size: 14px;
                     }
 
-                    .mention {
-                        font-size: 12px;
-                        padding-top: 50px;
+                    select {
+                        height: 26px;
+                        flex-basis: 10%;
+                        margin-right: 10px;
+                        background-color: rgba(249, 241, 229, 1);
                     }
 
-                }
+                    .large-textarea {
+                        height: 80px;
+                        flex-basis: 25%;
+                        resize: vertical;
+                        /* 允許垂直調整大小 */
 
-                .prod-count {
-                    margin: auto;
-                }
+                    }
 
-                .prod-sum {
-                    margin: auto;
+
                 }
 
             }
-        }
 
-        .receiver-info {
-            display: flex;
-            margin: 20px 0;
-            padding-left: 30px;
-            align-items: center;
+            .disc-line-form {
+                margin-top: 20px;
+                height: 1px;
+                background-color: #828282;
+            }
 
-            .receiver {
+            .invoicing-title {
+                display: flex;
+                margin: 20px 0;
+                padding-left: 30px;
                 position: relative;
-                margin-right: 80px;
 
                 &::before {
                     content: "";
@@ -1321,167 +1401,24 @@ font-size: 15px;
                     height: 18px;
                     width: 2px;
                     background-color: rgba(190, 26, 14, 1);
-                    left: -10px;
+                    left: 20px;
                     bottom: 0;
                     top: 0;
                 }
             }
 
-            input {
-                margin: 0 10px 0 0;
-            }
-
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            margin-top: 40px;
-            gap: 25px;
-            width: 100%;
-            padding-left: 20px;
-
-            .form-group {
-                display: flex;
-                align-items: flex-start;
-                margin: auto 0;
-
-                label {
-                    flex-basis: 25%;
-                    margin: auto 0;
-                    font-size: 14px;
-                }
-
-                input {
-                    height: 20px;
-                    flex-basis: 25%;
-                    font-size: 14px;
-                }
-
-                select {
-                    height: 26px;
-                    flex-basis: 10%;
-                    margin-right: 10px;
-                    background-color: rgba(249, 241, 229, 1);
-                }
-
-                .large-textarea {
-                    height: 80px;
-                    flex-basis: 25%;
-                    resize: vertical;
-                    /* 允許垂直調整大小 */
-
-                }
-
-
-            }
-
-        }
-
-        .disc-line-form {
-            margin-top: 20px;
-            height: 1px;
-            background-color: #828282;
-        }
-
-        .invoicing-title {
-            display: flex;
-            margin: 20px 0;
-            padding-left: 30px;
-            position: relative;
-
-            &::before {
-                content: "";
-                position: absolute;
-                height: 18px;
-                width: 2px;
-                background-color: rgba(190, 26, 14, 1);
-                left: 20px;
-                bottom: 0;
-                top: 0;
-            }
-        }
-
-        .invoicing-form {
-            display: flex;
-            flex-direction: column;
-            margin-top: 40px;
-            gap: 25px;
-            width: 100%;
-            padding-left: 20px;
-
-            .form-group {
-                display: flex;
-                align-items: flex-start;
-                margin: auto 0;
-
-                label {
-                    flex-basis: 25%;
-                    margin: auto 0;
-                    font-size: 14px;
-                }
-                input {
-                        height: 20px;
-                        flex-basis: 0;
-
-                    }
-
-                .invoicing-cb {
-                    width: 13px;
-                    height: 13px;
-                    margin: auto 10px auto 30px;
-                }
-
-                span {
-                    display: inline-block;
-                    margin: auto 0;
-                    font-size: 14px;
-                }
-            }
-        }
-
-    }
-
-    .pay-way {
-        border: 1px solid #828282;
-        background: #ffffff;
-        border-radius: 20px;
-        height: 290px;
-
-        .payment-title {
-            height: 48px;
-            padding-left: 20px;
-            display: flex;
-            align-items: center;
-        }
-
-        .disc-line {
-            height: 1px;
-            background-color: #828282;
-        }
-
-        .payment-info {
-            height: 82%;
-            display: flex;
-            align-items: center;
-            padding-left: 20px;
-
-            form {
+            .invoicing-form {
                 display: flex;
                 flex-direction: column;
+                margin-top: 40px;
                 gap: 25px;
                 width: 100%;
-                margin: auto 0;
+                padding-left: 20px;
 
                 .form-group {
                     display: flex;
                     align-items: flex-start;
                     margin: auto 0;
-
-                    input[type="radio"] {
-                        margin-right: 10px;
-                        accent-color: #be1a0e;
-                    }
 
                     label {
                         flex-basis: 25%;
@@ -1489,164 +1426,233 @@ font-size: 15px;
                         font-size: 14px;
                     }
 
-                    .card-input {
-                        display: flex;
-                        width: 30px;
-                        flex-basis: 10%;
+                    input {
+                        height: 20px;
+                        flex-basis: 0;
+
+                    }
+
+                    .invoicing-cb {
+                        width: 13px;
+                        height: 13px;
+                        margin: auto 10px auto 30px;
                     }
 
                     span {
                         display: inline-block;
-                        padding: 0 3px;
                         margin: auto 0;
-                    }
-
-                    input[type="text"] {
-                        height: 20px;
                         font-size: 14px;
                     }
+                }
+            }
 
-                    #expiry-date-mm {
+        }
+
+        .pay-way {
+            border: 1px solid #828282;
+            background: #ffffff;
+            border-radius: 20px;
+            height: 290px;
+
+            .payment-title {
+                height: 48px;
+                padding-left: 20px;
+                display: flex;
+                align-items: center;
+            }
+
+            .disc-line {
+                height: 1px;
+                background-color: #828282;
+            }
+
+            .payment-info {
+                height: 82%;
+                display: flex;
+                align-items: center;
+                padding-left: 20px;
+
+                form {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 25px;
+                    width: 100%;
+                    margin: auto 0;
+
+                    .form-group {
                         display: flex;
-                        width: 30px;
-                        flex-basis: 10%;
-                    }
+                        align-items: flex-start;
+                        margin: auto 0;
 
-                    #expiry-date-yy {
-                        display: flex;
-                        width: 30px;
-                        flex-basis: 10%;
-                        
-                    }
-
-                    #cvc {
-                        margin-left: 14px;
-                        width: 50px;
-                        flex-basis: 20%;
-                        
-                    }
-
-                    .save-card-use {
-                        display: flex;
-                        align-items: center;
-
-                        input {
-                            margin: 0px;
+                        input[type="radio"] {
+                            margin-right: 10px;
+                            accent-color: #be1a0e;
                         }
 
                         label {
-                            flex-basis: 100%;
-                            padding-left: 10px;
-                        }
-                    }
-
-                    .switch {
-                        appearance: none;
-                        width: 40px;
-                        height: 20px;
-                        background: #ddd;
-                        border-radius: 10px;
-                        position: relative;
-                        cursor: pointer;
-                        outline: none;
-                        transition: background 0.3s;
-
-                        &:checked {
-                            background: #4caf50;
+                            flex-basis: 25%;
+                            margin: auto 0;
+                            font-size: 14px;
                         }
 
-                        &::before {
-                            content: '';
-                            position: absolute;
-                            width: 18px;
-                            height: 18px;
-                            background: #fff;
-                            border-radius: 50%;
-                            top: 1px;
-                            left: 1px;
-                            transition: transform 0.3s;
+                        .card-input {
+                            display: flex;
+                            width: 30px;
+                            flex-basis: 10%;
                         }
 
-                        &:checked::before {
-                            transform: translateX(20px);
+                        span {
+                            display: inline-block;
+                            padding: 0 3px;
+                            margin: auto 0;
                         }
-                    }
 
-                    .switch-alert {
-                        color: #be1a0e;
-                        font-size: 12px;
-                        padding-left: 20px;
+                        input[type="text"] {
+                            height: 20px;
+                            font-size: 14px;
+                        }
+
+                        #expiry-date-mm {
+                            display: flex;
+                            width: 30px;
+                            flex-basis: 10%;
+                        }
+
+                        #expiry-date-yy {
+                            display: flex;
+                            width: 30px;
+                            flex-basis: 10%;
+
+                        }
+
+                        #cvc {
+                            margin-left: 14px;
+                            width: 50px;
+                            flex-basis: 20%;
+
+                        }
+
+                        .save-card-use {
+                            display: flex;
+                            align-items: center;
+
+                            input {
+                                margin: 0px;
+                            }
+
+                            label {
+                                flex-basis: 100%;
+                                padding-left: 10px;
+                            }
+                        }
+
+                        .switch {
+                            appearance: none;
+                            width: 40px;
+                            height: 20px;
+                            background: #ddd;
+                            border-radius: 10px;
+                            position: relative;
+                            cursor: pointer;
+                            outline: none;
+                            transition: background 0.3s;
+
+                            &:checked {
+                                background: #4caf50;
+                            }
+
+                            &::before {
+                                content: '';
+                                position: absolute;
+                                width: 18px;
+                                height: 18px;
+                                background: #fff;
+                                border-radius: 50%;
+                                top: 1px;
+                                left: 1px;
+                                transition: transform 0.3s;
+                            }
+
+                            &:checked::before {
+                                transform: translateX(20px);
+                            }
+                        }
+
+                        .switch-alert {
+                            color: #be1a0e;
+                            font-size: 12px;
+                            padding-left: 20px;
+                        }
                     }
                 }
             }
         }
-    }
 
-    .invoice {
-        border: 1px solid #828282;
-        background: #ffffff;
-        border-radius: 20px;
-        height: 240px;
-        margin: 40px 0;
-
-        .invoice-item {
-            margin: auto 10px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 50px 0;
-
-
-            .item-description,
-            .item-discount,
-            .item-multiplier {
-                text-align: center;
-            }
-
-            .item-description p,
-            .item-discount p,
-            .item-multiplier p {
-                margin: 5px 0;
-            }
-
-        }
-
-        .disc-line {
-            height: 1px;
-            background-color: #828282;
-        }
-
-        .invoice-total {
-            margin: auto 40px;
-            text-align: right;
-            padding: 20px 0;
-            font-weight: 600;
-        }
-
-    }
-
-    .confirm-checkout {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 80px 0;
-
-        button {
-            background-color: transparent;
-            border: none;
-            background: #be1a0e;
+        .invoice {
+            border: 1px solid #828282;
+            background: #ffffff;
             border-radius: 20px;
-            width: 130px;
-            height: 50px;
-            color: #ffffff;
-            font-size: 16px;
-            cursor: pointer;
+            height: 240px;
+            margin: 40px 0;
+
+            .invoice-item {
+                margin: auto 10px;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                padding: 50px 0;
+
+
+                .item-description,
+                .item-discount,
+                .item-multiplier {
+                    text-align: center;
+                }
+
+                .item-description p,
+                .item-discount p,
+                .item-multiplier p {
+                    margin: 5px 0;
+                }
+
+            }
+
+            .disc-line {
+                height: 1px;
+                background-color: #828282;
+            }
+
+            .invoice-total {
+                margin: auto 40px;
+                text-align: right;
+                padding: 20px 0;
+                font-weight: 600;
+            }
+
         }
+
+        .confirm-checkout {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 80px 0;
+
+            button {
+                background-color: transparent;
+                border: none;
+                background: #be1a0e;
+                border-radius: 20px;
+                width: 130px;
+                height: 50px;
+                color: #ffffff;
+                font-size: 16px;
+                cursor: pointer;
+            }
+        }
+
+
+
+
     }
-
-
-
-
-} 
 }
 </style>

@@ -1,4 +1,5 @@
-<template>
+//刻版demo用(已棄用)，有實際功能請移步 Cart.vue
+<!-- <template>
     <div class="cart-container">
     <div class="cart-choose">
     <div class="choose-all">
@@ -6,7 +7,8 @@
      <h5>全選</h5>
     </div>
      <div class="delete-all">
-     <button><img src="../assets/pic/garbage-can.svg" alt="垃圾桶"></button> 
+     <!-- <button><img src="../assets/pic/garbage-can.svg" alt="垃圾桶"></button> -->
+     <button @click="removeSelectedItems"><img src="../assets/pic/garbage-can.svg" alt="垃圾桶"></button> 
      <h5>刪除已選項目</h5>
     </div>
     </div>
@@ -90,4 +92,4 @@
 
 //     }
 // }
-</script>
+</script> -->
