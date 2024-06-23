@@ -95,24 +95,30 @@
                             </div>
                         </div>
                     </div>
-                    <div class="design">
-                        <div class="design-canvas" ref="designCanvas">
-                            <div
-                            class="design-item"
-                            v-for="(item, index) in designItems"
-                            :key="index"
-                            :style="{ top: item.top + 'px', left: item.left + 'px', transform: 'scale(' + item.scale + ')', zIndex: item.zIndex }"
-                            @mousedown="selectItem(index, $event)"
-                            @mouseup="releaseItem(index)"
-                            @mousemove="moveItem($event, index)"
-                            @dblclick="removeItem(index)"
-                            >
-                                <img :src="item.src" alt="" style="width: 100%; height: 100%;">
+                    <div class="design-back">
+                        <div class="design">
+                            <div class="design-canvas" ref="designCanvas" @click="deselectAll">
+                                <div class="design-item"
+                                v-for="(item, index) in designItems"
+                                :key="index"
+                                :style="{ 
+                                    top: item.top + 'px', 
+                                    left: item.left + 'px', 
+                                    transform: `scale(${item.scale})`,
+                                    transformOrigin: 'top left',
+                                    zIndex: item.zIndex 
+                                }"
+                                @mousedown="selectItem(index, $event)"
+                                @dblclick="removeItem(index)"
+                                >
+                                <img :src="item.src" alt="" :style="{ width: item.width + 'px', height: item.height + 'px' }">
+                                <div class="resize-handle"
+                                    @mousedown.stop="startResize(index, $event)"
+                                    v-if="selectedItemIndex === index"
+                                ></div>
+                                </div>
                             </div>
                         </div>
-                        <!-- <div class="pic">
-                            <img src="/src/assets/pic/customized/design.png" alt="">
-                        </div> -->
                     </div>
                     <div class="preview-item">
                         <div class="preview">
@@ -218,11 +224,18 @@
                 selectedIndex : null,
 
                 // step 2
-                designItems: [], // 存放设计框中的图标对象 { src, top, left, scale, zIndex }
+                designItems: [], // 存放圖案位置 { src, top, left, scale, zIndex }
                 selectedImage: null,
-
                 currentGroup: null,
                 showImg: false,
+                isResizing: false,
+                isMoving: false,
+                selectedItemIndex: null,
+                initialMouseX: 0,
+                initialMouseY: 0,
+                initialItemLeft: 0,
+                initialItemTop: 0,
+                initialScale: 1,
                 picArrays: {
                     upload: [
                         '/src/assets/pic/customized/Icon-1.png',
@@ -278,53 +291,87 @@
             getImageList(group) {
                 return this.picArrays[group] || [];
             },
+
             selectImage(image) {
-            // 點圖案，加入到設計框中
-                const newItem = {
+                const img = new Image();
+                img.onload = () => {
+                    const newItem = {
                     src: image,
-                    top: 100, // 初始位置
-                    left: 100, // 初始位置
-                    scale: 1, // 初始缩放比例
-                    zIndex: this.designItems.length + 1 // 層級設定
+                    top: 100,
+                    left: 100,
+                    width: img.width,
+                    height: img.height,
+                    scale: 1,
+                    zIndex: this.designItems.length + 1
+                    };
+                    this.designItems.push(newItem);
+                    this.selectedImage = image;
                 };
-                this.designItems.push(newItem);
-                // 設置預覽圖案
-                this.selectedImage = image; // 
-            },
-            saveDesignToLocalStorage() {
-                // 將完成圖保存到 Local Storage
-                localStorage.setItem('design', JSON.stringify(this.designItems));
-                // 也可以保存其他相關資訊
+                img.src = image;
             },
             selectItem(index, event) {
-            // 選擇設計框中的圖標，並準備移動
-            this.selectedItemId = index;
-            const selectedItem = this.designItems[index];
-                if (selectedItem) {
-                    this.initialMouseX = event.clientX;
-                    this.initialMouseY = event.clientY;
-                    this.initialItemLeft = selectedItem.left;
-                    this.initialItemTop = selectedItem.top;
-                    // 置頂選取中的圖案
-                    selectedItem.zIndex = this.designItems.length; 
+                event.preventDefault(); // 阻止默認行為
+                if (this.isResizing) return;
+                this.isMoving = true;
+                this.selectedItemIndex = index;
+                const item = this.designItems[index];
+                this.initialMouseX = event.clientX;
+                this.initialMouseY = event.clientY;
+                this.initialItemLeft = item.left;
+                this.initialItemTop = item.top;
+                item.zIndex = Math.max(...this.designItems.map(i => i.zIndex)) + 1;
+                document.addEventListener('mousemove', this.moveItem);
+                document.addEventListener('mouseup', this.stopMoving);
+            },
+            moveItem(event) {
+                event.preventDefault(); // 阻止默認行為
+                if (!this.isMoving) return;
+                const item = this.designItems[this.selectedItemIndex];
+                const deltaX = event.clientX - this.initialMouseX;
+                const deltaY = event.clientY - this.initialMouseY;
+                item.left = this.initialItemLeft + deltaX;
+                item.top = this.initialItemTop + deltaY;
+            },
+            stopMoving() {
+                this.isMoving = false;
+                document.removeEventListener('mousemove', this.moveItem);
+                document.removeEventListener('mouseup', this.stopMoving);
+            },
+            startResize(index, event) {
+                event.stopPropagation();
+                this.isResizing = true;
+                this.selectedItemIndex = index;
+                const item = this.designItems[index];
+                this.initialScale = item.scale;
+                this.initialMouseX = event.clientX;
+                this.initialMouseY = event.clientY;
+                document.addEventListener('mousemove', this.resize);
+                document.addEventListener('mouseup', this.stopResize);
+            },
+            resize(event) {
+                if (!this.isResizing) return;
+                const item = this.designItems[this.selectedItemIndex];
+                const deltaX = event.clientX - this.initialMouseX;
+                const scaleFactor = 1 + deltaX / 200; // 調整縮放靈敏度
+                item.scale = Math.max(0.1, Math.min(3, this.initialScale * scaleFactor));
+            },
+            stopResize() {
+                this.isResizing = false;
+                document.removeEventListener('mousemove', this.resize);
+                document.removeEventListener('mouseup', this.stopResize);
+            },
+            removeItem(index) {
+                this.designItems.splice(index, 1);
+                this.selectedImage = null;
+            },
+
+            deselectAll(event) {
+            // 確保點擊的是畫布而不是項目
+                if (event.target === this.$refs.designCanvas) {
+                    this.selectedItemIndex = null;
                 }
             },
-            releaseItem() {
-                // 釋放選擇
-                this.selectedItemId = null;
-            },
-            moveItem(event, index) {
-                // 移動圖標
-                if (this.selectedItemId !== null) {
-                    const selectedItem = this.designItems[index];
-                    if (selectedItem) {
-                    const deltaX = event.clientX - this.initialMouseX;
-                    const deltaY = event.clientY - this.initialMouseY;
-                    selectedItem.left = this.initialItemLeft + deltaX;
-                    selectedItem.top = this.initialItemTop + deltaY;
-                    }
-                }
-            },
+
             removeItem(index) {
                 // 雙擊移除圖案
                 this.designItems.splice(index, 1);
@@ -368,8 +415,14 @@
 
         },
         mounted() {
-            // 监听点击事件，点击其他区域时收起 img-group
+            
             document.addEventListener('click', this.handleClickOutside);
+            document.addEventListener('mousemove', this.resize);
+            document.addEventListener('mouseup', this.stopResize);
         },
+        beforeUnmount() {
+            document.removeEventListener('mousemove', this.resize);
+            document.removeEventListener('mouseup', this.stopResize);
+        }
     }
 </script>
