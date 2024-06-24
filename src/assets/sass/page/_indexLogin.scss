@@ -39,6 +39,19 @@
                     font-family: 'Noto Serif HK', serif;
                     cursor: pointer;
                 }
+                .login-hide {
+                    border: 1px solid #CCC5B8;
+                    padding: 10px 0;
+                    width: 50%;
+                    text-align: center;
+                    background-color: #F9F1E5;
+                    border-top-left-radius: 20px;
+                    border-top-right-radius: 20px;
+                    font-size: 18px;
+                    color: #C5B09E;
+                    font-family: 'Noto Serif HK', serif;
+                    cursor: pointer;
+                }
                 .register {
                     padding: 10px 0;
                     width: 50%;
@@ -53,10 +66,23 @@
                     font-family: 'Noto Serif HK', serif;
                     cursor: pointer;
                 } 
+                .register-show {
+                    border: 1px solid #CCC5B8;
+                    padding: 10px 0;
+                    width: 50%;
+                    text-align: center;
+                    background-color: #FAF8F4;
+                    border-top-left-radius: 20px;
+                    border-top-right-radius: 20px;
+                    font-size: 18px;
+                    color: #564A41;
+                    font-family: 'Noto Serif HK', serif;
+                    cursor: pointer;
+                }
             }
             .login-frame {
                 background-color: #FAF8F4;
-                padding: 53px 0;
+                padding: 40px 0;
                 border-bottom-left-radius: 30px;
                 border-bottom-right-radius: 30px;
                 .input-field {

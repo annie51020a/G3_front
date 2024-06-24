@@ -364,7 +364,6 @@
 // index - news
 .index-news {
     margin: 100px auto;
-
     .index-container {
         width: 63.5%;
         max-width: 1200px;
@@ -372,16 +371,13 @@
         margin: auto;
         flex-direction: column;
         gap: 30px;
-
         .index-news-main-title {
             display: flex;
             gap: 10px;
             align-items: center;
             justify-content: center;
-
             .title-pic {
                 width: clamp(70px, 11vw, 140px);
-
                 >img {
                     width: 100%;
                 }
@@ -443,7 +439,7 @@
                         display: flex;
                         flex-direction: column;
                         gap: 15px;
-                        width: 90%;
+                        width: 94%;
 
                         .index-card-titl {
                             display: flex;
@@ -538,6 +534,7 @@
 @media screen and (max-width:$md) {
     .index-news {
         .index-container {
+            width: 80%;
             .index-card-list {
                 .index-card {
                     flex-direction: column;

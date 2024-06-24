@@ -3,18 +3,18 @@
         <div class="login-container">
             <div class="login-wrap">
                 <div class="link">
-                    <button class="login" @click="showContent('login')">會員登入</button>
-                    <button class="register" @click="showContent('register')">會員註冊</button>
+                    <button class="login" @click="showContent('login');showLogin()">會員登入</button>
+                    <button class="register" @click="showContent('register');showRegister()">會員註冊</button>
                 </div>
                 <div class="login-frame">
                     <!-- for login page use v-if to switch-->
                     <div class="input-field" v-if="content === 'login'">
                         <div class="content-container">
                             <div class="login-input">
-                                <input class="email" name="memId" type="email" placeholder="電子郵件" v-model="emailData" >
+                                <input class="email" name="memId" type="email" placeholder="請輸入電子郵件" v-model="emailData" >
                                 <div class="input-icon">
-                                    <input class="password" name="memPsw" type="password" placeholder="密碼" maxlength="12" minlength="6" v-model="pswData">
-                                    <picture @click="showPsw" class="eyes">
+                                    <input class="password" name="memPsw" type="password" placeholder="請輸入密碼" maxlength="12" minlength="6" v-model="pswData">
+                                    <picture @click="togglePasswordVisibility($event, 'password')" class="eyes">
                                         <img id="eye" src="/src/assets/pic/login/eye-close.svg" alt="" title="close">
                                     </picture>
                                 </div>
@@ -56,16 +56,16 @@
                     <div class="input-field" v-if="content === 'register'">
                         <div class="content-container">
                                 <div class="register-input">
-                                    <input class="email" name="memId" type="email" placeholder="請輸入電子郵件" v-model="emailData" >
+                                    <input class="email" name="memclass" type="email" placeholder="請輸入電子郵件" v-model="emailData" >
                                     <div class="input-icon">
-                                        <input class="password" name="memPsw" type="password" placeholder="請輸入密碼" maxlength="12" minlength="6" v-model="pswData">
-                                        <picture @click="showPsw" class="eyes">
+                                        <input class="password" name="memPsw" type="password" placeholder="請輸入密碼" maxlength="12" minlength="6" v-model="password">
+                                        <picture @click="togglePasswordVisibility($event, 'password')" class="eyes">
                                             <img id="eye" src="/src/assets/pic/login/eye-close.svg" alt="" title="close">
                                         </picture>
                                     </div>
                                     <div class="input-icon">
-                                        <input class="password" name="memPsw" type="password" placeholder="確認密碼" maxlength="12" minlength="6" v-model="pswData">
-                                        <picture @click="showPsw" class="eyes">
+                                        <input class="password" name="memPsw" type="password" placeholder="確認密碼" maxlength="12" minlength="6" v-model="confirmPassword">
+                                        <picture @click="togglePasswordVisibility($event, 'confirmPassword')" class="eyes">
                                             <img id="eye" src="/src/assets/pic/login/eye-close.svg" alt="" title="close">
                                         </picture>
                                     </div>
@@ -116,13 +116,41 @@ export default {
             // forgetPswBox: true,
             mem:[],
             emailData: '',
-            pswData:''
+            pswData:'',
+            password: '',
+            confirmPassword: '',
+
+            loginConsider:true
         }
     },
     methods: {
         // 點擊後更變內容
         showContent(content) {
-        this.content = content; 
+            this.content = content; 
+        },
+        showLogin() {
+            this.loginConsider = true;
+
+            this.determineLoginOrRegister();
+        },
+        showRegister() {
+            this.loginConsider = false;
+
+            this.determineLoginOrRegister();
+        },
+        determineLoginOrRegister(){
+            const login        = document.querySelector(".login");
+            const register     = document.querySelector(".register");
+
+            if (this.loginConsider) {
+                login.classList.remove("login-hide")
+                register.classList.remove("register-show")
+                
+                return
+            }
+
+            login.classList.add("login-hide");
+            register.classList.add("register-show") 
         },
         closeLoginInBtn() {
             const closeLoginInBtn = document.querySelector(".x");
@@ -133,17 +161,19 @@ export default {
 
             }
         },
-        showPsw() {
-            const eye = document.querySelector("#eye");
-            const password = document.querySelector(".password");
-            if(eye.title === "close") {
+        togglePasswordVisibility(e, field) {
+            let x = field;
+            console.log(x);
+            const eye = e.currentTarget.querySelector("#eye");
+            const passwordInput = e.currentTarget.previousElementSibling;
+            if (eye.title === "close") {
                 eye.src = "/src/assets/pic/login/eye-open.svg";
                 eye.title = "open";
-                password.type = "text";
+                passwordInput.type = "text";
             } else {
                 eye.src = "/src/assets/pic/login/eye-close.svg";
                 eye.title = "close";
-                password.type = "password";
+                passwordInput.type = "password";
             }
         },
         // showForgetPassword() {
