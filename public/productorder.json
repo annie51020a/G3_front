@@ -3,12 +3,27 @@
         "id": 1,
         "date": "2024.05.20",
         "status": "已出貨",
-        "price": 699
+        "total": 699,
+        "coupon": "否",
+        "notes": "無",
+        "pic1": "um1pic1.jpg",
+        "name": "數字精緻手工油紙傘",
+        "price": 699,
+        "quantity": 1,
+        "subtotal": 699
+
     },
     {
         "id": 2,
         "date": "2024.06.18",
         "status": "未出貨",
-        "price": 1398
+        "total": 1198,
+        "coupon": "否",
+        "notes": "無",
+        "pic1": "um2pic1.jpg",
+        "name": "藍色精緻手工油紙傘",
+        "price": 599,
+        "quantity": 2,
+        "subtotal": 1198
     }
 ]
