@@ -25,12 +25,12 @@
                             </div>
                             <p class="quick">使用以下帳號快速登入</p>
                             <div class="login-icon">
-                                <a href="#" class="login-goole">
+                                <div class="login-goole" @click="googleSignIn">
                                 <img src="/src/assets/pic/login/google-icon.png" alt="">
-                                </a>
-                                <a href="#" class="login-facebook">
+                                </div>
+                                <div class="login-facebook">
                                     <img src="/src/assets/pic/login/logos_facebook.png" alt="">
-                                </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -109,6 +109,8 @@
 </template>
 
 <script>
+import { gapi } from 'gapi-script';
+
 export default {
     data() {
         return {
@@ -158,7 +160,10 @@ export default {
                 const loginBox = document.querySelector(".login-box");
                 loginBox.style.opacity = "0";
                 loginBox.style.pointerEvents = "none";
-
+                this.emailData = "";
+                this.pswData = "";
+                this.password = "";
+                this.confirmPassword = "";
             }
         },
         togglePasswordVisibility(e, field) {
@@ -192,11 +197,28 @@ export default {
                 const loginBox = document.querySelector(".login-box");
                 loginBox.style.opacity = "0";
                 loginBox.style.pointerEvents = "none";
+                this.$router.push('/memberinfo');
             } else {
                 alert("帳號或密碼錯誤!")
                 this.emailData = "";
                 this.pswData = "";
             }
+        },
+        googleSignIn() {
+            gapi.load('auth2', () => {
+            const auth2 = gapi.auth2.init({
+            client_id: 'YOUR_GOOGLE_CLIENT_ID',
+            });
+            auth2.signIn().then(googleUser => {
+            const profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId());
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail());
+            }).catch(error => {
+                console.error('Error signing in: ', error);
+                });
+            });
         }
     },
     mounted() {
@@ -207,6 +229,11 @@ export default {
                 this.mem = json
                 console.log(this.mem[0]);
             });
+        gapi.load('auth2', function() {
+        gapi.auth2.init({
+            client_id: 'YOUR_GOOGLE_CLIENT_ID'
+        });
+    });
     }
 }
 </script>
