@@ -222,7 +222,7 @@ export default {
             });
         }
         
-        // 第二種 搭配 index.html <script></script>
+        // 第二種 搭配 index.html <script>
         // googleSignIn() {
         //     const client = google.accounts.oauth2.initTokenClient({
         //         client_id: 'YOUR_GOOGLE_CLIENT_ID',  // 确保这是正确的客户端 ID
