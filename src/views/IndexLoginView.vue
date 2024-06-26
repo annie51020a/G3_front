@@ -188,6 +188,8 @@ export default {
         //     this.forgetPswBox = true;
         // },
         memLogin() {
+            const member = document.querySelector(".member");
+            const logInBtn = document.querySelector(".logIn-btn");
             if((this.emailData === this.mem[0].account) 
                 && (this.pswData === this.mem[0].psw)
             ) {
@@ -198,6 +200,8 @@ export default {
                 loginBox.style.opacity = "0";
                 loginBox.style.pointerEvents = "none";
                 this.$router.push('/memberinfo');
+                member.style.display = "block";
+                logInBtn.style.display = "none";
             } else {
                 alert("帳號或密碼錯誤!")
                 this.emailData = "";
@@ -208,7 +212,7 @@ export default {
         googleSignIn() {
             gapi.load('auth2', () => {
             const auth2 = gapi.auth2.init({
-            client_id: 'YOUR_GOOGLE_CLIENT_ID',
+            client_id: '936842006999-iroeoumpffqet17pij6d53trmvvntkdm.apps.googleusercontent.com',
             });
             auth2.signIn().then(googleUser => {
             const profile = googleUser.getBasicProfile();
@@ -251,7 +255,7 @@ export default {
             });
         gapi.load('auth2', function() {
         gapi.auth2.init({
-            client_id: 'YOUR_GOOGLE_CLIENT_ID'
+            client_id: '936842006999-iroeoumpffqet17pij6d53trmvvntkdm.apps.googleusercontent.com'
         });
     });
     }
