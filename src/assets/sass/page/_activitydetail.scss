@@ -87,6 +87,14 @@
                 gap: 40px;
                 padding-left: 10px;
                 margin-top: 20px;
+                
+                .choose-time{
+                    background-color: #BE1A0E;
+                    color: white;
+                    @media (max-width: $sm) {
+                        width: 70%;
+                      }
+                }
 
                 >button {
                     width: 50%;
@@ -102,10 +110,7 @@
                         width: 70%;
                       }
 
-                    &:hover {
-                        background-color: #BE1A0E;
-                        color: white;
-                    }
+
                 }
             }
 
