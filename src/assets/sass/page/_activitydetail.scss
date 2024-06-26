@@ -91,6 +91,7 @@
                 .choose-time{
                     background-color: #BE1A0E;
                     color: white;
+
                     @media (max-width: $sm) {
                         width: 70%;
                       }
@@ -191,7 +192,7 @@
 
     ul {
         list-style-type: disc;
-        padding-left: 20px;
+        padding-left: 40px;
         font-size: 16px;
         color: #564A41;
         line-height: 1.5;
@@ -209,15 +210,28 @@
         display: flex;
         justify-content: space-between;
 
+@media (max-width: $md) {
+        flex-direction: column;
+      }
+
         .know-and-use {
             width: 45%;
+
+            @media (max-width: $md) {
+                width: 95%;
+              }
         }
 
         .cancel-and-map {
             width: 45%;
 
+            @media (max-width: $md) {
+                width: 95%;
+              }
+
             iframe {
                 width: 100%;
+                height: 200px;
                 margin-top: 20px;
                 border-radius: 10px;
             }
