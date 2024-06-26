@@ -204,6 +204,7 @@ export default {
                 this.pswData = "";
             }
         },
+        // 第一種
         googleSignIn() {
             gapi.load('auth2', () => {
             const auth2 = gapi.auth2.init({
@@ -220,6 +221,8 @@ export default {
                 });
             });
         }
+        
+        // 第二種 搭配 index.html <script></script>
         // googleSignIn() {
         //     const client = google.accounts.oauth2.initTokenClient({
         //         client_id: 'YOUR_GOOGLE_CLIENT_ID',  // 确保这是正确的客户端 ID
