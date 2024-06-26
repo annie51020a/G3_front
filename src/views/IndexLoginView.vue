@@ -220,6 +220,23 @@ export default {
                 });
             });
         }
+        // googleSignIn() {
+        //     const client = google.accounts.oauth2.initTokenClient({
+        //         client_id: 'YOUR_GOOGLE_CLIENT_ID',  // 确保这是正确的客户端 ID
+        //         scope: 'profile email',
+        //         callback: (response) => this.handleCredentialResponse(response),
+        //     });
+        //     client.requestAccessToken();
+        // },
+        // handleCredentialResponse(response) {
+        //     if (response.error) {
+        //         console.error('Authorization error:', response.error);
+        //         // 处理授权错误，例如显示错误信息
+        //     } else {
+        //         console.log('Google login response:', response);
+        //         // 在此处添加你的登录逻辑，例如发送 token 到你的后端服务器
+        //     }
+        // }
     },
     mounted() {
         fetch(`${import.meta.env.BASE_URL}member.json`)
