@@ -372,7 +372,6 @@ export default {
         background: #ffffff;
         border-radius: 20px;
         margin: 40px 0;
-        min-height: 945px;
 
         .confirm-ord-title {
             height: 48px; //高的問題要解決
