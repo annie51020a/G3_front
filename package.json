@@ -14,6 +14,7 @@
   "dependencies": {
     "aos": "^2.3.4",
     "axios": "^1.7.2",
+    "gapi-script": "^1.2.0",
     "gsap": "^3.12.5",
     "pinia": "^2.1.7",
     "swiper": "^11.1.4",
