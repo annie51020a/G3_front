@@ -120,13 +120,11 @@ export default {
                         <img class="mobile-user" src="../../assets/pic/mobile-user.svg" alt="會員登入/註冊">
                     </a>
                 </button>
-                <button class="member">
-                    <span>王曉明
+                <button class="member">王曉明
                         <ul>
                             <router-link to="/memberinfo">會員資訊</router-link>
                             <li @click="signOut">登出</li>
                         </ul>
-                    </span>
                 </button>
 
                 <button @click="toggleMenu" class="hamburger-menu">
