@@ -13,7 +13,9 @@ import 'aos/dist/aos.css';
 
 //Vue.createAPP(APP).mount('#app')
 const app = createApp(App)
+const pinia = createPinia()
 
+app.use(pinia)
 app.use(createPinia())
 app.use(router)
 
