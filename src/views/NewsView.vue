@@ -19,7 +19,7 @@
                     </div>
                     <div class="news-content" v-show="showList.includes(`${item.date}-${item.name}`)">
                         <picture class="news-pic">
-                            <img :src="item.image" alt="">
+                            <img :src="parseIcon(item.image)" alt="">
                         </picture>
                         <div class="news-txt">
                             <p class="date">
@@ -53,7 +53,7 @@
                     </div>
                     <div class="news-content" v-show="showList.includes(`${item.date}-${item.name}`)">
                         <picture class="news-pic">
-                            <img :src="item.image" alt="">
+                            <img :src="parseIcon(item.image)" alt="">
                         </picture>
                         <div class="news-txt">
                             <p class="date">
@@ -107,6 +107,10 @@ export default {
         }
     },
     methods: {
+        parseIcon(file) {
+            // 指到src || ..的意思是“回到上一層”
+            return new URL(`../assets/pic/news/${file}`, import.meta.url).href;
+        },
         showNews(date, name) {
             const key = `${date}-${name}`;
             if (this.showList.includes(key)) {
@@ -126,4 +130,4 @@ export default {
         }
     }
 };
-</script>
+</script>x

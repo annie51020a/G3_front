@@ -34,18 +34,19 @@
         }
 
         .delete-all {
-            display: flex;
-            align-items: center;
-
             button {
+                display: flex;
+                align-items: center;
                 background-color: transparent;
                 border: none;
                 cursor: pointer;
+
+                h5 {
+                    padding: 0 5px;
+                }
             }
 
-            h5 {
-                padding: 0 5px;
-            }
+
         }
     }
 
@@ -176,87 +177,134 @@
             }
         }
     }
-}
 
-@media screen and (max-width: 967px) {
-    .card {
-        display: flex;
-        align-items: center;
-        height: 240px;
+    @media screen and (min-width: $md) and (max-width: $lg) {
+        .card-list {
+            .card {
 
-        background: #ffffff;
-        border-radius: 10px;
-        border: 1px solid #828282;
-        padding: 0 30px;
-        margin-bottom: 20px;
+                .prod-detail {
+                    display: flex;
+                    align-items: center;
+                    width: 90%;
 
-        input {
-            width: 20px;
-            height: 20px;
-            margin: 0 20px 0 0;
-            cursor: pointer;
-        }
+                    .prod {
+                        width: 40%;
+                        height: auto;
+                        object-fit: contain;
+                        border-radius: 10px;
+                        margin-right: 20px;
 
-        .prod-detail {
-            display: flex;
-            align-items: center;
-            // margin: 0 400px 0 20px;
-            width: 60%;
+                    }
 
-            .prod {
-                width: 20%;
-                height: 180px;
-                border-radius: 20px;
-                margin-right: 20px;
+                    .info {
+                        h5 {
+                            font-size: 16px;
 
-            }
+                        }
 
-            .info {
-                h5 {
-                    margin-bottom: 16px;
-
+                        p {
+                            font-size: 14px;
+                        }
+                    }
                 }
 
-                p {
-                    font-weight: 500;
+                .amount {
+                    display: flex;
+
+                    align-items: center;
+                    width: 30%;
+
+                    p {
+                        padding: 0 20px;
+                        font-weight: 600;
+                    }
+
+                    button {
+                        margin: 0 10px;
+                    }
+
+                    span {
+                        color: #564a41;
+                        font-weight: 600;
+                    }
                 }
-            }
-        }
 
-        .amount {
-            display: flex;
-            align-items: center;
-            width: 30%;
+                .price {
+                    font-weight: bold;
+                    padding: 10px;
+                }
 
-            p {
-                padding: 0 20px;
-                font-weight: 600;
-            }
+                .delete {
+                    button {
+                        background-color: transparent;
+                        border: none;
 
-            button {
-                margin: 0 10px;
-            }
-
-            span {
-                color: #564a41;
-                font-weight: 600;
-            }
-        }
-
-        .price {
-            font-weight: bold;
-            padding: 10px;
-        }
-
-        .delete {
-            button {
-                background-color: transparent;
-                border: none;
-
-                img {
-                    cursor: pointer;
+                        img {
+                            cursor: pointer;
+                        }
+                    }
                 }
             }
         }
     }
+
+    @media screen and (max-width: $md) {
+        .card-list {
+            .card {
+                display: flex;
+                align-items: center;
+                height: 300px;
+                flex-wrap: wrap;
+
+                input {
+                    width: 16px;
+                    height: 16px;
+                    // width: 20%;
+                }
+
+                .prod-detail {
+                    display: flex;
+                    align-items: center;
+                    // margin: 0 400px 0 20px;
+                    width: 90%;
+
+                    .prod {
+                        width: 40%;
+                        height: auto;
+                        object-fit: contain;
+                        border-radius: 10px;
+                        margin-right: 20px;
+
+                    }
+
+                    .info {
+                        h5 {
+                            margin-bottom: 16px;
+                            font-size: 18px;
+
+                        }
+
+                        p {
+                            font-weight: 500;
+                        }
+                    }
+                }
+
+                .amount {
+                    display: flex;
+                    align-items: center;
+                    width: 60%;
+
+                    p {
+                        padding: 0 15px;
+                    }
+                }
+
+                .price {
+                    padding: 10px;
+                }
+            }
+        }
+    }
+
 }

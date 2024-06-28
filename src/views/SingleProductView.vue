@@ -35,9 +35,12 @@
                 </div>
                 <div class="product-count">
                     <p>數量</p>
-                    <button><i class="fa-solid fa-minus"></i></button>
+                    <!-- <button><i class="fa-solid fa-minus"></i></button>
                     <span>1</span>
-                    <button><i class="fa-solid fa-plus"></i></button>
+                    <button><i class="fa-solid fa-plus"></i></button> -->
+                    <button @click="decreaseQuantity"><i class="fa-solid fa-minus"></i></button>
+                    <span>{{ quantity }}</span>
+                    <button @click="increaseQuantity"><i class="fa-solid fa-plus"></i></button>
                 </div>
                 <div class="product-fav">
                     <button type="button">
@@ -47,12 +50,17 @@
                     </button>
                 </div>
                 <div class="product-cart">
-                    <button type="button">
+                    <!-- <button type="button">
                         <span class="material-symbols-outlined">
                             shopping_cart
                         </span>
                         加入購物車
 
+                    </button> -->
+                    <!-- 修改“加入購物車”按鈕，添加click事件 -->
+                    <button type="button" @click="addToCart">
+                        <span class="material-symbols-outlined">shopping_cart</span>
+                        加入購物車
                     </button>
                 </div>
                 <div class="product-space"></div>
@@ -80,6 +88,8 @@
 
 <script>
 import ProductCard from '@/components/layout/ProductCard.vue'
+// 引入ProductCard和Pinia的useCartStore
+import { useCartStore } from '../stores/cartStore.js';
 export default {
     components: {
         ProductCard
@@ -90,12 +100,15 @@ export default {
             displayData: [],
             search: "",
             productInfo: {},
-            currentLgPic: ''
-        }
+            currentLgPic: '',
+            // 定義quantity數量變量
+            quantity: 1,
+        };
     },
     watch: {
         "$route.params.id"() {
             this.fetchInfo();
+            this.quantity=1
         },
     },
     mounted() {
@@ -138,6 +151,21 @@ export default {
             console.log(this.parseIcon(pic))
             this.currentLgPic = this.parseIcon(pic);
         },
+        // 增加數量方法
+        increaseQuantity() {
+            this.quantity += 1;
+        },
+        // 減少數量方法
+        decreaseQuantity() {
+            if (this.quantity > 1) {
+                this.quantity -= 1;
+            }
+        },
+        // 加入購物車方法
+        addToCart() {
+            const cartStore = useCartStore();
+            cartStore.addCart({ ...this.productInfo, count: this.quantity }); // 使用 count 代替 quantity
+        },
 
     },
 }
@@ -154,6 +182,7 @@ export default {
 
     .product-window {
         margin-bottom: 100px;
+
         @include m(md) {
             display: flex;
             justify-content: space-between;
@@ -162,8 +191,9 @@ export default {
         .product-pic {
             width: 80%;
             margin: 0 auto;
+
             @include m(md) {
-            width: 45%;
+                width: 45%;
             }
 
             .product-pic-lg {
@@ -196,11 +226,12 @@ export default {
             justify-content: flex-start;
             gap: 30px;
             margin-top: 30px;
+
             @include m(md) {
-            width: 45%;
-            gap: 5%;
+                width: 45%;
+                gap: 5%;
             }
-            
+
 
             .product-tag {
 
@@ -222,7 +253,6 @@ export default {
 
             }
 
-            .product-rating {}
 
             .product-price {
                 font-family: noto sans tc;
@@ -250,11 +280,6 @@ export default {
                     height: 28px;
                     font-size: 14px;
                     text-align: center;
-
-                    &:hover {
-                        background-color: #B1241A;
-                        color: #fff;
-                    }
                 }
 
                 >span {
@@ -274,6 +299,7 @@ export default {
                     font-size: 20px;
                     color: #B1241A;
                     transition: 0.1s;
+                    cursor: pointer;
 
                     &:hover {
                         background-color: #B1241A;
@@ -306,6 +332,7 @@ export default {
                     font-size: 20px;
                     color: #B1241A;
                     transition: 0.1s;
+                    cursor: pointer;
 
                     &:hover {
                         background-color: #B1241A;
@@ -354,28 +381,40 @@ export default {
     }
 
     .other-product-window {
-        width: 100%;
         margin-bottom: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
 
         .display-window {
             display: flex;
+            width: auto;
+            margin: 0 auto;
             flex-wrap: wrap;
             justify-content: center;
             gap: 25px;
 
             @include m(lg) {
-                justify-content: space-evenly;
-                gap: 25px;
+                flex-wrap: nowrap;
             }
+
             .product-card {
                 width: 80%;
-                > img {
+
+                >img {
                     width: 100%;
                 }
+
                 @include m(md) {
                     width: 45%;
                 }
+
                 @include m(lg) {
+                    width: 30%;
+                }
+
+                @include m(xl) {
                     width: 280px;
                 }
             }

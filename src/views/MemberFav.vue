@@ -133,12 +133,12 @@ export default {
         align-items: flex-start;
         margin: 2% 0 15% 0;
         width: 100%;
-        
+
 
 
         @media screen and (max-width:576px) {
             justify-content: space-around;
-            
+
         }
 
         @media screen and (min-width:577px) and (max-width:996px) {
@@ -151,7 +151,7 @@ export default {
         }
 
         .mem-list {
-            
+
             @media screen and (max-width:576px) {
                 position: absolute;
                 top: 0%;
@@ -183,9 +183,10 @@ export default {
                 flex-direction: row;
                 justify-content: center;
                 margin-bottom: 20px;
+
                 @include m(lg) {
                     justify-content: flex-end;
-                    }
+                }
 
                 .search-input {
                     width: 100%;
@@ -223,19 +224,23 @@ export default {
             .display-window {
                 width: 100%;
                 display: flex;
-                gap: 25px;
                 flex-wrap: wrap;
-                justify-content: space-between;
+                justify-content: center;
+                gap: 25px;
+
+                @include m(md) {
+                    justify-content: space-between;
+                }
+
+                @include m(xl) {
+                    flex-wrap: nowrap;
+                }
 
                 .product-card {
                     width: 100%;
 
                     @include m(md) {
-                        width: 45%;
-                    }
-
-                    @include m(lg) {
-                        width: 30%;
+                        width: 48%;
                     }
                 }
             }

@@ -133,6 +133,7 @@ export default {
       .then(data => {
         this.activities = data;
         this.responseData = data;
+        
       })
       .catch(error => console.error('Error fetching activities:', error));
   },

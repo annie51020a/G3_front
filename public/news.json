@@ -10,7 +10,7 @@
             "免費參與油紙傘製作工作坊，親手體驗製作過程。",
             "互動區設置，參觀者可即場創作小型油紙傘。"
         ],
-        "image": "/src/assets/pic/news/1 (2).png",
+        "image": "1 (2).png",
         "arrow": "/src/assets/pic/news/down-arrow.png",
         "class": "舉辦活動 (工作室、市集)"
     },
@@ -25,7 +25,7 @@
             "提供現場油紙傘繪畫體驗活動。",
             "展覽期間舉辦抽獎活動，贈送限量版油紙傘。"
         ],
-        "image": "/src/assets/pic/news/7.png",
+        "image": "7.png",
         "arrow": "/src/assets/pic/news/down-arrow.png",
         "class": "舉辦活動 (工作室、市集)"
     },
@@ -40,7 +40,7 @@
             "設有兒童區，提供簡單的油紙傘繪畫活動。",
             "現場提供傳統點心，增添文化節的趣味。"
         ],
-        "image": "/src/assets/pic/news/8.png",
+        "image": "8.png",
         "arrow": "/src/assets/pic/news/down-arrow.png",
         "class": "舉辦活動 (工作室、市集)"
     },
@@ -55,7 +55,7 @@
             "安排創意工作坊，親手設計獨一無二的油紙傘。",
             "展覽期間設有互動區，讓參觀者體驗油紙傘設計的樂趣。"
         ],
-        "image": "/src/assets/pic/news/9.png",
+        "image": "9.png",
         "arrow": "/src/assets/pic/news/down-arrow.png",
         "class": "舉辦活動 (工作室、市集)"
     }

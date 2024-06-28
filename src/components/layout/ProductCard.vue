@@ -1,5 +1,5 @@
 <template>
-    <div v-if="item" class="card">
+    <div v-if="item" class="card-single">
         <router-link :to="`/product/${item.id}`">
             <div class="card-pic">
             <img v-if="item.pic1" :src="parseIcon(item.pic1)" :alt="item.name">
@@ -48,7 +48,7 @@ export default {
 </script>
 
 <style lang="scss" scoped >
-.card {
+.card-single {
     width: 280px;
     .card-pic {
         position: relative;

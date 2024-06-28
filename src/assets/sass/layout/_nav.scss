@@ -216,9 +216,22 @@ header {
                 border: none;
                 cursor: pointer;
                 margin-left: 5px;
+                position: relative;
 
                 img {
                     height: 24px;
+                }
+
+                .cart-count {
+                    /* 新增樣式，用于顯示購物車中的商品數量 */
+                    position: absolute;
+                    top: -2px;
+                    right: 1px;
+                    background-color: rgb(218, 35, 35);
+                    color: white;
+                    border-radius: 50%;
+                    padding: 2px 4px;
+                    font-size: 8px;
                 }
             }
 
@@ -261,7 +274,31 @@ header {
             }
         }
 
-
+        .member {
+            position: relative;
+            font-family: 'Noto Serif HK', serif;
+            display: none;
+            ul {
+                width: 120%;
+                position: absolute;
+                position: absolute;
+                top: 100%;
+                left: -15px;
+                background-color: #fffbf6;
+                list-style: none;
+                padding: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                z-index: 2;
+                display: none;
+                li {
+                    font-family: 'Noto Serif HK', serif;
+                    padding: 3px 0;
+                }
+            }
+            &.member:hover>ul {
+                display: block;
+            }
+        }
     }
 
     .mobile-menu {
@@ -269,6 +306,7 @@ header {
 
         @media (max-width: 996px) {
             display: block;
+
         }
 
         ul {
@@ -276,7 +314,7 @@ header {
             list-style: none;
             width: 50%;
             background-color: #B1241A;
-            z-index: 1;
+            z-index: 5;
             right: 0;
             height: 100vh;
 
@@ -289,7 +327,9 @@ header {
                     color: #F9F1E5;
 
                     ul {
-                        padding-left: 20px;
+                        display: none;
+                        /* 隱藏次級選單 */
+                        // padding-left: 20px;
 
                         li {
                             margin-bottom: 0;
@@ -300,8 +340,13 @@ header {
                             }
                         }
                     }
+
                 }
             }
+        }
+
+        li.active ul {
+            display: block; // 當li元素有.active類時顯示次級選單
         }
     }
 }
