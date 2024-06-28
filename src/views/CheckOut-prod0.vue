@@ -1,305 +1,249 @@
-<template>
+// 純刻版頁面，已先棄用，使用 CheckOut-prod.vue
+<!-- <template>
     <div class="go-back">
-        <router-link to="/cart">
-            <返回購物車 </router-link>
+      <router-link to="/cart">返回購物車</router-link>
     </div>
     <div class="checkout-container">
-        <div class="confirm-info">
-            <div class="confirm-title">
-                <span>確認訂購人資料</span>
-                <!-- <button><i class="fa-solid fa-chevron-down"></i></button> -->
-            </div>
-            <div class="disc-line"></div>
-
-            <div class="ord-info">
-                <form>
-                    <div class="form-group">
-                        <label for="name">姓名:</label>
-                        <input type="text" id="name">
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">聯繫電話：</label>
-                        <input type="text" id="phone">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">電子郵箱：</label>
-                        <input type="email" id="email">
-                    </div>
-                </form>
-            </div>
+      <div class="confirm-info">
+        <div class="confirm-title">
+          <span>確認訂購人資料</span>
         </div>
-        <div class="confirm-ord">
-            <div class="confirm-ord-title">
-                <span>確認訂單資料</span>
+        <div class="disc-line"></div>
+        <div class="ord-info">
+          <form>
+            <div class="form-group">
+              <label for="name">姓名:</label>
+              <input type="text" id="name" ref="name">
             </div>
-            <div class="disc-line"></div>
-
-            <div class="prod-info">
-                <CheckoutProd v-for="item in selectedItems" :key="item.id" :item="item" />
+            <div class="form-group">
+              <label for="phone">聯繫電話：</label>
+              <input type="text" id="phone" ref="phone">
             </div>
-            <div class="disc-line"></div>
-            <div class="receiver-info">
-                <span class="receiver">收件人資料</span>
-                <input type="checkbox"><span>同訂購人資料</span>
+            <div class="form-group">
+              <label for="email">電子郵箱：</label>
+              <input type="email" id="email" ref="email">
             </div>
-            <form>
-                <div class="form-group">
-                    <label for="name">收件人姓名:</label>
-                    <input type="text" id="name">
-                </div>
-                <div class="form-group">
-                    <label for="phone">收件人聯絡電話：</label>
-                    <input type="text" id="phone">
-                </div>
-                <div class="form-group">
-                    <label for="address">收件人地址：</label>
-                    <select v-model="selectedCity" @change="onCityChange" class="select">
-                        <option disabled value="">請選擇縣市</option>
-                        <option v-for="city in uniqueCities" :key="city" :value="city">{{ city }}</option>
-                    </select>
-
-                    <select v-model="selectedDistrict" class="select" :disabled="!selectedCity">
-                        <option disabled value="">請選擇鄉鎮區</option>
-                        <option v-for="district in filteredDistricts" :key="district.name" :value="district.name">{{
-                            district.name }}</option>
-                    </select>
-
-                    <input type="text" v-model="addressDetail" placeholder="請填寫詳細地址">
-                </div>
-                <div class="form-group">
-                    <label for="email">收件人電子郵箱：</label>
-                    <input type="email" id="email">
-                </div>
-                <div class="form-group">
-                    <label for="prefer-time">偏好收貨時間：</label>
-                    <select v-model="preferTime" @change="onTimeChange" class="select">
-                        <option disabled value="">請選擇時間段</option>
-                        <option v-for="time in times" :key="time.name" value="time.name">{{ time.name }}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="text">特殊需求備註：</label>
-                    <!-- 特殊需求備註要改text格式 -->
-                    <textarea id="memo" v-model="memo" maxlength="500" class="large-textarea"></textarea>
-                </div>
-
-            </form>
-            <div class="disc-line-form"></div>
-            <div class="invoicing-title">
-                <span>發票與統編</span>
-            </div>
-            <form class="invoicing-form">
-                <div class="form-group">
-                    <label for="invoicing">載具編號：</label>
-                    <input type="text" id="invoicing" maxlength="8">
-                    <input type="checkbox" class="invoicing-cb"><span>設定為常用載具</span>
-                </div>
-                <div class="form-group">
-                    <label for="compilation-title">統一編號：</label>
-                    <input type="text" id="compilation" maxlength="8">
-                    <input type="checkbox" class="invoicing-cb"><span>設定為常用統編</span>
-                </div>
-            </form>
+          </form>
         </div>
-        <div class="pay-way">
-            <div class="payment-title">
-                <span>付款方式</span>
-            </div>
-            <div class="disc-line"></div>
-
-            <div class="payment-info">
-                <form>
-                    <div class="form-group">
-                        <input type="radio" id="credit-card" name="payment" checked>
-                        <label for="credit-card">信用卡支付</label>
-                    </div>
-                    <div class="form-group">
-                        <label for="card-number">信用卡號碼：</label>
-                        <input type="text" id="card-number-1" ref="cardNumber1" class="card-input" maxlength="4"
-                            @input="moveToNext($event, 'cardNumber2')">
-                        <span>-</span>
-                        <input type="text" id="card-number-2" ref="cardNumber2" class="card-input" maxlength="4"
-                            @input="moveToNext($event, 'cardNumber3')">
-                        <span>-</span>
-                        <input type="text" id="card-number-3" ref="cardNumber3" class="card-input" maxlength="4"
-                            @input="moveToNext($event, 'cardNumber4')">
-                        <span>-</span>
-                        <input type="text" id="card-number-4" ref="cardNumber4" class="card-input" maxlength="4">
-                    </div>
-                    <div class="form-group">
-                        <label for="expiry-date">有效日期：</label>
-                        <input type="text" id="expiry-date-mm" ref="expiryDate1" placeholder="MM" maxlength="2"
-                            @input="moveToNext($event, 'expiryDate2')">
-                        <span>/</span>
-                        <input type="text" id="expiry-date-yy" ref="expiryDate2" placeholder="YY" maxlength="2"
-                            @input="moveToNext($event, 'cvc')">
-                        <input type="text" id="cvc" ref="cvc" placeholder="信用卡背面的三碼" maxlength="3">
-                    </div>
-
-                    <div class="form-group">
-                        <div class="save-card-use">
-                            <input type="checkbox" id="save-card-cb">
-                            <label for="save-card">設定為常用信用卡</label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="use-coupon">是否使用優惠券：</label>
-                        <input type="checkbox" id="use-coupon" class="switch" v-model="useCoupon">
-                        <!-- <span class="switch-alert">*無可使用之優惠券</span> -->
-                    </div>
-                </form>
-            </div>
+      </div>
+      <div class="confirm-ord">
+        <div class="confirm-ord-title">
+          <span>確認訂單資料</span>
         </div>
-        <div class="invoice" v-if="selectedItems.length">
-            <div class="invoice-item">
-                <div class="item-description">
-                    <div class="item-total">
-                        <p>{{ itemTypesCount }}件商品合計</p>
-                        <p>NT${{ totalPrice }}(元)</p>
-                    </div>
-                    <div v-if="useCoupon" class="useCoupon">
-                        <div class="item-multiplication">
-                            x
-                        </div>
-                        <div class="item-discount">
-                            <p>優惠折扣(8折)</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="disc-line"></div>
-
-                <div class="invoice-total">
-                    <p>總計：NT${{ useCoupon ? discountedTotal : totalPrice }}(元)</p>
-                </div>
+        <div class="disc-line"></div>
+        <div class="prod-info">
+          <div v-for="item in cartStore.cart" :key="item.id" class="prod-spec">
+            <img class="prod-img" :src="getImageUrl(item.pic1)" :alt="item.name">
+            <div class="prod-card">
+              <h5>{{ item.name }}</h5>
+              <span>{{ item.tag }}</span><br>
+              <div class="mention">*暫不支持超商取貨</div>
             </div>
+            <div class="prod-count">
+              數量：<span>{{ item.count }}</span>
+            </div>
+            <div class="prod-sum">
+              總計：NT$<span>{{ item.price * item.count }}</span>
+            </div>
+          </div>
         </div>
-        <div class="confirm-checkout">
-            <button @click="submitOrder">確認結帳</button>
+        <div class="disc-line"></div>
+        <div class="receiver-info">
+          <span class="receiver">收件人資料</span>
+          <input type="checkbox" @change="copyOrderInfo"><span>同訂購人資料</span>
         </div>
-        <SuccessModal :visible="showSuccessModal" message="結帳成功！" @close="closeModal" />
+        <form>
+          <div class="form-group">
+            <label for="receiverName">收件人姓名:</label>
+            <input type="text" id="receiverName" v-model="receiverName">
+          </div>
+          <div class="form-group">
+            <label for="receiverPhone">收件人聯絡電話：</label>
+            <input type="text" id="receiverPhone" v-model="receiverPhone">
+          </div>
+          <div class="form-group">
+            <label for="receiverEmail">收件人電子郵箱：</label>
+            <input type="email" id="receiverEmail" v-model="receiverEmail">
+          </div>
+          <div class="form-group">
+            <label for="address">收件人地址：</label>
+            <select v-model="selectedCity" @change="onCityChange" class="select">
+              <option disabled value="">請選擇縣市</option>
+              <option v-for="city in uniqueCities" :key="city" :value="city">{{ city }}</option>
+            </select>
+            <select v-model="selectedDistrict" class="select" :disabled="!selectedCity">
+              <option disabled value="">請選擇鄉鎮區</option>
+              <option v-for="district in filteredDistricts" :key="district.name" :value="district.name">{{ district.name }}</option>
+            </select>
+            <input type="text" v-model="addressDetail" placeholder="請填寫詳細地址">
+          </div>
+          <div class="form-group">
+            <label for="preferTime">偏好收貨時間：</label>
+            <select v-model="preferTime" @change="onTimeChange" class="select">
+              <option disabled value="">請選擇時間段</option>
+              <option v-for="time in times" :key="time.name" :value="time.name">{{ time.name }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="memo">特殊需求備註：</label>
+            <textarea id="memo" v-model="memo" maxlength="500" class="large-textarea"></textarea>
+          </div>
+        </form>
+        <div class="disc-line-form"></div>
+        <div class="invoicing-title">
+          <span>發票與統編</span>
+        </div>
+        <form class="invoicing-form">
+          <div class="form-group">
+            <label for="invoicing">載具編號：</label>
+            <input type="text" id="invoicing" maxlength="8">
+            <input type="checkbox" class="invoicing-cb"><span>設定為常用載具</span>
+          </div>
+          <div class="form-group">
+            <label for="compilation">統一編號：</label>
+            <input type="text" id="compilation" maxlength="8">
+            <input type="checkbox" class="invoicing-cb"><span>設定為常用統編</span>
+          </div>
+        </form>
+      </div>
+      <div class="pay-way">
+        <div class="payment-title">
+          <span>付款方式</span>
+        </div>
+        <div class="disc-line"></div>
+        <div class="payment-info">
+          <form>
+            <div class="form-group">
+              <input type="radio" id="credit-card" name="payment" checked>
+              <label for="credit-card">信用卡支付</label>
+            </div>
+            <div class="form-group">
+              <label for="card-number">信用卡號碼：</label>
+              <input type="text" id="card-number" class="card-input" maxlength="4">
+              <span>-</span>
+              <input type="text" class="card-input" maxlength="4">
+              <span>-</span>
+              <input type="text" class="card-input" maxlength="4">
+              <span>-</span>
+              <input type="text" class="card-input" maxlength="4">
+            </div>
+            <div class="form-group">
+              <label for="expiry-date">有效日期：</label>
+              <input type="text" id="expiry-date-mm" placeholder="MM" maxlength="2">
+              <span>/</span>
+              <input type="text" id="expiry-date-yy" placeholder="YY" maxlength="2">
+              <input type="text" id="cvc" placeholder="信用卡背面的三碼" maxlength="3">
+            </div>
+            <div class="form-group">
+              <div class="save-card-use">
+                <input type="checkbox" id="save-card-cb">
+                <label for="save-card">設定為常用信用卡</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="use-coupon">是否使用優惠券：</label>
+              <input type="checkbox" id="use-coupon" class="switch" disabled><span class="switch-alert">*無可使用之優惠券</span>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="invoice">
+        <div class="invoice-item" v-for="item in cartStore.cart" :key="item.id">
+          <div class="item-description">
+            <p>{{ item.name }}</p>
+            <p>數量：{{ item.count }}</p>
+            <p>NT$ {{ item.price * item.count }} (元)</p>
+          </div>
+        </div>
+        <div class="disc-line"></div>
+        <div class="invoice-total">
+          <p>總計：NT$ {{ totalAmount }}</p>
+        </div>
+      </div>
+      <div class="confirm-checkout">
+        <button @click="confirmCheckout">確認結帳</button>
+      </div>
     </div>
-</template>
-<script>
-import { useCartStore } from '../stores/cartStore.js'
-import CheckoutProd from '../components/layout/CheckoutProd.vue'
-import SuccessModal from '../components/layout/SuccessModal.vue';
-export default {
-    //     setup() {
-    //     const cartStore = useCartStore()
-
-    //     return {
-    //       cartStore,
-    //     }
-    //   },
-    components: { CheckoutProd, SuccessModal },
+  </template>
+  
+  <script>
+  import { useCartStore } from '../stores/cartStore.js';
+  import { getImageUrl } from '../utils.js'; // 确保导入 getImageUrl 函数
+  
+  export default {
     setup() {
-        const cartStore = useCartStore();
-
-        return {
-            cartStore,
-            selectedItems: cartStore.selectedItems // 添加 selectedItems
-        }
+      const cartStore = useCartStore();
+      cartStore.loadCart(); // 确保在组件加载时从存储中加载购物车数据
+      return {
+        cartStore
+      };
     },
     data() {
-
-        return {
-            cartStore: useCartStore(),
-            selectedCity: '',
-            selectedDistrict: '',
-            addressDetail: '',
-            preferTime: '',
-            useCoupon: false,
-            showSuccessModal: false,
-            order: {
-                name: '',
-                phone: '',
-                email: '',
-                receiverName: '',
-                receiverPhone: '',
-                receiverEmail: '',
-                invoiceNumber: '',
-            },
-            times: [
-                { name: '無偏好' },
-                { name: '上午(9:00~12:00)' },
-                { name: '下午(13:00~18:00)' }
-            ],
-            cities: [],
-            districts: []
-        };
+      return {
+        selectedCity: '',
+        selectedDistrict: '',
+        addressDetail: '',
+        preferTime: '',
+        times: [
+          { name: '無偏好' },
+          { name: '上午(9:00~12:00)' },
+          { name: '下午(13:00~18:00)' }
+        ],
+        cities: [],
+        districts: [],
+        receiverName: '',
+        receiverPhone: '',
+        receiverEmail: '',
+        memo: ''
+      };
     },
     computed: {
-        uniqueCities() {
-            const cityNames = this.cities.map(city => city.city_name);
-            return [...new Set(cityNames)];
-        },
-        filteredDistricts() {
-            return this.cities.filter(city => city.city_name == this.selectedCity);
-        },
-        itemTypesCount() {
-            return this.cartStore.selectedCartItems.length;
-        },
-        totalPrice() {
-            return this.cartStore.selectedCartItems.reduce((acc, item) => acc + (item.count * item.price), 0);
-        },
-        discountedTotal() {
-            return Math.round(this.totalPrice * 0.8);
-        },
-        selectedItems() {
-            // 只返回選中的商品
-            return this.cartStore.selectedCartItems;
-        }
+      uniqueCities() {
+        const cityNames = this.cities.map(city => city.city_name);
+        return [...new Set(cityNames)];
+      },
+      filteredDistricts() {
+        return this.cities.filter(city => city.city_name == this.selectedCity);
+      },
+      totalAmount() {
+        return this.cartStore.totalAmount;
+      }
     },
     created() {
-        this.fetchCities();
+      this.fetchCities();
     },
     methods: {
-        async fetchCities() {
-            try {
-                const response = await fetch(`${import.meta.env.BASE_URL}Taiwan_address_data.json`);
-                if (!response.ok) {
-                    throw new Error('網絡出現問題，請稍後再試');
-                }
-                this.cities = await response.json();
-            } catch (error) {
-                console.error('無法選取資料:', error);
-            }
-        },
-        onCityChange() {
-            this.selectDistrict = '';
-        },
-        onTimeChange() {
-            console.Consolelog('Selected time:', this.preferTime);
-        },
-        submitOrder() {
-            // 表单驗證
-            // if (!this.order.name || !this.order.phone || !this.order.email || !this.order.receiverName || !this.order.receiverPhone || !this.order.receiverEmail || !this.addressDetail) {
-            //     alert('請填寫並確認完成所有訂單資料');
-            //     return;
-            // }
-
-            // 顯示成功彈窗
-            this.showSuccessModal = true;
-
-            // 清空購物車
-            this.cartStore.cleanCart();
-        },
-        closeModal() {
-            this.showSuccessModal = false;
-            // 重定向到首頁
-            this.$router.push('/');
-        },
-        moveToNext(event, nextFieldId) {
-            if (event.target.value.length === event.target.maxLength) {
-                setTimeout(() => {
-                    this.$refs[nextFieldId].focus();
-                }, 100);
-            }
+      async fetchCities() {
+        try {
+          const response = await fetch(`${import.meta.env.BASE_URL}Taiwan_address_data.json`);
+          if (!response.ok) {
+            throw new Error('網絡出現問題，請稍後再試');
+          }
+          this.cities = await response.json();
+        } catch (error) {
+          console.error('無法選取資料:', error);
         }
+      },
+      onCityChange() {
+        this.selectedDistrict = '';
+      },
+      onTimeChange() {
+        console.log('Selected time:', this.preferTime);
+      },
+      copyOrderInfo() {
+        this.receiverName = this.$refs.name.value;
+        this.receiverPhone = this.$refs.phone.value;
+        this.receiverEmail = this.$refs.email.value;
+      },
+      confirmCheckout() {
+        alert(`結帳總金額: $${this.totalAmount}`);
+      },
+      getImageUrl(fileName) {
+        return getImageUrl(fileName); // 使用从 utils.js 导入的 getImageUrl 函数
+      }
     }
-};
-</script>
+  };
+  </script>
 <style scoped lang="scss">
 @import "@/assets/sass/style";
 
@@ -372,6 +316,7 @@ export default {
         background: #ffffff;
         border-radius: 20px;
         margin: 40px 0;
+        height: 945px;
 
         .confirm-ord-title {
             height: 48px; //高的問題要解決
@@ -385,7 +330,58 @@ export default {
             background-color: #828282;
         }
 
+        .prod-info {
+            display: flex;
+            padding-left: 20px;
+            height: 30%;
 
+            button {
+                background-color: transparent;
+                border: none;
+            }
+
+            .prod-img {
+                height: auto;
+                width: 20%;
+                object-fit: cover;
+                border-radius: 20px;
+                margin: auto 10px auto 0;
+
+            }
+
+            .prod-spec {
+                display: flex;
+                margin: auto 0;
+                width: 80%;
+                justify-content: space-between;
+
+                .prod-card {
+                    h5 {
+                        padding-bottom: 10px;
+                    }
+
+                    span {
+                        line-height: 150%;
+                        font-size: 14px;
+                    }
+
+                    .mention {
+                        font-size: 12px;
+                        padding-top: 50px;
+                    }
+
+                }
+
+                .prod-count {
+                    margin: auto;
+                }
+
+                .prod-sum {
+                    margin: auto;
+                }
+
+            }
+        }
 
         .receiver-info {
             display: flex;
@@ -420,6 +416,7 @@ export default {
             flex-direction: column;
             margin-top: 40px;
             gap: 25px;
+            width: 100%;
             padding-left: 20px;
 
             .form-group {
@@ -484,8 +481,9 @@ export default {
         .invoicing-form {
             display: flex;
             flex-direction: column;
-            margin: 40px 0 20px 0;
+            margin-top: 40px;
             gap: 25px;
+            width: 100%;
             padding-left: 20px;
 
             .form-group {
@@ -659,58 +657,35 @@ export default {
         border: 1px solid #828282;
         background: #ffffff;
         border-radius: 20px;
+        height: 240px;
         margin: 40px 0;
 
         .invoice-item {
-            margin: auto;
-            padding: 30px 0 10px 0;
+            margin: auto 10px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 50px 0;
 
-            .item-description {
+
+            .item-description,
+            .item-discount,
+            .item-multiplier {
                 text-align: center;
-                display: flex;
-                justify-content: center;
-                margin-bottom: 20px;
-
-                p {
-                    margin: 5px 0;
-                }
-
-                .item-total {
-                    margin: 0 10px;
-                    width: 33.33%;
-                }
-
-                .useCoupon {
-                    display: flex;
-                    justify-content: space-around;
-                    width: 66.66%;
-                    margin: auto;
-
-                    .item-multiplication {
-                        margin: 0 10px;
-                        width: 50%;
-                    }
-
-                    .item-discount {
-                        margin: 0 10px;
-                        width: 50%;
-                    }
-                }
-
-
             }
 
-
-
-
-            .disc-line {
-                height: 1px;
-                background-color: #828282;
+            .item-description p,
+            .item-discount p,
+            .item-multiplier p {
+                margin: 5px 0;
             }
 
         }
 
-
+        .disc-line {
+            height: 1px;
+            background-color: #828282;
+        }
 
         .invoice-total {
             margin: auto 40px;
@@ -1678,4 +1653,4 @@ export default {
 
     }
 }
-</style>
+</style> -->

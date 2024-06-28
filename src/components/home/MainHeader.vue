@@ -114,11 +114,17 @@ export default {
                         <span v-if="cartItemCount > 0" class="cart-count">{{ cartItemCount }}</span>
                     </RouterLink>
                 </button>
-                <button>
+                <button class="logIn-btn">
                     <a href="#" @click="loginIn">
                         <img class="desktop-user" src="../../assets/pic/icon_user.svg" alt="會員登入/註冊">
                         <img class="mobile-user" src="../../assets/pic/mobile-user.svg" alt="會員登入/註冊">
                     </a>
+                </button>
+                <button class="member">王曉明
+                        <ul>
+                            <router-link to="/memberinfo">會員資訊</router-link>
+                            <li @click="signOut">登出</li>
+                        </ul>
                 </button>
 
                 <button @click="toggleMenu" class="hamburger-menu">
@@ -177,6 +183,13 @@ export default {
         }
     },
     methods: {
+        signOut() {
+            this.$router.push('/');
+            const logInBtn = document.querySelector(".logIn-btn");
+            const member = document.querySelector(".member");
+            member.style.display = "none";
+            logInBtn.style.display = "block";
+        },
         loginIn() {
             const loginBox = document.querySelector(".login-box");
             loginBox.style.opacity = "1";

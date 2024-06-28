@@ -36,6 +36,7 @@
     border-radius: 20px;
     display: flex;
     flex-direction: column;
+    z-index: 100;
 
 
     @media screen and (max-width:576px) {
@@ -45,7 +46,7 @@
         width: 100%;
         height: 100%;
         background-color: #FFFBF6;
-        z-index: -2;
+        z-index: 100;
     }
 
     @media screen and (min-width:577px) and (max-width:996px) {
@@ -54,7 +55,7 @@
         grid-template-rows: repeat(2, auto);  
         width: 100%;
         background-color: #FFFBF6;
-        z-index: -2;
+        z-index: 100;
         row-gap: 10%;
     }
     

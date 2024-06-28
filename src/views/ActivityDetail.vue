@@ -66,8 +66,8 @@
       <div class="session-time">
         <h5>場次時間</h5>
         <div class="time">
-          <button>10:00~12:00</button>
-          <button>13:00~15:00</button>
+          <button @click="chooseTime('10:00~12:00')" :class="{ 'choose-time': currentTime === '10:00~12:00' }">10:00~12:00</button>
+          <button @click="chooseTime('13:00~15:00')" :class="{ 'choose-time': currentTime === '13:00~15:00' }">13:00~15:00</button>
         </div>
       </div>
       <div class="num">
@@ -145,6 +145,7 @@ export default {
     return {
       count: 1,
       price:499,
+      currentTime: '',
     }
   },
   components: {
@@ -168,6 +169,9 @@ export default {
     minus() {
       if (this.count == 1) return
       this.count -= 1;
+    },
+    chooseTime(time) {
+      this.currentTime = time;
     },
   }
 };

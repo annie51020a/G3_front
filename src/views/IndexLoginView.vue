@@ -3,18 +3,18 @@
         <div class="login-container">
             <div class="login-wrap">
                 <div class="link">
-                    <button class="login" @click="showContent('login')">會員登入</button>
-                    <button class="register" @click="showContent('register')">會員註冊</button>
+                    <button class="login" @click="showContent('login');showLogin()">會員登入</button>
+                    <button class="register" @click="showContent('register');showRegister()">會員註冊</button>
                 </div>
                 <div class="login-frame">
                     <!-- for login page use v-if to switch-->
                     <div class="input-field" v-if="content === 'login'">
                         <div class="content-container">
                             <div class="login-input">
-                                <input class="email" name="memId" type="email" placeholder="電子郵件" v-model="emailData" >
+                                <input class="email" name="memId" type="email" placeholder="請輸入電子郵件" v-model="emailData" >
                                 <div class="input-icon">
-                                    <input class="password" name="memPsw" type="password" placeholder="密碼" maxlength="12" minlength="6" v-model="pswData">
-                                    <picture @click="showPsw" class="eyes">
+                                    <input class="password" name="memPsw" type="password" placeholder="請輸入密碼" maxlength="12" minlength="6" v-model="pswData">
+                                    <picture @click="togglePasswordVisibility($event, 'password')" class="eyes">
                                         <img id="eye" src="/src/assets/pic/login/eye-close.svg" alt="" title="close">
                                     </picture>
                                 </div>
@@ -25,12 +25,12 @@
                             </div>
                             <p class="quick">使用以下帳號快速登入</p>
                             <div class="login-icon">
-                                <a href="#" class="login-goole">
+                                <div class="login-goole" @click="googleSignIn">
                                 <img src="/src/assets/pic/login/google-icon.png" alt="">
-                                </a>
-                                <a href="#" class="login-facebook">
+                                </div>
+                                <div class="login-facebook">
                                     <img src="/src/assets/pic/login/logos_facebook.png" alt="">
-                                </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -56,16 +56,16 @@
                     <div class="input-field" v-if="content === 'register'">
                         <div class="content-container">
                                 <div class="register-input">
-                                    <input class="email" name="memId" type="email" placeholder="請輸入電子郵件" v-model="emailData" >
+                                    <input class="email" name="memclass" type="email" placeholder="請輸入電子郵件" v-model="emailData" >
                                     <div class="input-icon">
-                                        <input class="password" name="memPsw" type="password" placeholder="請輸入密碼" maxlength="12" minlength="6" v-model="pswData">
-                                        <picture @click="showPsw" class="eyes">
+                                        <input class="password" name="memPsw" type="password" placeholder="請輸入密碼" maxlength="12" minlength="6" v-model="password">
+                                        <picture @click="togglePasswordVisibility($event, 'password')" class="eyes">
                                             <img id="eye" src="/src/assets/pic/login/eye-close.svg" alt="" title="close">
                                         </picture>
                                     </div>
                                     <div class="input-icon">
-                                        <input class="password" name="memPsw" type="password" placeholder="確認密碼" maxlength="12" minlength="6" v-model="pswData">
-                                        <picture @click="showPsw" class="eyes">
+                                        <input class="password" name="memPsw" type="password" placeholder="確認密碼" maxlength="12" minlength="6" v-model="confirmPassword">
+                                        <picture @click="togglePasswordVisibility($event, 'confirmPassword')" class="eyes">
                                             <img id="eye" src="/src/assets/pic/login/eye-close.svg" alt="" title="close">
                                         </picture>
                                     </div>
@@ -109,6 +109,8 @@
 </template>
 
 <script>
+import { gapi } from 'gapi-script';
+
 export default {
     data() {
         return {
@@ -116,13 +118,41 @@ export default {
             // forgetPswBox: true,
             mem:[],
             emailData: '',
-            pswData:''
+            pswData:'',
+            password: '',
+            confirmPassword: '',
+
+            loginConsider:true
         }
     },
     methods: {
         // 點擊後更變內容
         showContent(content) {
-        this.content = content; 
+            this.content = content; 
+        },
+        showLogin() {
+            this.loginConsider = true;
+
+            this.determineLoginOrRegister();
+        },
+        showRegister() {
+            this.loginConsider = false;
+
+            this.determineLoginOrRegister();
+        },
+        determineLoginOrRegister(){
+            const login        = document.querySelector(".login");
+            const register     = document.querySelector(".register");
+
+            if (this.loginConsider) {
+                login.classList.remove("login-hide")
+                register.classList.remove("register-show")
+                
+                return
+            }
+
+            login.classList.add("login-hide");
+            register.classList.add("register-show") 
         },
         closeLoginInBtn() {
             const closeLoginInBtn = document.querySelector(".x");
@@ -130,20 +160,25 @@ export default {
                 const loginBox = document.querySelector(".login-box");
                 loginBox.style.opacity = "0";
                 loginBox.style.pointerEvents = "none";
-
+                this.emailData = "";
+                this.pswData = "";
+                this.password = "";
+                this.confirmPassword = "";
             }
         },
-        showPsw() {
-            const eye = document.querySelector("#eye");
-            const password = document.querySelector(".password");
-            if(eye.title === "close") {
+        togglePasswordVisibility(e, field) {
+            let x = field;
+            console.log(x);
+            const eye = e.currentTarget.querySelector("#eye");
+            const passwordInput = e.currentTarget.previousElementSibling;
+            if (eye.title === "close") {
                 eye.src = "/src/assets/pic/login/eye-open.svg";
                 eye.title = "open";
-                password.type = "text";
+                passwordInput.type = "text";
             } else {
                 eye.src = "/src/assets/pic/login/eye-close.svg";
                 eye.title = "close";
-                password.type = "password";
+                passwordInput.type = "password";
             }
         },
         // showForgetPassword() {
@@ -153,6 +188,8 @@ export default {
         //     this.forgetPswBox = true;
         // },
         memLogin() {
+            const member = document.querySelector(".member");
+            const logInBtn = document.querySelector(".logIn-btn");
             if((this.emailData === this.mem[0].account) 
                 && (this.pswData === this.mem[0].psw)
             ) {
@@ -162,12 +199,51 @@ export default {
                 const loginBox = document.querySelector(".login-box");
                 loginBox.style.opacity = "0";
                 loginBox.style.pointerEvents = "none";
+                this.$router.push('/memberinfo');
+                member.style.display = "block";
+                logInBtn.style.display = "none";
             } else {
                 alert("帳號或密碼錯誤!")
                 this.emailData = "";
                 this.pswData = "";
             }
+        },
+        // 第一種
+        googleSignIn() {
+            gapi.load('auth2', () => {
+            const auth2 = gapi.auth2.init({
+            client_id: '936842006999-iroeoumpffqet17pij6d53trmvvntkdm.apps.googleusercontent.com',
+            });
+            auth2.signIn().then(googleUser => {
+            const profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId());
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail());
+            }).catch(error => {
+                console.error('Error signing in: ', error);
+                });
+            });
         }
+        
+        // 第二種 搭配 index.html <script>
+        // googleSignIn() {
+        //     const client = google.accounts.oauth2.initTokenClient({
+        //         client_id: 'YOUR_GOOGLE_CLIENT_ID',  // 确保这是正确的客户端 ID
+        //         scope: 'profile email',
+        //         callback: (response) => this.handleCredentialResponse(response),
+        //     });
+        //     client.requestAccessToken();
+        // },
+        // handleCredentialResponse(response) {
+        //     if (response.error) {
+        //         console.error('Authorization error:', response.error);
+        //         // 处理授权错误，例如显示错误信息
+        //     } else {
+        //         console.log('Google login response:', response);
+        //         // 在此处添加你的登录逻辑，例如发送 token 到你的后端服务器
+        //     }
+        // }
     },
     mounted() {
         fetch(`${import.meta.env.BASE_URL}member.json`)
@@ -177,6 +253,11 @@ export default {
                 this.mem = json
                 console.log(this.mem[0]);
             });
+        gapi.load('auth2', function() {
+        gapi.auth2.init({
+            client_id: '936842006999-iroeoumpffqet17pij6d53trmvvntkdm.apps.googleusercontent.com'
+        });
+    });
     }
 }
 </script>

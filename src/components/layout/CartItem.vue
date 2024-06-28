@@ -1,13 +1,13 @@
 <template>
     <div class="card">
         <input type="checkbox" v-model="localSelected" @change="emitToggleSelect" /> <!-- 使用 localSelected 來監聽 -->
-        <div class="prod-detail">
+        <RouterLink :to="`/product/${item.id}`" class="prod-detail">
             <img class="prod" :src="getImageUrl(item.pic1)" :alt="item.name">
             <div class="info">
                 <h5>{{ item.name }}</h5>
                 <p>{{ item.tag }}</p>
             </div>
-        </div>
+        </RouterLink>
         <div class="amount">
             <p>數量</p>
             <!-- <button @click="decrementQuantity" :disabled="item.quantity <= 1"><i class="fa-solid fa-minus"></i></button>

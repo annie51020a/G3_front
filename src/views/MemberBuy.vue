@@ -13,7 +13,8 @@
                 <div v-else-if="displayData.length === 0">nodata...</div>
                 <div v-else class="display-window">
                     <div class="buy-card" v-for="item in displayData" :key="item.id" :item="item">
-                        <button class="detail-btn" type="button">訂單明細</button>
+                        <button :class="{ open: isOpen === item.id , closed: isOpen !== item.id  }" type="button"
+                            @click="toggleContent(item.id)">{{ isOpen === item.id ? '取消訂單' : '訂單明細' }}</button>
                         <ul class="buy-list">
                             <li class="order-id">
                                 <div>
@@ -39,14 +40,74 @@
                                     {{ item.status }}
                                 </div>
                             </li>
-                            <li class="order-price">
+                            <li class="order-total">
                                 <div>
-                                    訂單狀態
+                                    實付金額
                                 </div>
                                 <div>
-                                    {{ item.price }}
+                                    NT${{ item.total }}
                                 </div>
                             </li>
+                        </ul>
+                        <ul class="buy-item"  v-show="isOpen === item.id">
+                            <li class="order-coupon">
+                                <div>
+                                    使用優惠券
+                                </div>
+                                <div>
+                                    {{ item.coupon }}
+                                </div>
+                            </li>
+                            <li class="order-notes">
+                                <div>
+                                    備註
+                                </div>
+                                <div>
+                                    {{ item.notes }}
+                                </div>
+                            </li>
+                            <hr>
+                            <li class="order-pic">
+                                <div>
+                                    商品圖片
+                                </div>
+                                <div>
+                                    <img :src="parseIcon(item.pic1)" :alt="item.name">
+                                </div>
+                            </li>
+                            <li class="order-name">
+                                <div>
+                                    商品名稱
+                                </div>
+                                <div>
+                                    {{ item.name }}
+                                </div>
+                            </li>
+                            <li class="order-price">
+                                <div>
+                                    商品價格
+                                </div>
+                                <div>
+                                    NT${{ item.price }}
+                                </div>
+                            </li>
+                            <li class="order-quantity">
+                                <div>
+                                    商品數量
+                                </div>
+                                <div>
+                                    {{ item.quantity }}
+                                </div>
+                            </li>
+                            <li class="order-subtotal">
+                                <div>
+                                    金額小計
+                                </div>
+                                <div>
+                                    NT${{ item.subtotal }}
+                                </div>
+                            </li>
+                            <hr>
                         </ul>
                     </div>
 
@@ -70,6 +131,7 @@ export default {
             responseData: [],
             displayData: [],
             search: "",
+            isOpen: null
         }
     },
     //可以用create也可以用mounted
@@ -90,6 +152,17 @@ export default {
         clear() {
             this.search = "";
             this.displayData = [...this.responseData];
+        },
+        parseIcon(file) {
+            // 指到src || ..的意思是“回到上一層”
+            return new URL(`../assets/pic/product/${file}`, import.meta.url).href
+        },
+        toggleContent(id) {
+            if (this.isOpen === id) {
+                this.isOpen = null; // 點擊已經展開的區塊，則關閉
+            } else {
+                this.isOpen = id; // 點擊未展開的區塊，打開
+            }
         },
         filterTag(event) {
             const selectedTag = event.target.value || event.target.dataset.value;
@@ -202,6 +275,7 @@ export default {
 
         .buy-window {
             width: 100%;
+
             @include m(sm) {
                 width: 80%;
             }
@@ -210,11 +284,26 @@ export default {
                 .buy-card {
                     background-color: #F9F1E5;
                     border-radius: 20px;
-                    padding: 30px;
-                    margin-bottom: 30px;
+                    padding: 20px;
+                    margin-bottom: 20px;
                     position: relative;
 
-                    .detail-btn {
+                    .open {
+                        background-color: #fff;
+                        border: 1px solid #B1241A;
+                        color: #B1241A;
+                        cursor: pointer;
+                        font-size: 20px;
+                        font-family: noto serif hk;
+                        width: fit-content;
+                        padding: 10px;
+                        border-radius: 20px;
+                        position: absolute;
+                        top: 20px;
+                        right: 20px;
+                    }
+
+                    .closed {
                         color: #fff;
                         cursor: pointer;
                         font-size: 20px;
@@ -225,16 +314,41 @@ export default {
                         border-radius: 20px;
                         border: 0;
                         position: absolute;
-                        top: 30px;
-                        right: 30px;
+                        top: 20px;
+                        right: 20px;
 
                     }
 
                     .buy-list {
                         >li {
                             display: flex;
-                            gap: 20px;
+                            gap: 10px;
                             margin-bottom: 10px;
+                            > div:first-child {
+                                width: 100px;
+                            }
+                        }
+                    }
+                    .buy-item {
+                        >hr {
+                            color: #564a41;
+                        }
+                        >li {
+                            display: flex;
+                            gap: 10px;
+                            margin-bottom: 10px;
+                            > div:first-child {
+                                width: 100px;
+                            }
+                        }
+                        .order-pic {
+                            align-items: center;
+                            img {
+                                width: 100px;
+                                object-fit: cover;
+                                border-radius: 20px;
+                            }
+                            
                         }
                     }
                 }

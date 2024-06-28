@@ -108,6 +108,7 @@ export default {
     watch: {
         "$route.params.id"() {
             this.fetchInfo();
+            this.quantity=1
         },
     },
     mounted() {
