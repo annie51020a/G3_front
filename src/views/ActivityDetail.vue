@@ -66,14 +66,16 @@
       <div class="session-time">
         <h5>場次時間</h5>
         <div class="time">
-          <button @click="chooseTime('10:00~12:00')" :class="{ 'choose-time': currentTime === '10:00~12:00' }">10:00~12:00</button>
-          <button @click="chooseTime('13:00~15:00')" :class="{ 'choose-time': currentTime === '13:00~15:00' }">13:00~15:00</button>
+          <button @click="chooseTime('10:00~12:00')"
+            :class="{ 'choose-time': currentTime === '10:00~12:00' }">10:00~12:00</button>
+          <button @click="chooseTime('13:00~15:00')"
+            :class="{ 'choose-time': currentTime === '13:00~15:00' }">13:00~15:00</button>
         </div>
       </div>
       <div class="num">
         <h5>選擇人數</h5>
         <div class="amount-button">
-          <p>NT${{price}}/人</p>
+          <p>NT${{ price }}/人</p>
           <button @click="minus"><i class="fa-solid fa-minus"></i></button>
           <p>{{ count }}</p>
           <button @click="plus"><i class="fa-solid fa-plus"></i></button>
@@ -81,7 +83,7 @@
       </div>
       <div class="total-price">
         <h5>總金額</h5>
-        <p>NT${{total}}</p>
+        <p>NT${{ total }}</p>
       </div>
       <hr>
       <button class="btn">
@@ -96,7 +98,7 @@
       <h4>注意事項</h4>
     </div>
     <div class="activity-notice-info">
-      <div class="know-and-use">
+      <div class="know-use-cancel">
         <h5>-預約須知-</h5>
         <ul>
           <li>活動日 6 天前可免費取消。</li>
@@ -109,20 +111,18 @@
           <li>現場請出示電子憑證。</li>
           <li>需要按照預訂日期及當天開放時間內使用，逾期失效</li>
         </ul>
-      </div>
-      <div class="cancel-and-map">
         <h5>-取消政策-</h5>
         <ul>
           <li>所選日期 6 天（含）之前取消，收取手續費 0%</li>
           <li>所選日期 0 ~ 5 天之間取消，收取手續費 100%</li>
         </ul>
+      </div>
+      <div class="loc-map">
         <h5>-體驗地點-</h5>
         <ul>
           <li>高雄市前鎮區中華五路123號5樓。(傘韻：油紙傘工作室)</li>
         </ul>
-        <div class="loc-map"><iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.3608874604242!2d120.30601269999998!3d22.6029949!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e037089809907%3A0x8db05f77e1458f5d!2zODA26auY6ZuE5biC5YmN6Y6u5Y2A5Lit6I-v5LqU6LevMTIz6JmfNQ!5e0!3m2!1szh-TW!2stw!4v1718554242516!5m2!1szh-TW!2stw"
-            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+        <div class="mapContainer" ref="mapContainer"></div>
       </div>
     </div>
   </section>
@@ -140,11 +140,18 @@ import 'swiper/css/pagination';
 // import required modules
 import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
 
+// Import leaflet styles and components
+import { onMounted, ref } from "vue";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+import mapMarkerUrl from "../assets/pic/activity/map-marker.png";
+
 export default {
+
   data() {
     return {
       count: 1,
-      price:499,
+      price: 499,
       currentTime: '',
     }
   },
@@ -153,12 +160,34 @@ export default {
     SwiperSlide,
   },
   setup() {
+    const mapContainer = ref(null);
+
+    onMounted(() => {
+      const map = L.map(mapContainer.value, {
+        center: [22.602995, 120.306013],
+        zoom: 17,
+      });
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
+
+      // L.marker
+      const mapMarker = L.icon({
+        iconUrl: mapMarkerUrl,
+        iconSize: [35, 70],
+        iconAnchor: [15, 75],
+      });
+
+      L.marker([22.602995, 120.306013], { icon: mapMarker }).addTo(map);
+    });
     return {
       modules: [Navigation, Pagination, Mousewheel, Keyboard],
+      mapContainer,
     };
   },
-  computed:{
-    total(){
+  computed: {
+    total() {
       return this.count * this.price;
     }
   },
@@ -180,6 +209,11 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/sass/style";
 
+.mapContainer {
+  width: 300px;
+  height: 300px;
+}
+
 .section-activity-swiper {
   width: 100%;
   margin-top: 40px;
@@ -195,7 +229,7 @@ export default {
 
     @media (max-width: $sm) {
       height: 250px;
-          }
+    }
 
     >img {
       border-radius: 30px;
