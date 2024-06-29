@@ -181,8 +181,7 @@
     margin: auto;
     margin-bottom: 40px;
 
-    h4,
-    h5 {
+    h4{
         padding-left: 10px;
     }
 
@@ -214,7 +213,7 @@
         flex-direction: column;
       }
 
-        .know-and-use {
+        .know-use-cancel {
             width: 45%;
 
             @media (max-width: $md) {
@@ -222,16 +221,16 @@
               }
         }
 
-        .cancel-and-map {
+        .loc-map {
             width: 45%;
 
             @media (max-width: $md) {
                 width: 95%;
               }
 
-            iframe {
+              .mapContainer {
                 width: 100%;
-                height: 200px;
+                height: 330px;
                 margin-top: 20px;
                 border-radius: 10px;
             }
