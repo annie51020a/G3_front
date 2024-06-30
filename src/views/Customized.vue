@@ -342,7 +342,7 @@
                             designCtx.scale(item.scale, item.scale);
                             designCtx.drawImage(img, 0, 0, item.width, item.height);
                             designCtx.restore();
-                            resolve();
+                            resolve();          
                         };
                         img.src = item.src;
                     }));
@@ -364,6 +364,13 @@
 
                         // 更新預覽圖
                         this.selectedImage = finalCanvas.toDataURL();
+
+                        // 將 finalCanvas 轉換為圖片 URL
+                        const imageURL = finalCanvas.toDataURL("image/png");
+                        console.log(imageURL);
+
+                        // 需處理 formData的問題，imageURL BASE字元太多
+
                     };
                     backgroundImage.src = '/src/assets/pic/customized/Preview.png'; // 請替換為實際的背景圖路徑
                 });
