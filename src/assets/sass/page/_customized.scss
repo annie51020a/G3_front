@@ -283,13 +283,13 @@
                         z-index: 1;
                         .pics{
                             width: 130px;
-                            height: 100%;
+                            padding: 20px 0;
                             float: right;
                             display: flex;
-                            justify-content: space-evenly;    
+                            flex-wrap: wrap;
                             .pic{
-                                margin-top: 20px;
-                                width: 50px;
+                                margin: 5px;
+                                width: 40%;
                                 height: 50px;
                                 border-radius: 5px;
                                 background-color: white;
@@ -349,6 +349,19 @@
                         }
                     }
                 }
+
+                canvas{
+                    mask-image: url(/src/assets/pic/customized/Preview.png);
+                    mask-size: contain;
+                    mask-repeat: no-repeat;
+                    mask-position: center;
+                    mask-mode: alpha;
+                    -webkit-mask-image: url(/src/assets/pic/customized/Preview.png);
+                    -webkit-mask-size: contain;
+                    -webkit-mask-repeat: no-repeat;
+                    -webkit-mask-position: center;
+                }
+
                 .preview-item{
                     width: 25%;
                     height: 100%;
@@ -365,15 +378,32 @@
                             color: #ffffff;
                             margin-bottom: 20px;
                         }
-                        .pic{
+                        .pic-back{
                             width: 90%;
+                            background-image: url(/src/assets/pic/customized/Preview.png);
+                            background-repeat: no-repeat;
+                            background-position: center;
+                            background-size: contain;
                             background-color: #ffffff;
                             border-radius: 20px;
                             margin: 0 auto;
-                            img{
+                            .pic{
                                 width: 100%;
-                                object-fit: cover;
-                                vertical-align: middle;
+                                mask-image: url(/src/assets/pic/customized/Preview.png);
+                                mask-size: contain;
+                                mask-repeat: no-repeat;
+                                mask-position: center;
+                                mask-mode: alpha;
+                                -webkit-mask-image: url(/src/assets/pic/customized/Preview.png);
+                                -webkit-mask-size: contain;
+                                -webkit-mask-repeat: no-repeat;
+                                -webkit-mask-position: center;
+                                
+                                img{
+                                    width: 100%;
+                                    object-fit: cover;
+                                    vertical-align: middle;
+                                }
                             }
                         }
                     }

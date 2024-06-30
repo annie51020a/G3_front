@@ -120,12 +120,16 @@
                             </div>
                         </div>
                     </div>
+                    <!-- 隱藏畫布區域 -->
+                    <canvas ref="hiddenCanvas" style="display: none;"></canvas>
                     <div class="preview-item">
                         <div class="preview">
                             <h5>效果預覽</h5>
-                            <div class="pic">
-                                <img :src="selectedImage" v-if="selectedImage">
-                                <img src="/src/assets/pic/customized/Preview.png" alt="">
+                            <div class="pic-back">
+                                <div class="pic">
+                                    <img :src="selectedImage" v-if="selectedImage">
+                                    <img src="/src/assets/pic/customized/Preview.png" alt="" v-if="!selectedImage">
+                                </div>
                             </div>
                         </div>
                         <div class="arrow">
@@ -305,30 +309,93 @@
                     zIndex: this.designItems.length + 1
                     };
                     this.designItems.push(newItem);
-                    this.selectedImage = image;
+                    this.updatePreview();
                 };
                 img.src = image;
             },
-            selectItem(index, event) {
-                event.preventDefault(); // 阻止默認行為
+
+            updatePreview() {
+                const canvas = this.$refs.hiddenCanvas;
+                const ctx = canvas.getContext('2d');
+                const designCanvas = this.$refs.designCanvas;
+
+                // 設置canvas大小與設計區域相同
+                canvas.width = designCanvas.offsetWidth;
+                canvas.height = designCanvas.offsetHeight;
+
+                // 創建兩個額外的canvas：一個用於繪製設計，一個用於最終的混合效果
+                const designLayer = document.createElement('canvas');
+                const finalCanvas = document.createElement('canvas');
+                designLayer.width = finalCanvas.width = canvas.width;
+                designLayer.height = finalCanvas.height = canvas.height;
+                const designCtx = designLayer.getContext('2d');
+                const finalCtx = finalCanvas.getContext('2d');
+
+                // 在 designLayer 上繪製所有設計元素
+                const drawPromises = this.designItems
+                    .sort((a, b) => a.zIndex - b.zIndex)
+                    .map(item => new Promise(resolve => {
+                        const img = new Image();
+                        img.onload = () => {
+                            designCtx.save();
+                            designCtx.translate(item.left, item.top);
+                            designCtx.scale(item.scale, item.scale);
+                            designCtx.drawImage(img, 0, 0, item.width, item.height);
+                            designCtx.restore();
+                            resolve();          
+                        };
+                        img.src = item.src;
+                    }));
+
+                // 當所有設計元素都繪製完成後，進行最終的混合
+                Promise.all(drawPromises).then(() => {
+                    // 加載背景圖
+                    const backgroundImage = new Image();
+                    backgroundImage.onload = () => {
+                        // 在 finalCanvas 上繪製背景
+                        finalCtx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+
+                        // 設置混合模式為 multiply 並繪製設計層
+                        finalCtx.globalCompositeOperation = 'normal';
+                        finalCtx.drawImage(designLayer, 0, 0);
+
+                        // 重置混合模式
+                        finalCtx.globalCompositeOperation = 'source-over';
+
+                        // 更新預覽圖
+                        this.selectedImage = finalCanvas.toDataURL();
+
+                        // 將 finalCanvas 轉換為圖片 URL
+                        const imageURL = finalCanvas.toDataURL("image/png");
+                        console.log(imageURL);
+
+                        // 需處理 formData的問題，imageURL BASE字元太多
+
+                    };
+                    backgroundImage.src = '/src/assets/pic/customized/Preview.png'; // 請替換為實際的背景圖路徑
+                });
+            },
+
+            selectItem(index, e) {
+                e.preventDefault(); // 阻止默認行為
                 if (this.isResizing) return;
                 this.isMoving = true;
                 this.selectedItemIndex = index;
                 const item = this.designItems[index];
-                this.initialMouseX = event.clientX;
-                this.initialMouseY = event.clientY;
+                this.initialMouseX = e.clientX;
+                this.initialMouseY = e.clientY;
                 this.initialItemLeft = item.left;
                 this.initialItemTop = item.top;
                 item.zIndex = Math.max(...this.designItems.map(i => i.zIndex)) + 1;
                 document.addEventListener('mousemove', this.moveItem);
                 document.addEventListener('mouseup', this.stopMoving);
             },
-            moveItem(event) {
-                event.preventDefault(); // 阻止默認行為
+            moveItem(e) {
+                e.preventDefault(); // 阻止默認行為
                 if (!this.isMoving) return;
                 const item = this.designItems[this.selectedItemIndex];
-                const deltaX = event.clientX - this.initialMouseX;
-                const deltaY = event.clientY - this.initialMouseY;
+                const deltaX = e.clientX - this.initialMouseX;
+                const deltaY = e.clientY - this.initialMouseY;
                 item.left = this.initialItemLeft + deltaX;
                 item.top = this.initialItemTop + deltaY;
             },
@@ -336,22 +403,23 @@
                 this.isMoving = false;
                 document.removeEventListener('mousemove', this.moveItem);
                 document.removeEventListener('mouseup', this.stopMoving);
+                this.updatePreview();
             },
-            startResize(index, event) {
-                event.stopPropagation();
+            startResize(index, e) {
+                e.stopPropagation();
                 this.isResizing = true;
                 this.selectedItemIndex = index;
                 const item = this.designItems[index];
                 this.initialScale = item.scale;
-                this.initialMouseX = event.clientX;
-                this.initialMouseY = event.clientY;
+                this.initialMouseX = e.clientX;
+                this.initialMouseY = e.clientY;
                 document.addEventListener('mousemove', this.resize);
                 document.addEventListener('mouseup', this.stopResize);
             },
-            resize(event) {
+            resize(e) {
                 if (!this.isResizing) return;
                 const item = this.designItems[this.selectedItemIndex];
-                const deltaX = event.clientX - this.initialMouseX;
+                const deltaX = e.clientX - this.initialMouseX;
                 const scaleFactor = 1 + deltaX / 200; // 調整縮放靈敏度
                 item.scale = Math.max(0.1, Math.min(3, this.initialScale * scaleFactor));
             },
@@ -359,15 +427,16 @@
                 this.isResizing = false;
                 document.removeEventListener('mousemove', this.resize);
                 document.removeEventListener('mouseup', this.stopResize);
+                this.updatePreview();
             },
             removeItem(index) {
                 this.designItems.splice(index, 1);
-                this.selectedImage = null;
+                this.updatePreview();
             },
 
-            deselectAll(event) {
+            deselectAll(e) {
             // 確保點擊的是畫布而不是項目
-                if (event.target === this.$refs.designCanvas) {
+                if (e.target === this.$refs.designCanvas) {
                     this.selectedItemIndex = null;
                 }
             },
@@ -387,9 +456,9 @@
                 this.currentGroup = group;
                 }
             },
-            handleOutsideClick(event) {
+            handleOutsideClick(e) {
                 // 判斷點擊事件是否發生在 .customized-list 
-                if (!this.$el.contains(event.target)) {
+                if (!this.$el.contains(e.target)) {
                     this.currentGroup = null;
                 }
             },
