@@ -90,12 +90,13 @@ export default {
             </div>
             <nav class="desktop-menu">
                 <ul>
-                    <li v-for="link in links" :key="link.path">
-                        <a v-if="link.submenu" href="#" @click="toggleSubMenu(link)">
+                    <li v-for="link in links" :key="link.path" class="menu-item" @mouseover="showSubMenu(link)"
+                        @mouseleave="hideSubMenu(link)">
+                        <a v-if="link.submenu" href="#" @click.prevent="toggleSubMenu(link)">
                             {{ link.name }}
                         </a>
                         <RouterLink v-else :to="link.path">{{ link.name }}</RouterLink>
-                        <ul v-if="link.submenu && link.showSubMenu">
+                        <ul v-if="link.submenu" class="submenu" :class="{ 'submenu-visible': link.showSubMenu }">
                             <li v-for="sublink in link.submenu" :key="sublink.path">
                                 <RouterLink :to="sublink.path">{{ sublink.name }}</RouterLink>
                             </li>
@@ -141,10 +142,10 @@ export default {
             <ul>
                 <li v-for="(link, index) in links" :key="link.path">
                     <!-- <RouterLink :to="link.path" @click="toggleMenu">{{ link.name }}</RouterLink> -->
-                    <a href="#" @click.prevent="toggleSubMenu(index)">
+                    <a href="#" @click.prevent="toggleSubMenu(link)">
                         {{ link.name }}
                     </a>
-                    <ul v-if="link.submenu && activeSubMenu === index">
+                    <ul v-if="link.submenu && link.showSubMenu">
                         <li v-for="sublink in link.submenu" :key="sublink.path">
                             <RouterLink :to="sublink.path" @click="toggleMenu">{{ sublink.name }}</RouterLink>
                         </li>
@@ -174,7 +175,7 @@ export default {
             ],
             menuOpen: false,
             activeSubMenu: null
-        };      
+        };
     },
     computed: {
         cartStore() {
@@ -207,16 +208,22 @@ export default {
             //     mobileMenu.classList.remove('mobile-menu-open');
             // }
         },
-        toggleSubMenu(index) {
-            if (this.activeSubMenu === index) {
-                this.activeSubMenu = null;
-            } else {
-                this.activeSubMenu = index;
-            }
-        },
-        // toggleSubMenu(link) {
-        //     link.showSubMenu = !link.showSubMenu;
+        // toggleSubMenu(index) {
+        //     if (this.activeSubMenu === index) {
+        //         this.activeSubMenu = null;
+        //     } else {
+        //         this.activeSubMenu = index;
+        //     }
         // },
+        toggleSubMenu(link) {
+            link.showSubMenu = !link.showSubMenu;
+        },
+        showSubMenu(link) { // 新增此方法
+            link.showSubMenu = true;
+        },
+        hideSubMenu(link) { // 新增此方法
+            link.showSubMenu = false;
+        },
         handleResize() {
             if (window.innerWidth > 996) {
                 this.menuOpen = false;
@@ -233,6 +240,4 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
